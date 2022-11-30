@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require "fileutils"
+require "yaml"
+
+posts = Dir.children("_posts")
+
+posts.each do |post|
+  if File.directory?("_posts/#{post}")
+    file = File.read("_posts/#{post}/index.md")
+    date = YAML.unsafe_load(file)["date"].to_s
+
+    if Dir.exist?("_posts/#{post}/images")
+      images = Dir.children("_posts/#{post}/images")
+      FileUtils.mkdir_p("assets/images/posts/#{post}")
+      images.each do |image|
+        unless File.exist?("assets/images/posts/#{post}/#{image}")
+          FileUtils.cp("_posts/#{post}/images/#{image}", "assets/images/posts/#{post}/#{image}")
+        end
+      end
+    end
+
+    unless File.exist?("_posts/#{date}-#{post}.md")
+      FileUtils.cp("_posts/#{post}/index.md", "_posts/#{date}-#{post}.md")
+    end
+
+    system("sed -i '' 's:./images/:/assets/images/posts/#{post}/:g'  _posts/#{date}-#{post}.md")
+  end
+end
