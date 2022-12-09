@@ -14,4 +14,5 @@ group :test do
   gem "minitest-hooks", "~> 1.5"
   gem "minitest-rg", "~> 5.2"
   gem "rack-jekyll", "~> 0.5.0"
+  gem "standard", "~> 1.19"
 end

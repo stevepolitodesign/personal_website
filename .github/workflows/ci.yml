@@ -1,0 +1,15 @@
+name: CI
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@266b024cc1d82d3e712e29d6aaafc376cb33cc7a
+      - name: Install dependencies
+        run: bundle install
+      - name: Run linters
+        run: bundle exec standardrb
+      - name: Run tests
+        run: bundle exec rake
