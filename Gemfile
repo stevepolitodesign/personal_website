@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem "jekyll"
 gem "jekyll-archives", "~> 2.2"
+gem "jekyll-sitemap", "~> 1.4"
 gem "mdl", "~> 0.12.0"
 gem "rake", "~> 13.0"
 

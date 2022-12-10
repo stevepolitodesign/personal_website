@@ -11,6 +11,7 @@ class BuildTest < IntegrationTestCase
   def test_included_files
     assert_exist("_redirects")
     assert_exist("404.html")
+    assert_exist("sitemap.xml")
   end
 
   def test_redirects
