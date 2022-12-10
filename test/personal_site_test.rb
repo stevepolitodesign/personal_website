@@ -29,3 +29,11 @@ class BuildTest < IntegrationTestCase
     assert_equal expected, actual
   end
 end
+
+class SystemTest < SystemTestCase
+  def test_image_paths
+    visit_all_paths do |path|
+      check_for_broken_images(current_url)
+    end
+  end
+end

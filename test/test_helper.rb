@@ -57,4 +57,38 @@ class SystemTestCase < Minitest::Test
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end
+
+  def check_for_broken_images(current_path)
+    page.all("img").each do |img|
+      path = img[:src]
+
+      visit path
+      assert_equal 200, page.status_code, "Expected image #{path} to exist on #{current_path}"
+    end
+  end
+
+  def list_of_paths
+    visit "sitemap.xml"
+
+    page.all("loc").map { |item| item.text }.uniq.sort
+  end
+
+  def visit_all_paths
+    paths = list_of_paths
+
+    paths.each do |path|
+      visit path
+
+      visit_html_path(path) if page.status_code != 200
+      yield
+    end
+  end
+
+  def visit_html_path(path)
+    visit path.concat(".html")
+
+    if page.status_code != 200
+      flunk "Expected #{current_url} to exist."
+    end
+  end
 end
