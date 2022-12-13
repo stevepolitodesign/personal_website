@@ -12,7 +12,7 @@ date: 2021-05-08
 
 Learn how to validate a form in real-time while conditionally preventing it from being submitted.
 
-![demo](images/demo.gif)
+![demo](/assets/images/posts/rails-real-time-form-validation/demo.gif)
 
 ## Step 1: Initial Set Up
 
@@ -182,7 +182,7 @@ export default class extends Controller {
 
 If you open your browser and navigate to [http://localhost:3000/posts/new](http://localhost:3000/posts/new) you can inspect the response from the server and see our work in progress.
 
-![server response](images/server_response.png)
+![server response](/assets/images/posts/rails-real-time-form-validation/server_response.png)
 
 ## Step 5: Debounce Requests
 
@@ -221,13 +221,13 @@ export default class extends Controller {
 > 
 > If you open your browser and navigate to [http://localhost:3000/posts/new](http://localhost:3000/posts/new) you can inspect the response from the server and see that only one request was made instead of one per keystroke.
 
-![debounce](images/debounce.gif)
+![debounce](/assets/images/posts/rails-real-time-form-validation/debounce.gif)
 
 ## Step 6: Focus Input
 
 You might have noticed that each time the form validates, the cursor is no longer focused on the input. Let's fix that.
 
-![no focus](images/no_focus.gif)
+![no focus](/assets/images/posts/rails-real-time-form-validation/no_focus.gif)
 
 ```js
 import Rails from "@rails/ujs"
@@ -279,5 +279,5 @@ export default class extends Controller {
 
 If you open your browser and navigate to [http://localhost:3000/posts/new](http://localhost:3000/posts/new) you'll see that the cursor is placed at the end.
 
-![set focus](images/set_focus.gif)
+![set focus](/assets/images/posts/rails-real-time-form-validation/set_focus.gif)
 

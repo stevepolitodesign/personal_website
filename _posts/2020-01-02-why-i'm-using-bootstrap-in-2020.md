@@ -31,9 +31,9 @@ I had convinced myself that Bootstrap was not able to be customized enough to cr
 
 For context, below are screenshots of some of the more complicated layouts.
 
-![screenshot of complicated layout built in Boostrap](./images/homeapage-desktop.png)
+![screenshot of complicated layout built in Boostrap](/assets/images/posts/why-i'm-using-bootstrap-in-2020/homeapage-desktop.png)
 
-![screenshot of complicated layout built in Boostrap](./images/services-desktop.png)
+![screenshot of complicated layout built in Boostrap](/assets/images/posts/why-i'm-using-bootstrap-in-2020/services-desktop.png)
 
 Below is all the custom css I needed to write, in addition to the variable overrides.
 
@@ -249,11 +249,11 @@ One of the challenges with web development is that it's impossible to account fo
 
 Bootstrap has a reputation for being bloated. However, if you use their [cdn](https://getbootstrap.com/docs/4.4/getting-started/download/#bootstrapcdn) you can dramatically reduce the file size. I'm hosting our site on Netlify, and am using their asset optimization.
 
-![Netlify asset optimization](./images/netlify-asset-optimization.png)
+![Netlify asset optimization](/assets/images/posts/why-i'm-using-bootstrap-in-2020/netlify-asset-optimization.png)
 
 This reduced my CSS into a single 30.0 KB file, and my JS into a single 51.5 KB file. When I run my site against [web.dev](https://web.dev/) I score pretty well.
 
-![web dev score](./images/score.png)
+![web dev score](/assets/images/posts/why-i'm-using-bootstrap-in-2020/score.png)
 
 ## tl;dr
 
