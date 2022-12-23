@@ -4,7 +4,10 @@ require "minitest/rg"
 require "capybara/minitest"
 require "rack/jekyll"
 
-Capybara.app = Rack::Jekyll.new(fource_build: true)
+ENV["JEKYLL_ENV"] ||= "test"
+
+system("bundle exec jekyll build")
+Capybara.app = Rack::Jekyll.new
 
 module Minitest::Assertions
   def assert_exist(filename, msg = nil)
@@ -28,7 +31,7 @@ module TestServer
   end
 
   def start_jekyll_test_server
-    system("JEKYLL_ENV=test bundle exec jekyll serve --detach --port=1234")
+    system("bundle exec jekyll serve --detach --port=1234")
   end
 end
 
@@ -90,5 +93,9 @@ class SystemTestCase < Minitest::Test
     if page.status_code != 200
       flunk "Expected #{current_url} to exist."
     end
+  end
+
+  def visit_post(path)
+    visit_html_path("/fixtures/#{path}")
   end
 end
