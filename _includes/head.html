@@ -1,0 +1,23 @@
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    {% if page.type == "category" %}
+    <meta name="description" content="Latest blog posts categorized in {{ page.title }}">
+    {% elsif page.type == "tag" %}
+    <meta name="description" content="Latest blog posts tagged as {{ page.title }}">
+    {% elsif page.excerpt == nil or page.exerpt == "" %}
+    <meta name="description" content="{{ site.meta.description }}">
+    {% else %}
+    <meta name="description" content="{{ page.excerpt | strip_html }}">
+    {% endif %}
+    {% if page.og_image == nil or page.og_image == "" %}
+    <meta property="og:image" content="{{ "/assets/images/og_image.jpg" | absolute_url }}">
+    {% else %}
+    <meta property="og:image" content="{{ page.og_image | absolute_url }}">
+    {% endif %}
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="{{ page.title }}">
+  </head>

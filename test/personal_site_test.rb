@@ -36,4 +36,62 @@ class SystemTest < SystemTestCase
       check_for_broken_images(current_url)
     end
   end
+
+  def test_all_pages_have_meta_data
+    visit_all_paths do |path|
+      description = page.find("meta[name='description']", visible: false)[:content]
+      title = page.find("title", visible: false).native.text
+      og_title = page.find("meta[property='og:title']", visible: false)[:content]
+      og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      twitter_card = page.find("meta[property='twitter:card']", visible: false)[:content]
+      twitter_title = page.find("meta[property='twitter:title']", visible: false)[:content]
+
+      refute_empty description
+      refute_empty title
+      refute_empty og_title
+      refute_empty og_image
+      refute_empty twitter_card
+      refute_empty twitter_title
+    end
+  end
+
+  def test_category_archive_meta_data
+    visit "/categories/ruby-on-rails"
+    description = page.find("meta[name='description']", visible: false)[:content]
+
+    assert_match "Latest blog posts categorized in Ruby on Rails", description
+  end
+
+  def test_tag_archive_meta_data
+    visit "/tags/opinion"
+    description = page.find("meta[name='description']", visible: false)[:content]
+
+    assert_match "Latest blog posts tagged as Opinion", description
+  end
+
+  def test_post_with_no_meta_data
+    visit_post "post_with_no_meta_data"
+    description = page.find("meta[name='description']", visible: false)[:content]
+    title = page.find("title", visible: false).native.text
+    og_title = page.find("meta[property='og:title']", visible: false)[:content]
+    og_image = page.find("meta[property='og:image']", visible: false)[:content]
+    twitter_card = page.find("meta[property='twitter:card']", visible: false)[:content]
+    twitter_title = page.find("meta[property='twitter:title']", visible: false)[:content]
+
+    assert_match "Post with no meta data", description
+    assert_match "Post with no meta data", title
+    assert_match "Post with no meta data", og_title
+    assert_match "https://stevepolito.design/assets/images/og_image.jpg", og_image
+    assert_match "summary_large_image", twitter_card
+    assert_match "Post with no meta data", twitter_title
+  end
+
+  def test_post_with_meta_data
+    visit_post "post_with_meta_data"
+    description = page.find("meta[name='description']", visible: false)[:content]
+    og_image = page.find("meta[property='og:image']", visible: false)[:content]
+
+    assert_match "Custom excerpt", description
+    assert_match "https://stevepolito.design/assets/images/posts/post-with-meta-data/custom_og_image.jpg", og_image
+  end
 end

@@ -1,6 +1,8 @@
 url: "https://stevepolito.design" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 title: "" # the name of your site, e.g. ACME Corp.
+meta:
+  description: "I'm an full stack developer writting about Ruby on Rails"
 include: ["_redirects"]
 exclude: ["bin", "README.md", "Rakefile", "test"]
 permalink: "/blog/:title"
@@ -16,3 +18,16 @@ jekyll-archives:
 collections:
   fixtures:
     output: false
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "fixtures"
+    values:
+      layout: "default"
