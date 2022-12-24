@@ -1,7 +1,7 @@
 ---
-title: "Sample Post"
+title: "Post with no meta data"
 categories: ["Sample Category"]
 date: 2022-01-03
 ---
 
-# Sample Post
+# Post with no meta data
