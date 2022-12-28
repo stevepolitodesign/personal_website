@@ -6,6 +6,7 @@ class BuildTest < IntegrationTestCase
     refute_exist("test")
     refute_exist("README.md")
     refute_exist("bin")
+    refute_exist("node_modules")
   end
 
   def test_included_files
