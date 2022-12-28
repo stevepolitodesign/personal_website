@@ -5,8 +5,6 @@ meta:
  - content: "The Official Worcester Turtle Boy T-Shirt"
 ---
 
-# Worcester Turtle Boy T-Shirt
-
 Rome has Colosseum. Egypt has the Pyramids. Worcester has the [Turtle Boy][]. I made
 a shirt to commemorate the eighth wonder of the world.
 

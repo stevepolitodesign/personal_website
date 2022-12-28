@@ -95,4 +95,22 @@ class SystemTest < SystemTestCase
     assert_match "Custom excerpt", description
     assert_match "https://stevepolito.design/assets/images/posts/post-with-meta-data/custom_og_image.jpg", og_image
   end
+
+  def test_page_titles
+    visit_all_paths do |path|
+      title = page.find("main h1").text
+
+      refute_empty title
+    end
+  end
+
+  class HomePageTest < SystemTest
+    def test_title
+      visit "/"
+
+      within "main"  do
+        page.assert_selector "h1", text: "Steve Polito is a full stack web developer in the Boston Area"
+      end
+    end
+  end
 end
