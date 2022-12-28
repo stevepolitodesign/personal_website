@@ -10,9 +10,6 @@ resources: [
 date: 2021-07-30
 og_image: "https://mugshotbot.com/m/LKa6a9b4"
 ---
-
-# Build an API in Rails with Authentication
-
 In this tutorial, we'll build a full-featured API in Rails with authentication. Below is what we'll cover.
 
 - Encrypting API keys.

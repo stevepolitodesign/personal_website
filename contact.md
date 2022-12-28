@@ -4,9 +4,6 @@ title: "Contact Steve Polito"
 meta:
  - content: "Email me at stevepolito@hey.com"
 ---
-
-# Contact
-
 Want to get in touch? Email me at stevepolito@hey.com or fill out the form
 below.
 
