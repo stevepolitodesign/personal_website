@@ -108,8 +108,23 @@ class SystemTest < SystemTestCase
     def test_title
       visit "/"
 
-      within "main"  do
+      within "main" do
         page.assert_selector "h1", text: "Steve Polito is a full stack web developer in the Boston Area"
+      end
+    end
+
+    def test_latest_posts
+      visit "/"
+
+      within "main section[role='region'][aria-labelledby='latest-posts']" do
+        page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
+        page.assert_selector "article", count: 3
+
+        within "article:first-of-type" do
+          page.assert_selector "header h2"
+          page.assert_selector "header h2 ~ p", count: 1
+          page.assert_selector "header h2 ~ a", count: 1, text: "Read More"
+        end
       end
     end
   end
