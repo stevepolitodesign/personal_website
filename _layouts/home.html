@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  {% include head.html %}
+  <body>
+    <main>
+      <h1>{{ page.title }}</h1>
+      <section role="region" aria-labelledby="latest-posts">
+        <h2 id="latest-posts">Latest Posts</h2>
+        {% for post in site.posts limit:3 %}
+        <article>
+          <header>
+            <h2>{{ post.title }}</h2>
+            {{ post.excerpt }}
+            <a href="{{ post.url }}">Read More</a>
+          </header>
+        </article>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>
