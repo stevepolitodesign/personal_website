@@ -128,4 +128,20 @@ class SystemTest < SystemTestCase
       end
     end
   end
+
+  class BlogTest < SystemTest
+    def test_blog
+      visit "blog.html"
+
+      within "main section[role='region'][aria-labelledby='latest-posts']" do
+        page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
+
+        within "article:first-of-type" do
+          page.assert_selector "header h2"
+          page.assert_selector "header h2 ~ p", count: 1
+          page.assert_selector "header h2 ~ a", count: 1, text: "Read More"
+        end
+      end
+    end
+  end
 end
