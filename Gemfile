@@ -4,10 +4,14 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem "jekyll"
-gem "jekyll-archives", "~> 2.2"
-gem "jekyll-sitemap", "~> 1.4"
 gem "mdl", "~> 0.12.0"
 gem "rake", "~> 13.0"
+
+group :jekyll_plugins do
+  gem "jekyll-archives", "~> 2.2"
+  gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-youtube", "~> 1.0"
+end
 
 group :test do
   gem "capybara", "~> 3.38"
