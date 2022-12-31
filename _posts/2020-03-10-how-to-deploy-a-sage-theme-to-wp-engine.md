@@ -38,7 +38,7 @@ Next we need to configure both the deployment path and the update excluded files
 
 Update the deployment path to where on the server should your files be placed. In this case, we just want to upload the theme.
 
-![deployment path]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/deployment-options-cropped.png)
+![deployment path](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/deployment-options-cropped.png)
 
 `wp-content/themes/your-theme`
 
@@ -46,13 +46,13 @@ Update the deployment path to where on the server should your files be placed. I
 
 Update your excluded files, ensuring to exclude `wp-content/themes/your-theme/node_modules/**`. I am a bit aggressive, and also exclude `node_modules/**`. This ensures that the `node_modules` folder is not uploaded to our server during deployment.
 
-![exclude files]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/exclude-files-cropped.png)
+![exclude files](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/exclude-files-cropped.png)
 
 ## Step 3: Configure DeployHQ Build Pipeline
 
 Next we need to add and configure our build pipelines, so that we can [deploy a Sage theme](https://roots.io/sage/docs/theme-deployment/) since we can't run those commands on a WP Engine server.
 
-![build pipeline]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline.png)
+![build pipeline](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline.png)
 
 ### Step 3.1: Create a Composer Command
 
@@ -63,7 +63,7 @@ cd wp-content/themes/your-theme
 composer install --no-dev
 ```
 
-![composer build pipeline]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline-composer.png)
+![composer build pipeline](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline-composer.png)
 
 However, if your repository is initialized in your theme, just add the following build command.
 
@@ -80,7 +80,7 @@ cd wp-content/themes/your-theme
 yarn install && yarn run build:production
 ```
 
-![composer build pipeline]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline-yarn.png)
+![composer build pipeline](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline-yarn.png)
 
 However, if your repository is initialized in your theme, just add the following build command.
 
@@ -92,7 +92,7 @@ yarn install && yarn run build:production
 
 Assuming your repository is initialized in the root of your WordPress install, add the following cached files.
 
-![cached files]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/cached-files.png)
+![cached files](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/cached-files.png)
 
 `wp-content/themes/your-theme/vendor/**` and `wp-content/themes/your-theme/node_modules/**`
 
@@ -104,10 +104,10 @@ However, if your repository is initialized in your theme, just add the following
 
 Finally, update the version of Node to whatever version you are successfully using locally. In my case, I am am running version 10.
 
-![build pipeline node version]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline-node-version.png)
+![build pipeline node version](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/build-pipeline-node-version.png)
 
 ## Deploying
 
 Now, when you deploy your theme you should see the build steps.
 
-![]/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/deploy-hq-build.png)
+![yarn install output](/assets/images/posts/how-to-deploy-a-sage-theme-to-wp-engine/deploy-hq-build.png)
