@@ -9,6 +9,7 @@ permalink: "/blog/:title"
 plugins:
   - jekyll-archives
   - jekyll-sitemap
+  - jekyll-youtube
 jekyll-archives:
   enabled: ["categories", "tags"]
   layout: archive
