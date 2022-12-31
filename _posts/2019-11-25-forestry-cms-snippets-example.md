@@ -14,7 +14,7 @@ resources: [
 date: 2019-11-25
 ---
 
-`youtube:https://www.youtube.com/embed/lUd9SQCkDj0`
+{% youtube "https://www.youtube.com/embed/lUd9SQCkDj0" %}
 
 Snippets in Forestry are pre-defined chunks of text that can be inserted into your content. Think of them like WordPress Shortcodes. In this tutorial I will show you how to create a reusable snippet to embed responsive iframes.
 

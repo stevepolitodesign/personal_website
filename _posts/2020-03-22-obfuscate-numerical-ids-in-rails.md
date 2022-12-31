@@ -24,7 +24,7 @@ date: 2020-03-22
 
 By default, Rails displays the record's `ID` in the URL (e.g. `http://localhost:3000/articles/1`). Although there is nothing inherently wrong with this approach, sometimes it's helpful to obfuscate the record's `ID` (e.g. `http://localhost:3000/articles/xb3mm6k`). In this tutorial I will show you how to obfuscate numerical `IDs` in Rails.
 
-`youtube:https://www.youtube.com/embed/gOF7bqKJ_nY`
+{% youtube "https://www.youtube.com/embed/gOF7bqKJ_nY" %}
 
 ## Step 1. Add a Hashid Column to Your Model
 

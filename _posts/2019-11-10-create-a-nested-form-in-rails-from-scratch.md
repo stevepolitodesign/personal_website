@@ -26,7 +26,7 @@ The [Rails Guides](https://guides.rubyonrails.org/form_helpers.html#building-com
 
 In this tutorial, I'll show you how you can create a nested form in Rails from scratch.
 
-`youtube:https://www.youtube.com/embed/K45V1JOrP8o`
+{% youtube "https://www.youtube.com/embed/K45V1JOrP8o" %}
 
 ## 1. Configuring the Model
 

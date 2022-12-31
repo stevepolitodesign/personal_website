@@ -18,7 +18,7 @@ resources: [
 date: 2019-11-17
 ---
 
-`youtube:https://www.youtube.com/embed/TToomEilKs8`
+{% youtube "https://www.youtube.com/embed/TToomEilKs8" %}
 
 Foresty CMS allows content editors to easily manage a staticly generated site without needing to know markdown or HTML. This works really well if you're just editing a page with a title and a body, but sometimes you need to offer more diversity. Luckily Forestry has a [Block Field](https://forestry.io/docs/settings/fields/blocks/) which allows a content editor to easily add robust content to a page. The example below shows how we can create a block field that displays highlights anywhere on a page.
 

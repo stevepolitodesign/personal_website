@@ -12,7 +12,7 @@ date: 2019-11-02
 
 Sometimes you need to redirect a parent page to its child page, especially if you need to keep a specific type of menu hierarchy. There are several ways to do this, but I prefer using [Advanced Custom Fields](https://www.advancedcustomfields.com/). This is because it allows content editors control over the redirect, and also allows for greater flexibility in the future.
 
-`youtube:https://www.youtube.com/embed/uMuLUqOoB_Q`
+{% youtube "https://www.youtube.com/embed/uMuLUqOoB_Q" %}
 
 ## 1. Create a New Template
 
