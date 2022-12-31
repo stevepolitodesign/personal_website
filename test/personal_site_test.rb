@@ -154,6 +154,16 @@ class SystemTest < SystemTestCase
         end
       end
     end
+
+    def test_video
+      visit_post "post_with_video"
+      description = page.find("meta[name='description']", visible: false)[:content]
+
+      assert_match "Post with video", description
+      within "div.ratio.ratio-16x9" do
+        page.assert_selector "iframe[src='https://www.youtube.com/embed/123?rel=0']"
+      end
+    end
   end
 
   class ArchiveTest < SystemTest
