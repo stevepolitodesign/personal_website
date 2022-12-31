@@ -26,7 +26,7 @@ You might be wondering why anyone would want to add [Tailwind's default color pa
 
 ## How to extend Bootstrap by adding the Tailwind color palette
 
-`youtube:https://www.youtube.com/embed/0J_e_7QQ-uU`
+{% youtube "https://www.youtube.com/embed/0J_e_7QQ-uU" %}
 
 1. [Import](https://getbootstrap.com/docs/4.4/getting-started/theming/#variable-defaults) Bootstrap and its default variables.
 

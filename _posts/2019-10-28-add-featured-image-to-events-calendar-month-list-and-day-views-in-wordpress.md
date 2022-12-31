@@ -26,7 +26,7 @@ By default, WordPress allows you to assign a featured image to a page or post. H
 
 Fortunately, [ACF Pro](https://www.advancedcustomfields.com/pro/) allows us to create an [options](https://www.advancedcustomfields.com/resources/options-page/#basic-usage) page which can have fields assigned to it. We can then use these fields to conditionally render an image to the events month, list and day views.
 
-`youtube:https://www.youtube.com/embed/7ZQsjiGReXA`
+{% youtube "https://www.youtube.com/embed/7ZQsjiGReXA" %}
 
 ## Step 1. Create an Options Page
 

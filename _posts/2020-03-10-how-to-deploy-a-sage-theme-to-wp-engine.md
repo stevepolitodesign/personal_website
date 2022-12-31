@@ -18,7 +18,7 @@ resources: [
 date: 2020-03-10
 ---
 
-`youtube:https://www.youtube.com/embed/qLydfI8ka4E`
+{% youtube "https://www.youtube.com/embed/qLydfI8ka4E" %}
 
 [Sage](https://roots.io/sage/) is WordPress starter theme with a modern development workflow. However, deploying a Sage theme can be difficult because of its [dependencies](https://roots.io/sage/docs/theme-installation/), most notably [Composer](https://getcomposer.org/download/) and [Yarn](https://classic.yarnpkg.com/en/docs/install). In order to [deploy a Sage theme](https://roots.io/sage/docs/theme-deployment/), you need to be able to run both `Composer` and `Yarn` on your server. Furthermore, Sage doesn't [officially support hosting at WP Engine](https://roots.io/sage/docs/theme-deployment/#deploying-sage-on-wp-engine). You could [deploy Sage via FTP](https://roots.io/sage/docs/theme-deployment/#deploying-sage-via-ftp), but this approach is error prone and inefficient. Fortunately, there are services such as [DeployBot](https://deploybot.com/) and [DeployHQ](https://www.deployhq.com/) that can run these builds, and them push the distributed files to the server. For this tutorial, I am going to be using DeployHQ.
 

@@ -23,7 +23,7 @@ Rails ships with [turbolinks](https://github.com/turbolinks/turbolinks) which:
 
 This creates a reactive, fast application. However, there are times when `turbolinks` is not enough, and you'll want to roll your own AJAX solutions.
 
-`youtube:https://www.youtube.com/embed/WbS65DsRLqk`
+{% youtube "https://www.youtube.com/embed/WbS65DsRLqk" %}
 
 ## Blueprint
 

@@ -29,7 +29,7 @@ date: 2018-11-25
 
 In this tutorial I'm going to show you how to configure your Rails app to use **RSpec** and **Capaybara**. In addition, we will also install and configure **Factory Bot Rails** and **Database Cleaner**, since these Gems help with a better testing experience.
 
-`youtube:https://www.youtube.com/embed/XZkVRkNUFG0`
+{% youtube "https://www.youtube.com/embed/XZkVRkNUFG0" %}
 
 ## 1. Create a New App and Skip Tests
 
