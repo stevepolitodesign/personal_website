@@ -129,6 +129,17 @@ class SystemTest < SystemTestCase
     end
   end
 
+  class LayoutTest < SystemTest
+    def test_navigation
+      visit_all_paths do |path|
+        within "body header[role='banner'] nav ul" do
+          assert_link "Blog", href: "/blog"
+          assert_link "Contact", href: "/contact"
+        end
+      end
+    end
+  end
+
   class BlogTest < SystemTest
     def test_blog
       visit "blog.html"
