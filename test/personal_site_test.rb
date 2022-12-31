@@ -164,6 +164,30 @@ class SystemTest < SystemTestCase
         page.assert_selector "iframe[src='https://www.youtube.com/embed/123?rel=0']"
       end
     end
+
+    def test_resources
+      visit_post "post_with_resources"
+
+      within "main aside" do
+        page.assert_selector "h2", text: "Resources"
+
+        within "ul li" do
+          assert_link "Resource One", href: "https://example.com"
+        end
+      end
+    end
+
+    def test_resources_as_json
+      visit_post "post_with_resources_as_json"
+
+      within "main aside" do
+        page.assert_selector "h2", text: "Resources"
+
+        within "ul li" do
+          assert_link "Resource One", href: "https://example.com"
+        end
+      end
+    end
   end
 
   class ArchiveTest < SystemTest
