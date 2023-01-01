@@ -192,6 +192,19 @@ class SystemTest < SystemTestCase
         end
       end
     end
+
+    def test_tags_and_categories
+      visit "blog.html"
+
+      within "main aside" do
+        assert_selector "h2", text: "Categories"
+        assert_selector "h2", text: "Tags"
+        assert_selector "ul li"
+
+        assert_link "Ruby on Rails", href: "/categories/ruby-on-rails"
+        assert_link "Tutorial", href: "/tags/tutorial"
+      end
+    end
   end
 
   class ArchiveTest < SystemTest
