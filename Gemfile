@@ -14,10 +14,12 @@ group :jekyll_plugins do
 end
 
 group :test do
+  gem "axe-core-api", "~> 4.5"
   gem "capybara", "~> 3.38"
   gem "minitest", "~> 5.16"
   gem "minitest-hooks", "~> 1.5"
   gem "minitest-rg", "~> 5.2"
   gem "rack-jekyll", "~> 0.5.0"
+  gem "selenium-webdriver", "~> 4.7"
   gem "standard", "~> 1.19"
 end

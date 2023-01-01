@@ -110,6 +110,7 @@ class SystemTest < SystemTestCase
     def test_title
       visit "/"
 
+      assert_accessible page
       within "main" do
         page.assert_selector "h1", text: "Steve Polito is a full stack web developer in the Boston Area"
       end
@@ -146,6 +147,7 @@ class SystemTest < SystemTestCase
     def test_blog
       visit "blog.html"
 
+      assert_accessible page
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
 
@@ -196,6 +198,7 @@ class SystemTest < SystemTestCase
     def test_category
       visit "categories/ruby-on-rails"
 
+      assert_accessible page
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
 
@@ -210,6 +213,7 @@ class SystemTest < SystemTestCase
     def test_tag
       visit "tags/opinion"
 
+      assert_accessible page
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
 

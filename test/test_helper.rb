@@ -3,11 +3,14 @@ require "minitest/hooks/test"
 require "minitest/rg"
 require "capybara/minitest"
 require "rack/jekyll"
+require "axe/matchers/be_axe_clean"
 
 ENV["JEKYLL_ENV"] ||= "test"
 
 system("bundle exec jekyll build")
 Capybara.app = Rack::Jekyll.new
+Capybara.default_driver = :selenium_chrome_headless
+Capybara.server = :webrick
 
 module Minitest::Assertions
   def assert_exist(filename, msg = nil)
@@ -62,6 +65,7 @@ class SystemTestCase < Minitest::Test
   end
 
   def check_for_broken_images(current_path)
+    Capybara.current_driver = :rack_test
     page.all("img").each do |img|
       path = img[:src]
 
@@ -77,6 +81,7 @@ class SystemTestCase < Minitest::Test
   end
 
   def visit_all_paths
+    Capybara.current_driver = :rack_test
     paths = list_of_paths
 
     paths.each do |path|
@@ -96,6 +101,12 @@ class SystemTestCase < Minitest::Test
   end
 
   def visit_post(path)
+    Capybara.current_driver = :rack_test
     visit_html_path("/fixtures/#{path}")
+  end
+
+  def assert_accessible(page, matcher = Axe::Matchers::BeAxeClean.new.according_to(:wcag21aa, "best-practice"))
+    audit_result = matcher.audit(page)
+    assert(audit_result.passed?, audit_result.failure_message)
   end
 end
