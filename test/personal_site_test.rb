@@ -7,6 +7,9 @@ class BuildTest < IntegrationTestCase
     refute_exist("README.md")
     refute_exist("bin")
     refute_exist("node_modules")
+    refute_exist("package.json")
+    refute_exist("yarn.lock")
+    refute_exist(".husky")
   end
 
   def test_included_files

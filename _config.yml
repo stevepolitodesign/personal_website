@@ -4,7 +4,7 @@ title: "" # the name of your site, e.g. ACME Corp.
 meta:
   description: "I'm an full stack developer writting about Ruby on Rails"
 include: ["_redirects"]
-exclude: ["bin", "README.md", "Rakefile", "test"]
+exclude: ["bin", "README.md", "Rakefile", "test", "package.json", "yarn.lock"]
 permalink: "/blog/:title"
 plugins:
   - jekyll-archives
@@ -20,14 +20,12 @@ collections:
   fixtures:
     output: false
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "default"
-  -
-    scope:
+  - scope:
       path: ""
       type: "fixtures"
     values:
