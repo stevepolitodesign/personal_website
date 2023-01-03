@@ -1,0 +1,16 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+$font-family-sans-serif: "Inter", sans-serif;
+$headings-font-weight: 900;
+$body-bg: $gray-200;
+
+$card-border-radius: 0;
+$card-border-width: 0;
+
+$link-color: $blue-700;
+
+$theme-colors: map-merge($theme-colors, $reds);
+$theme-colors: map-merge($theme-colors, $blues);
+$theme-colors: map-merge($theme-colors, $grays);

@@ -1,23 +1,34 @@
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-    {% if page.type == "category" %}
-    <meta name="description" content="Latest blog posts categorized in {{ page.title }}">
-    {% elsif page.type == "tag" %}
-    <meta name="description" content="Latest blog posts tagged as {{ page.title }}">
-    {% elsif page.excerpt == nil or page.exerpt == "" %}
-    <meta name="description" content="{{ site.meta.description }}">
-    {% else %}
-    <meta name="description" content="{{ page.excerpt | strip_html }}">
-    {% endif %}
-    {% if page.og_image == nil or page.og_image == "" %}
-    <meta property="og:image" content="{{ "/assets/images/og_image.jpg" | absolute_url }}">
-    {% else %}
-    <meta property="og:image" content="{{ page.og_image | absolute_url }}">
-    {% endif %}
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="{{ page.title }}">
-  </head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}"> {%
+  if page.type == "category" %}
+  <meta
+    name="description"
+    content="Latest blog posts categorized in {{ page.title }}"
+  />
+  {% elsif page.type == "tag" %}
+  <meta
+    name="description"
+    content="Latest blog posts tagged as {{ page.title }}"
+  />
+  {% elsif page.excerpt == nil or page.exerpt == "" %}
+  <meta name="description" content="{{ site.meta.description }}" />
+  {% else %}
+  <meta name="description" content="{{ page.excerpt | strip_html }}" />
+  {% endif %} {% if page.og_image == nil or page.og_image == "" %} <meta
+  property="og:image" content="{{ "/assets/images/og_image.jpg" | absolute_url
+  }}"> {% else %}
+  <meta property="og:image" content="{{ page.og_image | absolute_url }}" />
+  {% endif %}
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="{{ page.title }}" />
+</head>
