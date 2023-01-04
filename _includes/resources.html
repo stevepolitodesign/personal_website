@@ -1,0 +1,12 @@
+<div class="card bg-white">
+  <div class="card-body">
+    <p class="h4 card-title">References</p>
+    <ul class="card-text list-unstyled">
+      {% for resource in page.resources %}
+      <li>
+        <a href="{{ resource.url }}">{{ resource.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

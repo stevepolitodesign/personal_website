@@ -102,7 +102,7 @@ class SystemTest < SystemTestCase
 
     def test_page_titles
       visit_all_paths do |path|
-        title = page.find("main h1").text
+        title = page.find("main h1.long-shadow").text
 
         refute_empty title
       end
@@ -149,6 +149,14 @@ class SystemTest < SystemTestCase
         end
       end
     end
+
+    def test_sidebar
+      visit "contact.html"
+
+      within "main aside" do
+        page.assert_selector "p", text: "References", count: 0
+      end
+    end
   end
 
   class BlogTest < SystemTest
@@ -181,7 +189,7 @@ class SystemTest < SystemTestCase
       visit_post "post_with_resources"
 
       within "main aside" do
-        page.assert_selector "h2", text: "Resources"
+        page.assert_selector "p", text: "References"
 
         within "ul li" do
           assert_link "Resource One", href: "https://example.com"
@@ -193,7 +201,7 @@ class SystemTest < SystemTestCase
       visit_post "post_with_resources_as_json"
 
       within "main aside" do
-        page.assert_selector "h2", text: "Resources"
+        page.assert_selector "p", text: "References"
 
         within "ul li" do
           assert_link "Resource One", href: "https://example.com"
@@ -201,14 +209,21 @@ class SystemTest < SystemTestCase
       end
     end
 
+    def test_no_resources
+      visit_post "post_with_video"
+
+      within "main aside" do
+        page.assert_selector "p", text: "References", count: 0
+      end
+    end
+
     def test_tags_and_categories
       visit "blog.html"
 
       within "main aside" do
-        assert_selector "h2", text: "Categories"
-        assert_selector "h2", text: "Tags"
+        assert_selector "p", text: "Categories"
+        assert_selector "p", text: "Tags"
         assert_selector "ul li"
-
         assert_link "Ruby on Rails", href: "/categories/ruby-on-rails"
         assert_link "Tutorial", href: "/tags/tutorial"
       end

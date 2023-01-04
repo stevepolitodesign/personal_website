@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ site.lang | default: 'en-US' }}">
   {% include head.html %}
   <body>
     {% include header.html %}
     <main>
-      <h1>{{ page.title }}</h1>
-      {% if page.resources != nil or page.resources != "" %}
-      <aside>
-        <h2>Resources</h2>
-        <ul>
-          {% for resource in page.resources %}
-          <li>
-            <a href="{{ resource.url }}">{{ resource.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </aside>
-      {% endif %}
-      {{ content }}
+      {% include page_title.html %}
+      <div class="container">
+        <div class="row">
+          <section class="vstack gap-4 col col-sm-8">
+            <div class="card bg-white">
+              <div class="card-body">{{ content }}</div>
+            </div>
+          </section>
+          <aside class="col col-sm-4">
+            {% if page.resources != nil %} {% include resources.html %} {% endif
+            %}
+          </aside>
+        </div>
+      </div>
     </main>
   </body>
 </html>
