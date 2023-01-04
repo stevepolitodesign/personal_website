@@ -24,7 +24,7 @@
   {% else %}
   <meta name="description" content="{{ page.excerpt | strip_html }}" />
   {% endif %} {% if page.og_image == nil or page.og_image == "" %} <meta
-  property="og:image" content="{{ "/assets/images/og_image.jpg" | absolute_url
+  property="og:image" content="{{ "/assets/images/og_image.jpg" | relative_url
   }}"> {% else %}
   <meta property="og:image" content="{{ page.og_image | absolute_url }}" />
   {% endif %}

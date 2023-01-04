@@ -86,7 +86,7 @@ class SystemTest < SystemTestCase
       assert_match "Post with no meta data", description
       assert_match "Post with no meta data", title
       assert_match "Post with no meta data", og_title
-      assert_match "https://stevepolito.design/assets/images/og_image.jpg", og_image
+      assert_match "/assets/images/og_image.jpg", og_image
       assert_match "summary_large_image", twitter_card
       assert_match "Post with no meta data", twitter_title
     end
