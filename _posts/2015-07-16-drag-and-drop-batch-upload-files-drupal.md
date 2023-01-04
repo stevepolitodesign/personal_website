@@ -2,11 +2,30 @@
 title: Drag and Drop Batch Upload Files In Drupal
 tags: ["Tutorial", "Media Management"]
 categories: ["Drupal 7"]
-resources: [{title: "Media  (7.x-1.5)", url: "https://www.drupal.org/project/media"}, {title: "Plupload integration", url: "https://www.drupal.org/project/plupload"}, {title: "Plupload Library", url: "https://github.com/moxiecode/plupload/archive/v1.5.8.zip"}, {title: "Drag &amp; Drop Upload", url: "https://www.drupal.org/project/dragndrop_upload"}, {title: "Multiupload Filefield Widget", url: "https://www.drupal.org/project/multiupload_filefield_widget"}]
+resources:
+  [
+    { title: "Media  (7.x-1.5)", url: "https://www.drupal.org/project/media" },
+    {
+      title: "Plupload integration",
+      url: "https://www.drupal.org/project/plupload",
+    },
+    {
+      title: "Plupload Library",
+      url: "https://github.com/moxiecode/plupload/archive/v1.5.8.zip",
+    },
+    {
+      title: "Drag &amp; Drop Upload",
+      url: "https://www.drupal.org/project/dragndrop_upload",
+    },
+    {
+      title: "Multiupload Filefield Widget",
+      url: "https://www.drupal.org/project/multiupload_filefield_widget",
+    },
+  ]
 date: 2015-07-16
 node: 143
 ---
- 
+
 I love Drupal, but its media handling is far from ideal. Out of the box, it pales in comparison to WordPress. Most notably, Drupal does not make it easy to batch upload files via a drag and drop interface.
 
 Fortunately, this functionality can be configured with little effort.
@@ -45,7 +64,7 @@ Click **Start upload** and **Next**. On the subsequent pages you can edit the im
 
 Similar to the last section, we are going to create the ability to drag and drop batch upload files to an image field on a content type.
 
-You will need to install and enable  the following modules.
+You will need to install and enable the following modules.
 
 - [Drag & Drop Upload](https://www.drupal.org/project/dragndrop_upload)
 - [Multiupload Filefield Widget](https://www.drupal.org/project/multiupload_filefield_widget)
@@ -60,7 +79,7 @@ Now navigate the edit tab for that field **admin/structure/types/manage/article/
 
 ![](/assets/images/posts/drag-and-drop-batch-upload-files-drupal/Screen-Shot-2015-07-15-at-7.14.21-PM.png)
 
-Navigate back to the edit page **dmin/structure/types/manage/article/fields/field\_image**. Under **DRAG & DROP UPLOAD SETTINGS** make sure **Show Browse button** and **Allow multiupload** are checked off. Click save.
+Navigate back to the edit page **dmin/structure/types/manage/article/fields/field_image**. Under **DRAG & DROP UPLOAD SETTINGS** make sure **Show Browse button** and **Allow multiupload** are checked off. Click save.
 
 ![](/assets/images/posts/drag-and-drop-batch-upload-files-drupal/Screen-Shot-2015-07-15-at-7.14.09-PM.png)
 

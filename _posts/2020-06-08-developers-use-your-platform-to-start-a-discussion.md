@@ -19,7 +19,7 @@ If you're like me, then you probably feel stuck. You see an injustice, but don't
 - Get out of your echo chamber and try to understand your "opponent's" point of view. Admittedly, this is challenging. However, this is a key step in being able to instill change. How can you expect to change someone's mind if you don't understand why they think in a particular way in the first place.
 - You don't have to physically protest to voice your opinions. Put your thoughts into writting and share them. Don't let someone else speak on your behalf. Use your platform.
 - Don't avoid difficult conversations. If someone says something you don't agree with, take that opportunity to help educate them, but to also undertone their point of view.
-     
+
 I'll end this with a quote from _7 Habits of Highly Effective People_.
 
-> Communication is the most important skill in life. You spend years learning how to read and write, and years learning how to speak. But what about listening? What training have you had that enables you to listen so you really, deeply understand another human being? Probably none, right? 
+> Communication is the most important skill in life. You spend years learning how to read and write, and years learning how to speak. But what about listening? What training have you had that enables you to listen so you really, deeply understand another human being? Probably none, right?

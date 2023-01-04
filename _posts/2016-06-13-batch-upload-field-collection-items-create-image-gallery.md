@@ -2,14 +2,36 @@
 title: Batch Upload Field Collection Items to Create an Image Gallery
 tags: ["Tutorial", "Media Management"]
 categories: ["Drupal 7"]
-resources: [{title: "Field collection", url: "https://www.drupal.org/project/field_collection"}, {title: "Field Collection Bulkupload", url: "https://www.drupal.org/project/field_collection_bulkupload"}, {title: "FileField Sources", url: "https://www.drupal.org/project/filefield_sources"}, {title: "Plupload integration", url: "https://www.drupal.org/project/plupload"}, {title: "Entity API", url: "https://www.drupal.org/project/entity"}, {title: "Colorbox", url: "https://www.drupal.org/project/colorbox"}, {title: "Token", url: "https://www.drupal.org/project/token"}, {title: "Libraries API", url: "https://www.drupal.org/project/libraries"}]
+resources:
+  [
+    {
+      title: "Field collection",
+      url: "https://www.drupal.org/project/field_collection",
+    },
+    {
+      title: "Field Collection Bulkupload",
+      url: "https://www.drupal.org/project/field_collection_bulkupload",
+    },
+    {
+      title: "FileField Sources",
+      url: "https://www.drupal.org/project/filefield_sources",
+    },
+    {
+      title: "Plupload integration",
+      url: "https://www.drupal.org/project/plupload",
+    },
+    { title: "Entity API", url: "https://www.drupal.org/project/entity" },
+    { title: "Colorbox", url: "https://www.drupal.org/project/colorbox" },
+    { title: "Token", url: "https://www.drupal.org/project/token" },
+    { title: "Libraries API", url: "https://www.drupal.org/project/libraries" },
+  ]
 date: 2016-06-13
 node: 167
 ---
- 
+
 ## Introduction and Requirements
 
-Let's say you want to create an image gallery on your site. Let's say that each image also needs a caption and a photo credit field. One solution would be to create a field collection of and image, text and long text field. However, the most image galleries contain many images. It would be very time consuming to have to upload each image individually. Enter [Field Collection Bulkupload](https://www.drupal.org/project/field_collection_bulkupload). With  **Field Collection Bulkupload**  you can drag and drop multiple images onto the page and have them automatically uploaded.
+Let's say you want to create an image gallery on your site. Let's say that each image also needs a caption and a photo credit field. One solution would be to create a field collection of and image, text and long text field. However, the most image galleries contain many images. It would be very time consuming to have to upload each image individually. Enter [Field Collection Bulkupload](https://www.drupal.org/project/field_collection_bulkupload). With **Field Collection Bulkupload** you can drag and drop multiple images onto the page and have them automatically uploaded.
 
 ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/field-collection-batch-upload.gif)
 
@@ -35,48 +57,48 @@ In this tutorial we are going to go an extra step and have our images appear in 
 
 ## Add a Field Collection Field
 
-1. Add a  **field collection** field to an existing or new content type. Set the  **widget**  to **Embedded**.
-![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-1-2.png)
-2. Set the  **Number of values**  to **Unlimited.**
-![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-2-1.png)
+1. Add a **field collection** field to an existing or new content type. Set the **widget** to **Embedded**.
+   ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-1-2.png)
+2. Set the **Number of values** to **Unlimited.**
+   ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-2-1.png)
 3. Now navigate to the field collection admin page at the following URL **admin/structure/field-collections**
 4. Add the followings fields
-![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-3-1.png)
+   ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-3-1.png)
 
-| **LABEL** | **MACHINE NAME** | **FIELD TYPE** | **WIDGET** |
-| --------- | ---------------- | -------------- | ---------- |
-| Gallery Image | field\_gallery\_image | Image | Image |
-| Photo Credit | field\_photo\_credit | Text | Text field |
-| Caption | field\_caption | Long text | Text area (multiple rows) |
+| **LABEL**     | **MACHINE NAME**    | **FIELD TYPE** | **WIDGET**                |
+| ------------- | ------------------- | -------------- | ------------------------- |
+| Gallery Image | field_gallery_image | Image          | Image                     |
+| Photo Credit  | field_photo_credit  | Text           | Text field                |
+| Caption       | field_caption       | Long text      | Text area (multiple rows) |
 
 5. Format their display like this:
-![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-4-0.png)
+   ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-4-0.png)
 
-| **FIELD** | **LABEL** | **FORMAT** |
-| --------- | --------- | ---------- |
-| Gallery Image | \<Hidden\> | Colorbox |
-| Photo Credit | Above | \<Hidden\> |
-| Caption | Above | \<Hidden\> |
+| **FIELD**     | **LABEL**  | **FORMAT** |
+| ------------- | ---------- | ---------- |
+| Gallery Image | \<Hidden\> | Colorbox   |
+| Photo Credit  | Above      | \<Hidden\> |
+| Caption       | Above      | \<Hidden\> |
 
-6. Format the  **Gallery Image** field Colorbox display like this:
-    1. **Content image style** = Medium (220x20)
-    1. **Content image style for first image** = No special style.
-    1. **Colorbox image style** = None (original image)
-    1. **Gallery (image grouping)** = Per page gallery
-    1. **Caption** = Custom (with tokens)
-    1. **​Custom caption** = `[field\_collection\_item:field-caption] | Photo By [field\_collection\_item:field\_photo\_credit]`
+6. Format the **Gallery Image** field Colorbox display like this:
+   1. **Content image style** = Medium (220x20)
+   1. **Content image style for first image** = No special style.
+   1. **Colorbox image style** = None (original image)
+   1. **Gallery (image grouping)** = Per page gallery
+   1. **Caption** = Custom (with tokens)
+   1. **​Custom caption** = `[field\_collection\_item:field-caption] | Photo By [field\_collection\_item:field\_photo\_credit]`
 
 ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-5-0.png)
 
 ## Apply Necessary Patches To Fix Bugs
 
-At the time of this writing, I am using  **7.x-1.0-alpha1**  of the [Field Collection Bulk Upload](https://www.drupal.org/project/field_collection_bulkupload) module. This is not a completely stable release, and because of that there are some bugs. However, the following patches take care of the most common issues you may run into.
+At the time of this writing, I am using **7.x-1.0-alpha1** of the [Field Collection Bulk Upload](https://www.drupal.org/project/field_collection_bulkupload) module. This is not a completely stable release, and because of that there are some bugs. However, the following patches take care of the most common issues you may run into.
 
-### Undefined function: filefield\_sources\_save\_file
+### Undefined function: filefield_sources_save_file
 
 > The specified file _temporary://p1alhovrrd15flnnrv79t3r1nju7.tmp_ could not be copied, because no file by that name exists. Please check that you supplied the correct filename.
 
-The solution to this problem can be found [here](https://www.drupal.org/node/1892668#comment-9887597). Basically, the Field Collection Bulkupload depends upon the [FileField Sources](https://www.drupal.org/project/filefield_sources) module. Apply [this patch ](https://www.drupal.org/files/issues/undefined_function-1892668-4.patch)to add it as a dependency. Once applied, don't forget to enable the FileField Sources module. 
+The solution to this problem can be found [here](https://www.drupal.org/node/1892668#comment-9887597). Basically, the Field Collection Bulkupload depends upon the [FileField Sources](https://www.drupal.org/project/filefield_sources) module. Apply [this patch ](https://www.drupal.org/files/issues/undefined_function-1892668-4.patch)to add it as a dependency. Once applied, don't forget to enable the FileField Sources module.
 
     cd sites/all/modules/field_collection_bulkupload
     ​wget https://www.drupal.org/files/issues/undefined_function-1892668-4.patch
@@ -92,7 +114,7 @@ I got an error when trying to apply the patch.
     |*** field_collection_bulkupload.info.old 2015-05-03 23:40:36.281057385 +0200
     |--- field_collection_bulkupload.info 2015-05-03 23:34:39.902669313 +0200
 
-To fix this, i just selected  **field\_collection\_bulkupload.info**
+To fix this, i just selected **field_collection_bulkupload.info**
 
     File to patch: field_collection_bulkupload.info
 

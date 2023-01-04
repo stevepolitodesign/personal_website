@@ -2,11 +2,18 @@
 title: Make URL Patterns Match Menu Position in Drupal
 tags: ["Quick Tip", "Tutorial", "Pathauto"]
 categories: ["Drupal 7"]
-resources: [{title: "Pathauto", url: "https://www.drupal.org/project/pathauto"}, {title: "Pathauto Menu Link", url: "https://www.drupal.org/project/pathauto_menu_link"}]
+resources:
+  [
+    { title: "Pathauto", url: "https://www.drupal.org/project/pathauto" },
+    {
+      title: "Pathauto Menu Link",
+      url: "https://www.drupal.org/project/pathauto_menu_link",
+    },
+  ]
 date: 2015-11-24
 node: 153
 ---
- 
+
 Drupal's [Pathauto](https://www.drupal.org/project/pathauto) is a must have for any Drupal project. This tutorial will demonstrate a simple yet effective way to utilize Pathauto to create custom URL patterns that match the node's menu position.
 
 Below is an example of the final product. The left side is the menu hierarchy, and the right side is the URL pattern that will be generated.
@@ -25,7 +32,7 @@ In order to create custom URL patterns that match the node's menu position you w
 The reason we also install ​Pathauto Menu Link can be explained in the module's description.
 
 > If you use parent menu links to generate paths within Pathauto, you'll notice that the resulting path is only updated when a node is saved, which means that if you simply move a menu link item within a menu so that it has a different parent, the path is immediately out of date and no longer correct.
-> 
+>
 > This module fixes that by forcing an update of the Pathauto-generated path when a menu link item has been updated, based of the link's new position within the menu tree.
 
 ## Create A Path Alias

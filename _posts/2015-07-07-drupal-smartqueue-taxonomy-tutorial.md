@@ -2,12 +2,24 @@
 title: Drupal Smartqueue Taxonomy Tutorial
 tags: ["Tutorial", "Views", "Taxonomy", "Smartqueue"]
 categories: ["Drupal 7"]
-resources: [{title: "Nodequeue", url: "https://www.drupal.org/project/nodequeue"}, {title: "Node Auto Queue", url: "https://www.drupal.org/project/auto_nodequeue"}, {title: "Views", url: "https://www.drupal.org/project/views"}, {title: "Views Bulk Operations (VBO)", url: "https://www.drupal.org/project/views_bulk_operations"}]
+resources:
+  [
+    { title: "Nodequeue", url: "https://www.drupal.org/project/nodequeue" },
+    {
+      title: "Node Auto Queue",
+      url: "https://www.drupal.org/project/auto_nodequeue",
+    },
+    { title: "Views", url: "https://www.drupal.org/project/views" },
+    {
+      title: "Views Bulk Operations (VBO)",
+      url: "https://www.drupal.org/project/views_bulk_operations",
+    },
+  ]
 date: 2015-07-07
 node: 141
 ---
 
-Drupal allows you to organize content into taxonomies. This is best illustrated in tagging content, similar to Twitter. Drupal then dynamically creates pages that list content that have been categorized with specific taxonomy terms. By default, Drupal organizes content on these taxonomy pages based on post date. The most recently posted content will appear first. 
+Drupal allows you to organize content into taxonomies. This is best illustrated in tagging content, similar to Twitter. Drupal then dynamically creates pages that list content that have been categorized with specific taxonomy terms. By default, Drupal organizes content on these taxonomy pages based on post date. The most recently posted content will appear first.
 
 However, what if you want to create a custom sort order? Not based on post date, title or whether or not if the node is sticky, but purely custom. Enter Smartqueue Taxonomy.
 
@@ -25,9 +37,9 @@ Next, you will need to download and install [Nodequeue](https://www.drupal.org/p
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/smartque-1.png)
 
-Once these modules are enabled, you will need to create a Taxonomy queue. Navigate to the **admin/structure/nodequeue/add/smartqueue\_taxonomy** to do so.
+Once these modules are enabled, you will need to create a Taxonomy queue. Navigate to the **admin/structure/nodequeue/add/smartqueue_taxonomy** to do so.
 
-I named my queue after the vocabulary I am using for consistency sake, but you can name it anything you wish. Make sure to select a **Taxonomy fields** field. Again, I am using the default **Article** content type for this tutorial, so there is a **field\_tags** option.
+I named my queue after the vocabulary I am using for consistency sake, but you can name it anything you wish. Make sure to select a **Taxonomy fields** field. Again, I am using the default **Article** content type for this tutorial, so there is a **field_tags** option.
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/smartque-2.png)
 
@@ -47,7 +59,7 @@ To see all of your nodequeues, navigate to **admin/structure/nodequeue**
 
 ## Automatically Add Existing Content To Smartqueues
 
-The above steps will ensure that any newly created content will be added to a dynamically created smartqueue. However, if you have existing content on your website, you will want to add these nodes to their appropriate smartqueues. By default, the Smartqueue you just created will have no subqueues. 
+The above steps will ensure that any newly created content will be added to a dynamically created smartqueue. However, if you have existing content on your website, you will want to add these nodes to their appropriate smartqueues. By default, the Smartqueue you just created will have no subqueues.
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/Screen-Shot-2015-07-06-at-9.32.19-PM.png)
 
@@ -83,7 +95,7 @@ As I stated early, the default sort order of each term page is based on post dat
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/smartqueue-3.gif)
 
-The first thing we need to do is enable the **Taxonomy term** view. Navigate to **admin/structure/views**, and enable the view. 
+The first thing we need to do is enable the **Taxonomy term** view. Navigate to **admin/structure/views**, and enable the view.
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/smartqueue-4.gif)
 
@@ -103,7 +115,7 @@ Finally, remove the default configurations for the sort criteria, and add **Node
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/smartqueue-9.gif)
 
-Now, if I navigate to the subqueue for the particular term we looked at earlier, I can adjust the sort order. 
+Now, if I navigate to the subqueue for the particular term we looked at earlier, I can adjust the sort order.
 
 ![](/assets/images/posts/drupal-smartqueue-taxonomy-tutorial/smartqueue-10.gif)
 

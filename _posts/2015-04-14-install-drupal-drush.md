@@ -2,11 +2,11 @@
 title: Install Drupal with drush
 tags: ["Quick Tip", "drush"]
 categories: ["Drupal 7"]
-resources: [{title: "drush", url: "http://docs.drush.org/en/master/install/"}]
+resources: [{ title: "drush", url: "http://docs.drush.org/en/master/install/" }]
 date: 2015-04-14
 node: 138
 ---
- 
+
 Last week I wrote an article about [how to use the command line](/blog/how-easily-change-directories-terminal). Now we're going to put this knowledge to use. Using [drush](http://www.drush.org/) you can set up a fresh Drupal install in seconds.
 
 The first thing you are going to want to do is [install drush](https://drupalize.me/videos/installing-drush-composer?p=1156). Once you have drush installed you only need to run two commands.
@@ -27,7 +27,7 @@ Now that we've downloaded Drupal, we need to configure the database. In my case,
 
 | Database Driver | Database Username | Database Password | Database Host | Database Port |
 | --------------- | ----------------- | ----------------- | ------------- | ------------- |
-| mysql | root | root | localhost | 21 |
+| mysql           | root              | root              | localhost     | 21            |
 
 However, if you are doing this on a live server then you will need to check with your host for these settings.
 
@@ -41,8 +41,8 @@ Then, run the following command.
 
 You will need to replace the following with your own credentials​
 
-`[db\_user]` is the database username. In my case it's **root**. 
-`[db\_pass]` is the database password. In my case it's **root**.    
+`[db\_user]` is the database username. In my case it's **root**.
+`[db\_pass]` is the database password. In my case it's **root**.  
 `[db\_name]` is the database name. This will be created through the command. In my example it's **drush-example**.
 
 ![](/assets/images/posts/install-drupal-drush/spd-drush-si.gif)

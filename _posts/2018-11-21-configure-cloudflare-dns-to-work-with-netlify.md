@@ -2,13 +2,11 @@
 title: Configure Cloudflare DNS to Work with Netlify
 categories: ["Netlify"]
 tags: ["DNS", "Cloudflare"]
-resources: [{
-    title: "Cloudflare",
-    url: "https://www.cloudflare.com/"
-},{
-    title: "Netlify",
-    url: "https://www.netlify.com/"  
-}]
+resources:
+  [
+    { title: "Cloudflare", url: "https://www.cloudflare.com/" },
+    { title: "Netlify", url: "https://www.netlify.com/" },
+  ]
 date: 2018-11-21
 ---
 
