@@ -138,9 +138,14 @@ class SystemTest < SystemTestCase
   class LayoutTest < SystemTest
     def test_navigation
       visit_all_paths do |path|
-        within "body header[role='banner'] nav ul" do
+        within "body header[role='banner']" do
+          assert_link href: "/"
+        end
+        within "body header[role='banner'] nav" do
           assert_link "Blog", href: "/blog"
           assert_link "Contact", href: "/contact"
+          assert_selector "a[aria-label='Twitter'][href='https://twitter.com/stevepolitodsgn']"
+          assert_selector "a[aria-label='GitHub'][href='https://github.com/stevepolitodesign']"
         end
       end
     end
