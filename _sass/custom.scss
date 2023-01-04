@@ -11,6 +11,8 @@ $card-border-width: 0;
 
 $link-color: $blue-700;
 
+$btn-border-radius: 0;
+
 $theme-colors: map-merge($theme-colors, $reds);
 $theme-colors: map-merge($theme-colors, $blues);
 $theme-colors: map-merge($theme-colors, $grays);
