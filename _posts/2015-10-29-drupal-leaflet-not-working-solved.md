@@ -5,7 +5,7 @@ categories: ["Drupal 7"]
 date: 2015-10-29
 node: 150
 ---
- 
+
 The [Leaflet Module](https://www.drupal.org/project/leaflet) for Drupal is probably the most popular mapping module. I was recently working on a project where I was mapping locations and displaying them on a Leaflet map both as a field formatter display and a views attachment. However, I was running into two problems:
 
 1. The Leaflet field formatter was not displaying on nodes
@@ -28,27 +28,27 @@ Ok, so now that you've confirmed the library and module are installed correctly,
 Your content type needs to have two fields to geocode an address and display it as a Leaflet map:
 
 1. A **Postal address** field
-2. A  **Geofield** that is using the **Geocode from another field** widget  
+2. A **Geofield** that is using the **Geocode from another field** widget
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.15.59-AM.png)
 
-The  **Geofield** needs to be configured using the following settings:
+The **Geofield** needs to be configured using the following settings:
 
-1. The  **Geocode from field**  needs to be set with to the **Postal Address** field you have created in this content type  
+1. The **Geocode from field** needs to be set with to the **Postal Address** field you have created in this content type
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.16.31-AM.png)
 
-2. Set the **Geocoder** to **Google Geocoder** and use the default settings.  
+2. Set the **Geocoder** to **Google Geocoder** and use the default settings.
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.16.38-AM.png)
 
-![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.16.45-AM.png)  
+![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.16.45-AM.png)
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.16.50-AM.png)
 
 3. Navigate to your content type's display by going to **admin/structure/types/manage/your-custom-content-type/display**
 
-4. Make sure  **Leaflet**  **Map** is set to a map and **not** --select--  
+4. Make sure **Leaflet** **Map** is set to a map and **not** --select--
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.07.16-AM.png)
 
@@ -64,30 +64,30 @@ It's very common to use a Leaflet Views display to show multiple locations on a 
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.34.15-AM.png)
 
-1. First, make sure the attachment is set to **inherit exposed filters**  
+1. First, make sure the attachment is set to **inherit exposed filters**
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.40.23-AM.png)
 
-2. Make sure you added a location field to the attachment  
+2. Make sure you added a location field to the attachment
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.41.23-AM.png)
 
-3. Under the format settings for the Leaflet Map, make sure the  **Data Source**  is using the location field from step 2.
+3. Under the format settings for the Leaflet Map, make sure the **Data Source** is using the location field from step 2.
 
 4. Also make sure there is a map selected.
 
-5. Un-check **Hide empty** just to make sure this is not causing any issues  
+5. Un-check **Hide empty** just to make sure this is not causing any issues
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.42.03-AM.png)
 
-6. Under **Filter Criteria**  make sure there is a proximity filter exposed. Make sure it has the same settings as the proximity filter used on the page this attachment is attached to.  
+6. Under **Filter Criteria** make sure there is a proximity filter exposed. Make sure it has the same settings as the proximity filter used on the page this attachment is attached to.
 
-![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.44.33-AM.png)  
+![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.44.33-AM.png)
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.44.43-AM.png)
 
 7. **Finally, and most importantly, make sure the Page this attachment is attached to has AJAX turned off.**
-8. ​The attachment itself can have AJAX on, but the page cannot. In my case, this is why my map didn't show up.   
+8. ​The attachment itself can have AJAX on, but the page cannot. In my case, this is why my map didn't show up.
 
 ![](/assets/images/posts/drupal-leaflet-not-working-solved/Screen-Shot-2015-10-29-at-11.45.44-AM.png)
 

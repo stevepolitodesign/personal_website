@@ -21,7 +21,7 @@ Well, if you're on a Mac you're in luck. All you need to do is open up the termi
 
 1. Type `cd`
 2. Click and drag the directory into the terminal window.
-3. Hit enter. 
+3. Hit enter.
 
 ![](/assets/images/posts/how-easily-change-directories-terminal/spd-terminal-quicktip.gif)
 

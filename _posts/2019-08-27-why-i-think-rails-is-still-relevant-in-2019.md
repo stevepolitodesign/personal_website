@@ -2,28 +2,23 @@
 title: "Why I Think Rails is Still Relevant in 2019"
 categories: ["Ruby on Rails"]
 tags: ["Opinion"]
-resources: [
+resources:
+  [
     {
-        title: "DRY principle",
-        url: "https://guides.rubyonrails.org/getting_started.html#what-is-rails-questionmark"
+      title: "DRY principle",
+      url: "https://guides.rubyonrails.org/getting_started.html#what-is-rails-questionmark",
     },
     {
-        title: "partial",
-        url: "https://guides.rubyonrails.org/getting_started.html#using-partials-to-clean-up-duplication-in-views"
+      title: "partial",
+      url: "https://guides.rubyonrails.org/getting_started.html#using-partials-to-clean-up-duplication-in-views",
     },
+    { title: "testing", url: "https://guides.rubyonrails.org/testing.html" },
+    { title: "Rails Guide", url: "https://guides.rubyonrails.org/index.html" },
     {
-        title: "testing",
-        url: "https://guides.rubyonrails.org/testing.html"
+      title: "Turbolinks",
+      url: "https://guides.rubyonrails.org/working_with_javascript_in_rails.html#turbolinks",
     },
-    {
-        title: "Rails Guide",
-        url: "https://guides.rubyonrails.org/index.html"
-    },
-    {
-        title: "Turbolinks",
-        url: "https://guides.rubyonrails.org/working_with_javascript_in_rails.html#turbolinks"
-    }
-]
+  ]
 date: 2019-08-27
 ---
 
@@ -33,7 +28,7 @@ The point of this article isn't to pit Rails against Javascript, but rather to h
 
 ## Rails Encourages Good Coding Practices
 
-Rails is the reason I even know about the concept of [DRY](https://guides.rubyonrails.org/getting_started.html#what-is-rails-questionmark). 
+Rails is the reason I even know about the concept of [DRY](https://guides.rubyonrails.org/getting_started.html#what-is-rails-questionmark).
 
 > **Don't Repeat Yourself:** DRY is a principle of software development which states that "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system." By not writing the same information over and over again, our code is more maintainable, more extensible, and less buggy.
 
@@ -57,7 +52,7 @@ A lot of time spent as a developer is reading documentation. It doesn't matter h
 
 I think one of the main reasons Rails isn't as prominent as it used to be is because it's so mature and stable. Rails was [initially released in 2005](https://en.wikipedia.org/wiki/Ruby_on_Rails), so the implication is that it's old and outdated. However, that could not be further from the truth.
 
->  Ruby on Rails' influence on other web frameworks remains apparent today, with many frameworks in other languages borrowing its ideas, including Django in Python, Catalyst in Perl, Laravel and CakePHP in PHP, Phoenix in Elixir, Play in Scala, and Sails.js in Node.js.
+> Ruby on Rails' influence on other web frameworks remains apparent today, with many frameworks in other languages borrowing its ideas, including Django in Python, Catalyst in Perl, Laravel and CakePHP in PHP, Phoenix in Elixir, Play in Scala, and Sails.js in Node.js.
 
 Because Rails has been around for so long, you can be confident that it's battle tested. If massive web applications like GitHub and Airbnb run on Rails, then you can be confident that your application can too.
 
