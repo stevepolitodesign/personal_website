@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem "jekyll"
 gem "mdl", "~> 0.12.0"
+gem "prettier", "~> 3.2"
 gem "rake", "~> 13.0"
 
 group :jekyll_plugins do
