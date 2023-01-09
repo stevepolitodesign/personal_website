@@ -6,6 +6,7 @@ meta:
 include: ["_redirects"]
 exclude: ["bin", "README.md", "Rakefile", "test", "package.json", "yarn.lock"]
 permalink: "/blog/:title"
+highlighter: none
 plugins:
   - jekyll-archives
   - jekyll-sitemap
