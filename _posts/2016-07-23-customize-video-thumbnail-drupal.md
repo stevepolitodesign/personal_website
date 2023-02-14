@@ -47,9 +47,9 @@ When you upload a video to Drupal from YouTube or Vimeo, an automatically genera
 1. Add a new video thumbnail field to the **Video File Type** by going to **/admin/structure/file-types/manage/video/fields**
 1. Configure the field using the following settings:
 
-| **Label** | **Machine Name** | **Field Type** | **Widget**    |
-| --------- | ---------------- | -------------- | ------------- |
-| Thumbnail | field_thumbnail  | Image          | Media browser |
+   | **Label** | **Machine Name** | **Field Type** | **Widget**    |
+   | --------- | ---------------- | -------------- | ------------- |
+   | Thumbnail | field_thumbnail  | Image          | Media browser |
 
 - **Required field** = enabled
 - **Enabled browser plugins** = Upload, Library
@@ -65,60 +65,60 @@ When you upload a video to Drupal from YouTube or Vimeo, an automatically genera
 
 1. Add a new entity view mode for the video file type by going to **/admin/config/system/entity-view-modes/add/file**
 
-- **Label** = Video Thumbnail
-- **Use custom display settings** = enabled
-- **Enable this view mode for the following types** = Video
+   - **Label** = Video Thumbnail
+   - **Use custom display settings** = enabled
+   - **Enable this view mode for the following types** = Video
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/3.1_1.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/3.1_1.png)
 
 2. Update the display mode for the new view mode you just created
 
    /admin/structure/file-types/manage/video/display/video_thumbnail
 
-| FIELD     | LABEL      | FORMAT                              |
-| --------- | ---------- | ----------------------------------- |
-| Thumbnail | \<Hidden\> | Image Image style: Medium (220x220) |
+   | FIELD     | LABEL      | FORMAT                              |
+   | --------- | ---------- | ----------------------------------- |
+   | Thumbnail | \<Hidden\> | Image Image style: Medium (220x220) |
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/3.2_1.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/3.2_1.png)
 
 3. Finally, update the view mode of the video field.
 
-| Field | LABEL      | FORMAT                                   |
-| ----- | ---------- | ---------------------------------------- |
-| Video | \<Hidden\> | Rendered file View mode: Video Thumbnail |
+   | Field | LABEL      | FORMAT                                   |
+   | ----- | ---------- | ---------------------------------------- |
+   | Video | \<Hidden\> | Rendered file View mode: Video Thumbnail |
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/3.3_0.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/3.3_0.png)
 
 ## Add a Custom Thumbnail to an Existing Video
 
 1. Navigate to an existing video by going to **/admin/content/file**
 1. Upload a custom file to be used as the video thumbnail
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/4.2_0.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/4.2_0.png)
 
 ## Automatically Add Play Button to the Custom Video Thumbnail (Optional)
 
 1. Create a new image style by going to **/admin/config/media/image-styles/add**
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/5.1.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/5.1.png)
 
 2. Add a **scale** effect and set it to **220x220**
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/5.2.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/5.2.png)
 
 3. Add a **Overlay (watermark)** effect and set it to the following:
 
-- **X offset** = center
-- **Y offset** = center
-- **opacity** = 100%
-- **file name** = path to your custom file
+   - **X offset** = center
+   - **Y offset** = center
+   - **opacity** = 100%
+   - **file name** = path to your custom file
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/5.3.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/5.3.png)
 
 4. Update the video file type display to use the new **Video Thumbnail** image style by going to **/admin/structure/file-types/manage/video/display/video_thumbnail**
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/5.4.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/5.4.png)
 
-![](/assets/images/posts/customize-video-thumbnail-drupal/5.5.png)
+   ![](/assets/images/posts/customize-video-thumbnail-drupal/5.5.png)
 
 > The above image shows how we can create a custom thumbnail that automatically adds a play button for a video uploaded from YouTube or Vimeo

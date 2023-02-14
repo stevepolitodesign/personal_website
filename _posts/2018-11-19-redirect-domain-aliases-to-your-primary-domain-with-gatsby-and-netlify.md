@@ -27,7 +27,7 @@ However, doing so required a bit more work than I had planned for. Below are the
 
 ## 1. Add Your Domain Aliases To Netlify
 
-Before you can redirect your domain aliases to Netlify, you first need to add your domain aliases. [Login to Netlify](https://app.netlify.com/) and navigate to the **Domains** tab under **Domain Management**. 
+Before you can redirect your domain aliases to Netlify, you first need to add your domain aliases. [Login to Netlify](https://app.netlify.com/) and navigate to the **Domains** tab under **Domain Management**.
 
 From there, click the **Add domain alias** button. Add both the **naked domain** and the **www** domain. In my case I added **stevepolitodesign.com** and **www.stevepolitodesign.com**
 
@@ -43,33 +43,32 @@ Luckily the [Gatsby Netlify CMS Plugin](https://www.gatsbyjs.org/packages/gatsby
 
 Install the plugin by running `npm install --save netlify-cms gatsby-plugin-netlify-cms`. After you install the plugin, make sure it is added to `gatsby-config.js`.
 
-```javascript{8}
+```javascript
 module.exports = {
   siteMetadata: {
-    title: 'Steve Polito is a Full Stack Web Developer in the Boston Area',
-    siteUrl: 'https://stevepolito.design',
+    title: "Steve Polito is a Full Stack Web Developer in the Boston Area",
+    siteUrl: "https://stevepolito.design",
   },
-  plugins: [
-    ...
-    `gatsby-plugin-netlify`,
-  ],
-}
+  plugins: [...`gatsby-plugin-netlify`],
+};
 ```
 
 ## 3. Use Version 2.0.47 or Newer of Gatsby
 
-In order to get the next step to work, I needed to use version `2.0.47`. This included a pull request to [add support for setting a force redirect status in Netlify _redirects file](https://github.com/gatsbyjs/gatsby/pull/8521).
+In order to get the next step to work, I needed to use version `2.0.47`. This included a pull request to [add support for setting a force redirect status in Netlify \_redirects file](https://github.com/gatsbyjs/gatsby/pull/8521).
 
 ## 4. Use the createRedirect API to Redirect Domain Aliases
 
 Now that you've installed the Gatsby Netlify CMS Plugin, you need to tell Gatsby what redirects to create. [Login to Netlify](https://app.netlify.com/) and navigate to the **Domains** tab under **Domain Management**. Click **How to redirect domain aliases to your primary domain** to see the recommended redirect rules. In my case, Netlify gave me the following:
 
-```
+```text
 # Redirect domain aliases to primary domain
-https://www.stevepolitodesign.com/* https://stevepolito.design/:splat 301!
-https://stevepolitodesign.com/* https://stevepolito.design/:splat 301!
+
+https://www.stevepolitodesign.com/_ https://stevepolito.design/:splat 301!
+https://stevepolitodesign.com/_ https://stevepolito.design/:splat 301!
 
 # Optional: Redirect default Netlify subdomain to primary domain
+
 https://stevepolitodesign.netlify.com/* https://stevepolito.design/:splat 301!
 ```
 
@@ -77,26 +76,34 @@ https://stevepolitodesign.netlify.com/* https://stevepolito.design/:splat 301!
 
 Navigate to your `gatsby-node.js` file and add a `createRedirect` call for each **domain alias**. Make sure to add `force: true`. This new argument was introduced in a new version of Gatsby, which is why we needed to upgrade to at least `2.0.47`. I also added `isPermanent: true`.
 
-```javascript{5-6}
-...
+```javascript
 exports.createPages = ({ graphql, actions }) => {
-    const { createPage, createRedirect } = actions
+  const { createPage, createRedirect } = actions;
 
-    createRedirect({ fromPath: 'https://stevepolitodesign.com/*', toPath: 'https://stevepolito.design/:splat', isPermanent: true, force: true })
-    createRedirect({ fromPath: 'https://www.stevepolitodesign.com/*', toPath: 'https://stevepolito.design/:splat', isPermanent: true, force: true })
-    ... 
-}
+  createRedirect({
+    fromPath: "https://stevepolitodesign.com/*",
+    toPath: "https://stevepolito.design/:splat",
+    isPermanent: true,
+    force: true,
+  });
+  createRedirect({
+    fromPath: "https://www.stevepolitodesign.com/*",
+    toPath: "https://stevepolito.design/:splat",
+    isPermanent: true,
+    force: true,
+  });
+};
 ```
 
 ## 5. Run Gatsby Build Locally
 
 To make sure everything was working correctly, I ran a local build. Run `gatsby build`, and then confirm `public/_redirects` exists. Furthermore, make sure that the content in the file matches the settings from Netlify. Make sure that the status code is `301!` and not just `301`.
 
-```
+```text
 ## Created with gatsby-plugin-netlify
 
-https://stevepolitodesign.com/*  https://stevepolito.design/:splat  301!
-https://www.stevepolitodesign.com/*  https://stevepolito.design/:splat  301!
+https://stevepolitodesign.com/_ https://stevepolito.design/:splat 301!
+https://www.stevepolitodesign.com/_ https://stevepolito.design/:splat 301!
 ```
 
 ## 6. Push the Code to Netlify and Unregister the Service Worker

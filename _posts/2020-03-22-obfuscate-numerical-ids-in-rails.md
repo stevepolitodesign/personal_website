@@ -1,24 +1,25 @@
 ---
 title: "Obfuscate Numerical IDs in Rails"
 categories: ["Ruby on Rails"]
-resources: [
-  {
-    title: "SecureRandom.urlsafe_base64",
-    url: "https://ruby-doc.org/stdlib-2.5.1/libdoc/securerandom/rdoc/Random/Formatter.html#method-i-urlsafe_base64"
-  },
-  {
-    title: "Using :if and :unless with a Proc",
-    url: "https://guides.rubyonrails.org/active_record_callbacks.html#using-if-and-unless-with-a-proc"
-  },
-  {
-    title: "friendly_id Gem",
-    url: "https://github.com/norman/friendly_id#usage"
-  },
-  {
-    title: "ActiveRecord and FriendlyId: slug not generated when field set with before_validation callback",
-    url: "https://mensfeld.pl/2015/01/activerecord-and-friendlyid-slug-not-generated-when-field-set-with-before_validation-callback/"
-  }
-]
+resources:
+  [
+    {
+      title: "SecureRandom.urlsafe_base64",
+      url: "https://ruby-doc.org/stdlib-2.5.1/libdoc/securerandom/rdoc/Random/Formatter.html#method-i-urlsafe_base64",
+    },
+    {
+      title: "Using :if and :unless with a Proc",
+      url: "https://guides.rubyonrails.org/active_record_callbacks.html#using-if-and-unless-with-a-proc",
+    },
+    {
+      title: "friendly_id Gem",
+      url: "https://github.com/norman/friendly_id#usage",
+    },
+    {
+      title: "ActiveRecord and FriendlyId: slug not generated when field set with before_validation callback",
+      url: "https://mensfeld.pl/2015/01/activerecord-and-friendlyid-slug-not-generated-when-field-set-with-before_validation-callback/",
+    },
+  ]
 date: 2020-03-22
 ---
 
@@ -43,14 +44,15 @@ Next we need to programmatically set the value of the `hashid` column. There are
 
 ```ruby
 class Article < ApplicationRecord
+  before_validation :set_hashid,
+                    prepend: true,
+                    if: Proc.new { |article| article.hashid.nil? }
 
-    before_validation :set_hashid, prepend: true, if: Proc.new{ |article| article.hashid.nil? }
+  private
 
-    private
-
-        def set_hashid
-            self.hashid = SecureRandom.urlsafe_base64(5)
-        end
+  def set_hashid
+    self.hashid = SecureRandom.urlsafe_base64(5)
+  end
 end
 ```
 
@@ -59,51 +61,53 @@ end
   - We add `prepend: true` to ensure this callback is called before `friendly_id` set's the `slug` (note that we have not yet installed `friendly_id`).
   - We use a [:if with a Proc](https://guides.rubyonrails.org/active_record_callbacks.html#using-if-and-unless-with-a-proc) to ensure that the `set_hashid` method is only called if the record does not yet have a `hashid`. This ensures that the `hashid` does not change each time a record is updated.
 
-
 ## Step 3. Install and Configure friendly_id
 
 Now that we are programmatically assigning a `hashid` to our model, we need to use that value in the URL. Luckily the [friendly_id](https://github.com/norman/friendly_id) makes this easy.
 
-
-
 1. Add `gem 'friendly_id', '~> 5.3'` to your `Gemfile`.
 2. Run the following commands.
 
-```
-rails g migration add_slug_to_articles slug:uniq
-rails generate friendly_id
-rails db:migrate
-```
+   ```sh
+   rails g migration add_slug_to_articles slug:uniq
+   rails generate friendly_id
+   rails db:migrate
+   ```
 
 3. Next, update your model so it can use `friendly_id` to set a `slug`
 
-```ruby{2-3}
-class Article < ApplicationRecord
-    extend FriendlyId
-    friendly_id :hashid, use: :slugged
-
-    before_validation :set_hashid, prepend: true, if: Proc.new{ |article| article.hashid.nil? }
-
-    private
-
-        def set_hashid
-            self.hashid = SecureRandom.urlsafe_base64(5)
-        end
-end
-```
+   ```ruby
+   class Article < ApplicationRecord
+     # ℹ️ Include FriendlyId macro
+     extend FriendlyId
+     friendly_id :hashid, use: :slugged
+   
+     before_validation :set_hashid,
+                       prepend: true,
+                       if: Proc.new { |article| article.hashid.nil? }
+   
+     private
+   
+     def set_hashid
+       self.hashid = SecureRandom.urlsafe_base64(5)
+     end
+   end
+   ```
 
 4. Then update your controller to use `friendly` by replacing `Model.find` with `Model.friendly.find`
 
-```ruby{6}
-class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  ...
-  private
-    def set_article
-      @article = Article.friendly.find(params[:id])
-    end
-end
-```
+   ```ruby
+   class ArticlesController < ApplicationController
+     before_action :set_article, only: %i[show edit update destroy]
+   
+     private
+   
+     def set_article
+       # ℹ️ Find the article by the slug
+       @article = Article.friendly.find(params[:id])
+     end
+   end
+   ```
 
 5. Finally, update any existing records by opening the [rails console](https://guides.rubyonrails.org/command_line.html#rails-console) and running `Article.find_each(&:save)`
 

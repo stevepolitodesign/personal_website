@@ -1,16 +1,14 @@
 ---
 title: "Add Tailwind CSS Color Palette to Bootstrap"
 categories: ["Web Development"]
-resources: [
+resources:
+  [
     {
-        title: "tailwind-color-palette package",
-        url: "https://github.com/stevepolitodesign/tailwind-color-palette"
+      title: "tailwind-color-palette package",
+      url: "https://github.com/stevepolitodesign/tailwind-color-palette",
     },
-    {
-        title: "Demo",
-        url: "https://tailwind-color-palette-demo.netlify.app/"
-    }
-]
+    { title: "Demo", url: "https://tailwind-color-palette-demo.netlify.app/" },
+  ]
 date: 2020-04-27
 ---
 
@@ -30,27 +28,29 @@ You might be wondering why anyone would want to add [Tailwind's default color pa
 
 1. [Import](https://getbootstrap.com/docs/4.4/getting-started/theming/#variable-defaults) Bootstrap and its default variables.
 
-```scss
-// some-file.scss
-@import '~bootstrap/scss/bootstrap';
-```
+   ```scss
+   // some-file.scss
+   @import "~bootstrap/scss/bootstrap";
+   ```
 
 2. Run `npm i tailwind-color-palette` or `yarn add tailwind-color-palette`.
 3. Import tailwind-color-palette.
 
-```scss{2}
-// some-file.scss
-@import '~tailwind-color-palette/scss/tailwind-color-palette';
-@import '~bootstrap/scss/bootstrap';
-```
+   ```scss
+   // some-file.scss
+   // ℹ️ Import the file
+   @import "~tailwind-color-palette/scss/tailwind-color-palette";
+   @import "~bootstrap/scss/bootstrap";
+   ```
 
-Now you have access to [background color utility classes](https://github.com/stevepolitodesign/tailwind-color-palette#background-color-utility-class-structure) and [text color utility classes](https://github.com/stevepolitodesign/tailwind-color-palette#text-color-utility-class-structure).
+   Now you have access to [background color utility classes](https://github.com/stevepolitodesign/tailwind-color-palette#background-color-utility-class-structure) and [text color utility classes](https://github.com/stevepolitodesign/tailwind-color-palette#text-color-utility-class-structure).
 
 4. Optionally override [Bootstrap's variables](https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss).
 
-```scss{3}
-// some-file.scss
-@import '~tailwind-color-palette/scss/tailwind-color-palette';
-$primary: map-get($tw_indigo, 900);
-@import '~bootstrap/scss/bootstrap';
-```
+   ```scss
+   // some-file.scss
+   @import "~tailwind-color-palette/scss/tailwind-color-palette";
+   // ℹ️ Optionally override Bootstrap's variables
+   $primary: map-get($tw_indigo, 900);
+   @import "~bootstrap/scss/bootstrap";
+   ```

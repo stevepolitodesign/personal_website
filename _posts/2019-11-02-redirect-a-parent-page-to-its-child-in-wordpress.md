@@ -1,12 +1,13 @@
 ---
 title: Redirect a Parent Page to its Child in WordPress
 categories: ["WordPress"]
-resources: [
+resources:
+  [
     {
-        title: "wp_redirect()",
-        url: "https://developer.wordpress.org/reference/functions/wp_redirect/"
-    }
-]
+      title: "wp_redirect()",
+      url: "https://developer.wordpress.org/reference/functions/wp_redirect/",
+    },
+  ]
 date: 2019-11-02
 ---
 
@@ -22,8 +23,10 @@ First create a new page template. The name doesn't matter, but I like to call mi
 // redirector.php
 <?php
 /*
-* Template Name: Redirector
-*/
+ * Template Name: Redirector
+ */
+?>
+?> ?>
 ```
 
 ## 2. Assign the Parent Page This New Template
@@ -51,20 +54,21 @@ Edit the parent page, and assign the newly created link field a value. You can a
 
 The redirector template needs to then take the value from the link field and actually perform a redirect. We'll use the [wp_redirect()](https://developer.wordpress.org/reference/functions/wp_redirect/) function to do this. Make us to end the statement with `exit;`. Finally, make sure to conditionally check if there's a value set to the link field. If there's no value, redirect to another page. In my case, I just redirect to the home page.
 
-```php{7-15}
+```php
 // redirector.php
+
 <?php
 /*
-* Template Name: Redirector
-*/
+ * Template Name: Redirector
+ */
 
-$url = get_field('redirector');
+$url = get_field("redirector");
 
-if($url) {
-    wp_redirect( $url );
-    exit;
+if ($url) {
+  wp_redirect($url);
+  exit();
 } else {
-    wp_redirect( home_url() );
-    exit;
+  wp_redirect(home_url());
+  exit();
 }
 ```

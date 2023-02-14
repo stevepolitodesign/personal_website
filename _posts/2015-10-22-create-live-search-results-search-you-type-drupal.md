@@ -25,69 +25,70 @@ By default, Drupal offers the ability to search the site with its core **Search*
 ## Enable the Modules
 
 1. Navigate to the modules page and enable the following modules.
+
    - Database search
    - Search API
    - Search API autocomplete
    - Search live results
    - Search pages
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.39.25-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.39.25-AM.png)
 
 2. Disable the core Search module
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.16.41-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.16.41-AM.png)
 
 ## Add A Server To Search
 
 1. Navigate to the Search API configuration page **admin/config/search/search_api**
 2. Click **Add server**, or go to **admin/config/search/search_api/add_server**
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.41.28-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.41.28-AM.png)
 
 3. Give the server a name, and make sure to check **Enabled**
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.41.56-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.41.56-AM.png)
 
 4. Select **Database service** for the server class. The default settings can be used for everything else.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.42.10-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.42.10-AM.png)
 
 5. Edit the **Default node index** at **admin/config/search/search_api/index/default_node_index/edit**
 
 6. Under **Server** select the server you just created in step 2 and click save.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.46.06-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.46.06-AM.png)
 
 7. Navigate to **admin/config/search/search_api/index/default_node_index** and click **enable** in the status row.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.47.51-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.47.51-AM.png)
 
 8. Once enabled, click **Index now** to index all content on your site.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-23-at-6.31.55-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-23-at-6.31.55-AM.png)
 
 9. Under the **Fields** tab or **admin/config/search/search_api/index/default_node_index/fields**, select the fields and other data you wish your site to be able to search. In my case, I only have the default **Basic Page** and **Article** content types enabled on my site. Because of this, I made sure to have the **tags** field searchable, along with the **summary** of each content type which is stored in the **body** field.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.50.25-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.50.25-AM.png)
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.50.48-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.50.48-AM.png)
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-23-at-6.27.13-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-23-at-6.27.13-AM.png)
 
-## Add A Search Page​
+## Add A Search Page
 
 1. Navigate to the Search API Search Pages page at **admin/config/search/search_api/page**
 2. Click **Add search page** or go to **admin/config/search/search_api/page/add**
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.55.40-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-5.55.40-AM.png)
 
 3. Set the **Index** to the **Default node index** we enabled in the previous section
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.06.48-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.06.48-AM.png)
 
 4. Set the path for the search page. In my case I kept it simple and used **search**.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.06.59-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.06.59-AM.png)
 
 ## Configure Live Search Settings
 
@@ -95,16 +96,16 @@ By default, Drupal offers the ability to search the site with its core **Search*
 2. Click the **Autocomplete** tab at **admin/config/search/search_api/index/default_node_index/autocomplete**
 3. Enable **Global Site Search** that we created in step 4 and click **Save**
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.11.42-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.11.42-AM.png)
 
 4. Click the **Live Results** tab at **admin/config/search/search_api/index/default_node_index/live-results**
 5. Enable **Global Site Search** that we created in step 9 and click **Save**
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.11.42-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.11.42-AM.png)
 
-6. (​Optional) Click edit to adjust how many live results will appear when running a search. You can also select **Use view mode: 'Live result search' to display results.** Instead of simply displaying the title of the node on the search box, this will display the content based on your configuration of the **Live result search** display format. For now, I'll just use **Only show title (linked to node)**.
+6. (Optional) Click edit to adjust how many live results will appear when running a search. You can also select **Use view mode: 'Live result search' to display results.** Instead of simply displaying the title of the node on the search box, this will display the content based on your configuration of the **Live result search** display format. For now, I'll just use **Only show title (linked to node)**.
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.12.17-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.12.17-AM.png)
 
 ## Configure Search API Permissions
 
@@ -113,7 +114,7 @@ By default, Drupal offers the ability to search the site with its core **Search*
 3. Use live result search
 4. Access Global Site Search search page
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.17.48-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-22-at-6.17.48-AM.png)
 
 ## Enable the Search Block
 
@@ -123,7 +124,7 @@ Users can now search the site at **/search**, but let's make it even easier for 
 2. A search block with the name we used in step 3 of **Add A Search Page​** will be available.
 3. Add this block to the header, or any other region
 
-![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-23-at-6.43.24-AM.png)
+   ![](/assets/images/posts/create-live-search-results-search-you-type-drupal/Screen-Shot-2015-10-23-at-6.43.24-AM.png)
 
 ## Optional: Show Node Content In Live Search
 

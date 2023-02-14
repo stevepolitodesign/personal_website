@@ -40,18 +40,18 @@ Before we can create a dynamic link for each month in Drupal's calendar, we need
 
 1. Navigate to the Views configuration page **admin/structure/views** and click **Add view from template**
 
-![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/1.1.png)
+   ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/1.1.png)
 
 2. Find the **Calendar** view that utilizes a **Date** field, and click **add.** In my case, my date field is called **field_date**.
 
-![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/1.2.png)
+   ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/1.2.png)
 
 3. Update the path for all the displays (Month, Week, Day and Year). By default it's set to use the field name. Let's update it to use **events**. Below are my final paths.
 
-   1. **​Month:** events/month
-   2. **​Week:** events/week
-   3. **​Day:** events/day
-   4. **​Year:** events/year
+   1. **Month:** events/month
+   2. **Week:** events/week
+   3. **Day:** events/day
+   4. **Year:** events/year
 
    ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/1.3.png)
 
@@ -59,15 +59,16 @@ Before we can create a dynamic link for each month in Drupal's calendar, we need
 
 1. Create a new menu by navigating to **/admin/structure/menu/add**, and call it **Calendar**
 
-![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/2.1_2.png)
+   ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/2.1_2.png)
 
 2. Add a new link to the calendar for January by navigating to **/admin/structure/menu/manage/menu-calendar/add**
 3. Configure the link as follows:
+
    1. **Path** = events/[current-date:custom:Y-01]
    2. **Use tokens in title and in path** = enabled
    3. Save
 
-![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/2.2_0.png)
+   ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/2.2_0.png)
 
 > At the time of this writing, you need to save the menu link **twice**. The first save will result in a broken link, as seen below. I have opened an [issue with Menu Token](https://www.drupal.org/node/2753499) regarding this.
 
@@ -83,11 +84,11 @@ The next two steps are optional. Since we have a menu, you could simply add the 
 
 1. Navigate back to the calendar view we created in the first part of this tutorial. On the **Month** view, under **HEADER** add **Global: Menu area**
 
-![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/3.1_0.png)
+   ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/3.1_0.png)
 
 2. Under **Select menu** select **Calendar**
 
-![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/3.2_0.png)
+   ![](/assets/images/posts/dynamically-link-each-month-drupals-calendar/3.2_0.png)
 
 3. Save the view
 
@@ -99,9 +100,11 @@ If you were to navigate to your the month view of your calendar, you might get t
 
 Luckily, [this issue](https://www.drupal.org/node/2475063) has been resolved with [this patch](https://www.drupal.org/files/issues/views_menuarea_only_vars_should_be_passed_as_reference.patch). Follow the commands below to fix this bug.
 
-    cd sites/all/modules/views_menuarea
-    patch -p1 < views_menuarea_only_vars_should_be_passed_as_reference.patch
-    rm views_menuarea_only_vars_should_be_passed_as_reference.patch
+```bash
+cd sites/all/modules/views_menuarea
+patch -p1 < views_menuarea_only_vars_should_be_passed_as_reference.patch
+rm views_menuarea_only_vars_should_be_passed_as_reference.patch
+```
 
 ## Conclusion and Next Steps
 

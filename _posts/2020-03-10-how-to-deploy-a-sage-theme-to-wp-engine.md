@@ -1,20 +1,21 @@
 ---
 title: "How to Deploy a Sage Theme to WP Engine"
 categories: ["WordPress"]
-resources: [
+resources:
+  [
     {
-        title: "Sage Theme Deployment",
-        url: "https://roots.io/sage/docs/theme-deployment/"
+      title: "Sage Theme Deployment",
+      url: "https://roots.io/sage/docs/theme-deployment/",
     },
     {
-        title: "Sage 9 on WPEngine Discourse",
-        url: "https://discourse.roots.io/t/sage-9-on-wpengine/9090/32"
+      title: "Sage 9 on WPEngine Discourse",
+      url: "https://discourse.roots.io/t/sage-9-on-wpengine/9090/32",
     },
     {
-        title: "DeployHQ Build Piplines",
-        url: "https://www.deployhq.com/support/build-pipelines"
-    }    
-]
+      title: "DeployHQ Build Piplines",
+      url: "https://www.deployhq.com/support/build-pipelines",
+    },
+  ]
 date: 2020-03-10
 ---
 
@@ -58,7 +59,7 @@ Next we need to add and configure our build pipelines, so that we can [deploy a 
 
 Assuming your repository is initialized in the root of your WordPress install, add the following build command.
 
-```
+```sh
 cd wp-content/themes/your-theme
 composer install --no-dev
 ```
@@ -67,7 +68,7 @@ composer install --no-dev
 
 However, if your repository is initialized in your theme, just add the following build command.
 
-```
+```sh
 composer install --no-dev
 ```
 
@@ -75,7 +76,7 @@ composer install --no-dev
 
 Assuming your repository is initialized in the root of your WordPress install, add the following build command.
 
-```
+```sh
 cd wp-content/themes/your-theme
 yarn install && yarn run build:production
 ```
@@ -84,7 +85,7 @@ yarn install && yarn run build:production
 
 However, if your repository is initialized in your theme, just add the following build command.
 
-```
+```sh
 yarn install && yarn run build:production
 ```
 

@@ -1,12 +1,13 @@
 ---
 title: Rails Setup Script Improvements
 categories: ["Ruby on Rails"]
-resources: [
-  {
-    title: "Source Code",
-    url: "https://github.com/stevepolitodesign/rails-setup-script-improvements"
-  },
-]
+resources:
+  [
+    {
+      title: "Source Code",
+      url: "https://github.com/stevepolitodesign/rails-setup-script-improvements",
+    },
+  ]
 date: 2022-01-15
 og_image: "https://mugshotbot.com/m/wGyEu7oj"
 ---
@@ -27,26 +28,29 @@ Simply clone this repo and run `./bin/setup`.
 --- a/bin/setup
 +++ b/bin/setup
 @@ -23,7 +23,7 @@ FileUtils.chdir APP_ROOT do
-   # end
- 
-   puts "\n== Preparing database =="
--  system! "bin/rails db:prepare"
-+  system! "bin/rails db:reset"
- 
-   puts "\n== Removing old logs and tempfiles =="
-   system! "bin/rails log:clear tmp:clear"
+
+# end
+
+puts "\n== Preparing database =="
+
+- system! "bin/rails db:prepare"
+
+* system! "bin/rails db:reset"
+  puts "\n== Removing old logs and tempfiles =="
+  system! "bin/rails log:clear tmp:clear"
 ```
 
 > **What's Going On Here?**
 >
 > Running [bin/rails db:reset][] will do the following:
-> 
+>
 > 1. Run `bin/rails db:drop`.
 > 2. Run `bin/rails db:setup`.
->   - The [bin/rails db:setup][] command will do the following:
->     1. Create the database.
->     2. Load the schema.
->     3. Seed the database.
+>
+> - The [bin/rails db:setup][] command will do the following:
+>   1. Create the database.
+>   2. Load the schema.
+>   3. Seed the database.
 
 This ensures the database will always be in the same state after running `./bin/setup`. This is because `bin/rails db:prepare` will not seed the database if the database already exists which could result in inconsistent outcomes.
 
@@ -57,6 +61,7 @@ This ensures the database will always be in the same state after running `./bin/
 
 ```ruby
 # app/jobs/database_seeder_job.rb
+
 class DatabaseSeederJob < ApplicationJob
   queue_as :default
 
@@ -96,7 +101,7 @@ class DatabaseSeederJob < ApplicationJob
       Post.create!(
         title: "Title for post #{index}",
         body: "Body for post #{index}",
-        user: user
+        user: user,
       )
     end
   end
@@ -105,6 +110,7 @@ end
 
 ```ruby
 # db/seeds.rb
+
 puts "\n== Seeding database =="
 DatabaseSeederJob.perform_now
 ```
@@ -118,30 +124,30 @@ DatabaseSeederJob.perform_now
 
 ```ruby
 # app/jobs/post_setup_instructions_job.rb
+
 class PostSetupInstructionsJob < ApplicationJob
   queue_as :default
 
   def perform
-    puts "\n== Setup complete! 🎉  =="
-    puts "\n👉  Run \"rails s\" to start the development server."
-    puts "\n== You can login with the following account  =="
-    puts "\n🔗  #{Rails.application.routes.url_helpers.new_user_session_url(host: "localhost", port: 3000)}"
-    puts "\📧  Email: #{DatabaseSeederJob::DEFAULT_USER_EMAIL}"
-    puts "\🔐  Password: #{DatabaseSeederJob::DEFAULT_USER_PASSWORD}"
+    puts "\n== Setup complete! 🎉 =="
+    puts "\n👉 Run \"rails s\" to start the development server."
+    puts "\n== You can login with the following account =="
+    puts "\n🔗 #{Rails.application.routes.url_helpers.new_user_session_url(host: "localhost", port: 3000)}"
+    puts "\📧 Email: #{DatabaseSeederJob::DEFAULT_USER_EMAIL}"
+    puts "\🔐 Password: #{DatabaseSeederJob::DEFAULT_USER_PASSWORD}"
     puts "\n"
   end
-
 end
 ```
 
 ```ruby
 # lib/tasks/post_setup_instructions.rake
+
 namespace :post_setup_instructions do
   desc "Prints instructions once setup is complete."
   task perform: :environment do
     PostSetupInstructionsJob.perform_now
   end
-
 end
 ```
 
@@ -149,17 +155,18 @@ end
 --- a/bin/setup
 +++ b/bin/setup
 @@ -30,4 +30,6 @@ FileUtils.chdir APP_ROOT do
- 
-   puts "\n== Restarting application server =="
-   system! "bin/rails restart"
-+
-+  system! "bin/rails post_setup_instructions:perform"
- end
+
+puts "\n== Restarting application server =="
+system! "bin/rails restart"
+
+-
+- system! "bin/rails post_setup_instructions:perform"
+  end
 ```
 
 > **What's Going On Here?**
 >
-> - We create `PostSetupInstructionsJob` to print out the instructions for accessing our application. This allows us to access the constants we created in step 2. 
+> - We create `PostSetupInstructionsJob` to print out the instructions for accessing our application. This allows us to access the constants we created in step 2.
 >   - Note that we have to call `Rails.application.routes.url_helpers` to gain access to the [url_for][] method.
 >   - You'll also note that we pass in a `host` and `port` as options to avoid raising a `Missing host to link to!` error.
 > - We create a `post_setup_instructions` [task][] the calls the `PostSetupInstructionsJob`. This is so we can call it from `./bin/setup`.

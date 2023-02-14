@@ -2,16 +2,17 @@
 title: Rails Ajax Examples (Without jQuery)
 categories: ["Ruby on Rails"]
 tags: ["AJAX"]
-resources: [
+resources:
+  [
     {
-        title: "Source Code",
-        url: "https://github.com/stevepolitodesign/rails-ajax-examples"
+      title: "Source Code",
+      url: "https://github.com/stevepolitodesign/rails-ajax-examples",
     },
     {
-        title: "Rails AJAX Documentation",
-        url: "https://guides.rubyonrails.org/working_with_javascript_in_rails.html#a-simple-example"
-    }
-]
+      title: "Rails AJAX Documentation",
+      url: "https://guides.rubyonrails.org/working_with_javascript_in_rails.html#a-simple-example",
+    },
+  ]
 date: 2019-10-26
 ---
 
@@ -34,18 +35,18 @@ Below is a generic blueprint to follow when implementing AJAX on the `create` ac
 Create a `respond_to` block and make sure to pass `format.js` in the block. This will automatically render a corresponding `create.js.erb` file. This file needs to be manually created in the corresponding `views` directory.
 
 ```ruby
-  def create
-    @your_model = YourModel.create(your_model_params)
-      respond_to do |format|
-          if  @your_model.save
-              # This will run the code in `app/views/your_model/create.js.erb`.
-              format.js
-          else
-              # This will run the code in `app/views/your_model/create.js.erb`.
-              format.js
-          end
-      end
+def create
+  @your_model = YourModel.create(your_model_params)
+  respond_to do |format|
+    if @your_model.save
+      # This will run the code in `app/views/your_model/create.js.erb`.
+      format.js
+    else
+      # This will run the code in `app/views/your_model/create.js.erb`.
+      format.js
+    end
   end
+end
 ```
 
 ### 2: Form
@@ -55,7 +56,7 @@ Make sure your form does not use `local: true`. Otherwise, the form will not sub
 ```erb
 <%= form_with model:@your_model do |f| %>
   ...
-<% end  %>
+<% end %>
 ```
 
 ### 3: Create View
@@ -64,6 +65,7 @@ Handle errors and successful model creations with Javascript in your correspondi
 
 ```erb
 # app/views/your_model/create.js.erb
+
 <% if @your_model.errors.any? %>
   # Handle errors
 <% else %>

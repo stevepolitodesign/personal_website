@@ -1,16 +1,17 @@
 ---
 title: "PaperTrail Gem Tutorial"
 categories: ["Ruby on Rails"]
-resources: [
+resources:
+  [
     {
-        title: "Source Code",
-        url: "https://github.com/stevepolitodesign/paper-trail-gem-tutorial"
+      title: "Source Code",
+      url: "https://github.com/stevepolitodesign/paper-trail-gem-tutorial",
     },
     {
-        title: "PaperTrail Gem",
-        url: "https://github.com/paper-trail-gem/paper_trail"
+      title: "PaperTrail Gem",
+      url: "https://github.com/paper-trail-gem/paper_trail",
     },
-]
+  ]
 date: 2020-04-20
 ---
 
@@ -32,7 +33,7 @@ In this tutorial I am going to show you how to revert and restore records using 
 
 First we need to create a base application on which to build. Open up a terminal window and run the following commands.
 
-```
+```text
 rails new paper-trail-gem-tutorial -d=postgresql
 cd paper-trail-gem-tutorial
 rails db:create
@@ -46,12 +47,13 @@ Next we need to install the [paper_trail Gem](https://rubygems.org/gems/paper_tr
 
 ```ruby
 # Gemfile
-gem 'paper_trail', '~> 10.3', '>= 10.3.1'
+
+gem "paper_trail", "~> 10.3", ">= 10.3.1"
 ```
 
 Next, run the following commands from your application's root per the [installation instructions](https://github.com/paper-trail-gem/paper_trail/blob/v10.3.1/README.md#1b-installation).
 
-```
+```sh
 bundle install
 bundle exec rails generate paper_trail:install
 bundle exec rake db:migrate
@@ -59,8 +61,9 @@ bundle exec rake db:migrate
 
 Next, add `has_paper_trail` to the **Article** model.
 
-```ruby{3}
+```ruby
 # app/models/article.rb
+
 class Article < ApplicationRecord
   has_paper_trail
 end
@@ -74,23 +77,27 @@ In order to have something to work with, we'll want to add some [seed data](http
 
 Add the [faker Gem](https://rubygems.org/gems/faker) to your application's `Gemfile` and run `bundle install`.
 
-```ruby{3}
+```ruby
 # Gemfile
-gem 'paper_trail', '~> 10.3', '>= 10.3.1'
-gem 'faker', '~> 2.11'
+
+gem "paper_trail", "~> 10.3", ">= 10.3.1"
+gem "faker", "~> 2.11"
 ```
 
 Next, add the following to `db/seeds.rb`.
 
 ```ruby
 # db/seeds.rb
+
 @article = Article.create(title: "Version 1", body: Faker::Lorem.paragraph)
-2.upto(6) do |i|
-  @article = Article.update(title: "Version #{i}")
-end
+2.upto(6) { |i| @article = Article.update(title: "Version #{i}") }
 
 1.upto(2) do |i|
-  @deleted_article = Article.create(title: "Deleted Article #{i} Version 1", body: Faker::Lorem.paragraph)
+  @deleted_article =
+    Article.create(
+      title: "Deleted Article #{i} Version 1",
+      body: Faker::Lorem.paragraph,
+    )
   @deleted_article.destroy
   @deleted_article = Article.new(id: @deleted_article.id).versions.last.reify
   @deleted_article.save
@@ -98,7 +105,11 @@ end
   @deleted_article.destroy
 end
 
-@restored_article = Article.create(title: "A Previously Deleted Article", body: Faker::Lorem.paragraph)
+@restored_article =
+  Article.create(
+    title: "A Previously Deleted Article",
+    body: Faker::Lorem.paragraph,
+  )
 @restored_article.destroy
 @restored_article = Article.new(id: @restored_article.id).versions.last.reify
 @restored_article.save
@@ -112,9 +123,11 @@ Now we just need to update our `routes` so that the `root_path` displays our dat
 
 Open up `config/routes.rb` and add the following:
 
-```ruby{3}
+```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
+  # ℹ️ Add this route
   root to: "articles#index"
   resources :articles
 end
@@ -145,7 +158,7 @@ First create a new [partial](https://guides.rubyonrails.org/layouts_and_renderin
 
 Then, replace everything within `<tbody></tbody>` with `<%= render @articles %>` in `app/views/articles/index.html.erb`.
 
-```erb{16}
+```erb
 <!-- app/views/articles/index.html.erb -->
 <p id="notice"><%= notice %></p>
 
@@ -161,6 +174,7 @@ Then, replace everything within `<tbody></tbody>` with `<%= render @articles %>`
   </thead>
 
   <tbody>
+    <% # ℹ️ Render the article partial %>
     <%= render @articles %>
   </tbody>
 </table>
@@ -174,16 +188,16 @@ Then, replace everything within `<tbody></tbody>` with `<%= render @articles %>`
 
 Next, open `app/controllers/articles_controller.rb` and add the following:
 
-```ruby{3,5-7}
+```ruby
 # app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :versions]
-  ...
+  # ℹ️ Add a before_action
+  before_action :set_article, only: %i[show edit update destroy versions]
+  # ℹ️ Add new controller action
   def versions
     @articles = @article.versions
   end
-  ...
-  private
 end
 ```
 
@@ -194,14 +208,14 @@ end
 
 Next, open up `config/routes.rb` and add the following:
 
-```ruby{5-7}
+```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
-    member do
-      get "versions", to: "articles#versions"
-    end
+    # ℹ️ Add route to versions action
+    member { get "versions", to: "articles#versions" }
   end
 end
 ```
@@ -214,7 +228,7 @@ Next, we'll need to create a corresponding view to display all **Article** versi
 
 Next, open `app/views/articles/versions.html.erb` and add the following:
 
-```erb{4,16,22}
+```erb
 <!-- app/views/articles/versions.html.erb -->
 <p id="notice"><%= notice %></p>
 
@@ -254,11 +268,14 @@ This is because the `versions` action is returning `PaperTrail::Version` instanc
 
 In order to fix the error add the following to `app/views/articles/_article.html.erb`.
 
-```erb{2,4-5,10}
-<!-- app/views/articles/_article.html.erb -->
+```erb
+<%# app/views/articles/_article.html.erb %>
+<%# ℹ️ Only load these links if we are working on an existing article %>
 <% unless article.try(:event) && article.event == "create" %>
   <tr>
+    <%# ℹ️ Conditionally load the title for the previous version %>
     <td><%= article.try(:reify) ? article.reify.title : article.title %></td>
+    <%# ℹ️ Conditionally load the body for the previous version %>
     <td><%= article.try(:reify)  ? article.reify.body : article.body %></td>
     <td><%= link_to 'Show', article_path(article) %></td>
     <td><%= link_to 'Edit', edit_article_path(article) %></td>
@@ -280,11 +297,12 @@ This seems to have fixed the problem. However, if you visit the `versions` path 
 
 Open up `app/views/articles/_article.html.erb` and make the following edit:
 
-```erb{2}
-<!-- app/views/articles/_article.html.erb -->
+```erb
+<%# app/views/articles/_article.html.erb %>
+<%# ℹ️ Only load these links if we are editing existing article %>
 <% unless article.try(:event) && (article.event == "create" || article.event == "destroy") %>
   <tr>
-  ...
+   ...
   </tr>
 <% end %>
 ```
@@ -297,15 +315,19 @@ Now if you visit `http://localhost:3000/articles/4/versions` you'll no longer se
 
 Finally, let's add a link to the versions page for each **Article**. Open up `app/views/articles/_article.html.erb` and make the following edit:
 
-```erb{6,9,11}
+```erb
 <!-- app/views/articles/_article.html.erb -->
+
 <% unless article.try(:event) && article.event == "create" %>
+
   <tr>
     <td><%= article.try(:reify) ? article.reify.title : article.title %></td>
     <td><%= article.try(:reify)  ? article.reify.body : article.body %></td>
+    <%# ℹ️ Only load these links on the index page %>
     <% if params[:action] == "index" %>
       <td><%= link_to 'Show', article_path(article) %></td>
       <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <%# ℹ️ Add a link to the versions page %>
       <td><%= link_to 'Versions', versions_article_path(article) %></td>
       <td><%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
@@ -327,21 +349,26 @@ Now that we have a page which lists all previous versions, we'll want to add a p
 
 Open up `app/controllers/articles_controller.rb` and add the following:
 
-```ruby{3-4,6-7,11-13}
+```ruby
 # app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :versions, :version]
+  # ℹ️ Load the article on the version action
+  before_action :set_article,
+                only: %i[show edit update destroy versions version]
+  # ℹ️ Load the version on the version action
   before_action :set_version, only: [:version]
-  ...
+
   def version
   end
-  ...
+
   private
-    ...
-    def set_version
-      @version = PaperTrail::Version.find_by(item_id: @article, id: params[:version_id])
-    end
-    ...
+
+  # ℹ️ Find the version based on the params
+  def set_version
+    @version =
+      PaperTrail::Version.find_by(item_id: @article, id: params[:version_id])
+  end
 end
 ```
 
@@ -353,13 +380,15 @@ end
 
 Next, open up `config/routes.rb` and add the following:
 
-```ruby{7}
+```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
     member do
       get "versions", to: "articles#versions"
+      # ℹ️ Add a route for the version action
       get "version/:version_id", to: "articles#version", as: "version"
     end
   end
@@ -372,21 +401,25 @@ Finally, create a new view by running `cp app/views/articles/show.html.erb app/v
 
 Open up `app/views/articles/version.html.erb` and make the following edits:
 
-```erb{6,11,14}
+```erb
 <!-- app/views/articles/version.html.erb -->
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Title:</strong>
+  <%# ℹ️ Load the title for the specific version %>
   <%= @version.reify.title %>
 </p>
 
 <p>
   <strong>Body:</strong>
+  <%# ℹ️ Load the body for the specific version %>
   <%= @version.reify.body %>
 </p>
 
+<%# ℹ️  Link back to the other versions %>
 <%= link_to 'Back', versions_article_path(@article) %>
+
 ```
 
 - We call `reify` in order to deserialize the value stored in the `@version.object` column.
@@ -398,9 +431,11 @@ Now that we have a view to render a preview, we can add a link allowing a user t
 
 Open up `app/views/articles/_article.html.erb` and add the following:
 
-```erb{12-14}
+```erb
 <!-- app/views/articles/_article.html.erb -->
+
 <% unless article.try(:event) && article.event == "create" %>
+
   <tr>
     <td><%= article.try(:reify) ? article.reify.title : article.title %></td>
     <td><%= article.try(:reify)  ? article.reify.body : article.body %></td>
@@ -410,6 +445,7 @@ Open up `app/views/articles/_article.html.erb` and add the following:
       <td><%= link_to 'Versions', versions_article_path(article) %></td>
       <td><%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
+    <%# ℹ️ Link to the version only if we're viewing a list of versions %>
     <% if params[:action] == "versions" %>
         <td><%= link_to 'Preview This Version', version_article_path(@article, article) %></td>
     <% end %>
@@ -435,12 +471,16 @@ Now that we can view previous versions, we need the ability to revert back to th
 
 Open up `app/controllers/articles_controller.rb` and add the following:
 
-```ruby{3-4,6-12}
+```ruby
 # app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :versions, :version, :revert]
-  before_action :set_version, only: [:version, :revert]
-  ...
+  # ℹ️ Add the revert action to both before actions
+  before_action :set_article,
+                only: %i[show edit update destroy versions version revert]
+  before_action :set_version, only: %i[version revert]
+
+  # ℹ️ Add a revert action
   def revert
     @reverted_article = @version.reify
     if @reverted_article.save
@@ -449,7 +489,7 @@ class ArticlesController < ApplicationController
       render version
     end
   end
-  ...
+
   private
 end
 ```
@@ -461,14 +501,16 @@ end
 
 Next we need to create a route to correspond with this action. Open up `config/routes.rb` and add the following:
 
-```ruby{8}
+```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
     member do
       get "versions", to: "articles#versions"
       get "version/:version_id", to: "articles#version", as: "version"
+      # ℹ️ Add a route to the revert action
       post "revert/:version_id", to: "articles#revert", as: "revert"
     end
   end
@@ -481,7 +523,7 @@ end
 
 Now that we have an action and corresponding route, we need the ability to revert via a link. Open up `app/views/articles/version.html.erb` and add the following:
 
-```erb{14}
+```erb
 <!-- app/views/articles/version.html.erb -->
 <p id="notice"><%= notice %></p>
 
@@ -495,6 +537,7 @@ Now that we have an action and corresponding route, we need the ability to rever
   <%= @version.reify.body %>
 </p>
 
+<%# ℹ️ Add a link to revert to this version %>
 <%= link_to 'Revert to this version', revert_article_path(@article, @version), method: :post %>
 <%= link_to 'Back', versions_article_path(@article) %>
 ```
@@ -513,16 +556,19 @@ Now let's add the ability to view deleted versions.
 
 Open up `app/controllers/articles_controller.rb` and add the following:
 
-```ruby{4-6}
+```ruby
 # app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
-  ...
+  # ℹ️ Add a deleted action to load any articles that were deleted
   def deleted
-    @articles = PaperTrail::Version.where(item_type: "Article", event: "destroy").order(created_at: :desc)
+    @articles =
+      PaperTrail::Version.where(item_type: "Article", event: "destroy").order(
+        created_at: :desc,
+      )
   end
-  ...
+
   private
-  ...
 end
 ```
 
@@ -533,8 +579,9 @@ end
 
 Next we need to add a corresponding route for our `deleted` action. Open up `config/routes.rb` and add the following:
 
-```ruby{10-12}
+```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
@@ -543,9 +590,8 @@ Rails.application.routes.draw do
       get "version/:version_id", to: "articles#version", as: "version"
       post "revert/:version_id", to: "articles#revert", as: "revert"
     end
-    collection do
-      get "deleted", to: "articles#deleted"
-    end
+    # ℹ️ Add a route to the new deleted action
+    collection { get "deleted", to: "articles#deleted" }
   end
 end
 ```
@@ -558,7 +604,7 @@ Now we need a view to display deleted **Articles**. In the root of your applicat
 
 Now, open up `app/views/articles/deleted.html.erb` and add the following:
 
-```erb{4}
+```erb
 <!-- app/views/articles/deleted.html.erb -->
 <p id="notice"><%= notice %></p>
 
@@ -595,18 +641,26 @@ What's happening is that we're seeing **ALL** versions of deleted **Articles**. 
 
 To account for this, we need to refactor our `deleted` action. Open up `app/controllers/articles_controller.rb` and update the following:
 
-```ruby{5-7}
+```ruby
 # app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
-  ...
   def deleted
-    @destroyed_versions = PaperTrail::Version.where(item_type: "Article", event: "destroy").order(created_at: :desc)
-    @latest_destroyed_versions = @destroyed_versions.filter { |v| v.reify.versions.last.event == "destroy" }.map(&:reify).uniq(&:id)
+    # ℹ️ Get all deleted versions
+    @destroyed_versions =
+      PaperTrail::Version.where(item_type: "Article", event: "destroy").order(
+        created_at: :desc,
+      )
+    # ℹ️ Get the latest destroyed version of each article
+    @latest_destroyed_versions =
+      @destroyed_versions
+        .filter { |v| v.reify.versions.last.event == "destroy" }
+        .map(&:reify)
+        .uniq(&:id)
     @articles = @latest_destroyed_versions
   end
-  ...
+
   private
-  ...
 end
 ```
 
@@ -622,8 +676,8 @@ Open up the rails console and by running `rails c -s`
 
 ```bash
 > PaperTrail::Version.where(item_type: "Article", event: "destroy").order(created_at: :desc).count
- ...
- => 5
+>
+> => 5
 ```
 
 - Here we simply query for all instances of `PaperTrail::Version` where the `item_type` is **Article** and the `event` was **destroy**. Simply put, this finds all versions of deleted **Articles**.
@@ -632,8 +686,8 @@ Open up the rails console and by running `rails c -s`
 
 ```bash
 > PaperTrail::Version.where(item_type: "Article", event: "destroy").order(created_at: :desc).filter { |v| v.reify.versions.last.event == "destroy" }.count
- ...
- => 4
+>
+> => 4
 ```
 
 - Building off of that query, we can call [filter](https://ruby-doc.org/core-2.7.1/Array.html#method-i-filter) to only return **Articles** where the last version was destroy. This is important because we don't need to see all previous version of the **Article** when the `event` was destroy.
@@ -643,8 +697,8 @@ Open up the rails console and by running `rails c -s`
 
 ```bash
 > PaperTrail::Version.where(item_type: "Article", event: "destroy").order(created_at: :desc).filter { |v| v.reify.versions.last.event == "destroy" }.map(&:reify)
-  ...
- => [#<Article id: 3, title: "Deleted Article 2 Version 2", body: "Est aut ex. Ea sit ipsam. Tempora dolorem fuga.", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 3, title: "Deleted Article 2 Version 1", body: "Est aut ex. Ea sit ipsam. Tempora dolorem fuga.", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 2, title: "Deleted Article 1 Version 2", body: "Quaerat praesentium sint. Repudiandae explicabo no...", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 2, title: "Deleted Article 1 Version 1", body: "Quaerat praesentium sint. Repudiandae explicabo no...", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">]
+>
+> => [#<Article id: 3, title: "Deleted Article 2 Version 2", body: "Est aut ex. Ea sit ipsam. Tempora dolorem fuga.", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 3, title: "Deleted Article 2 Version 1", body: "Est aut ex. Ea sit ipsam. Tempora dolorem fuga.", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 2, title: "Deleted Article 1 Version 2", body: "Quaerat praesentium sint. Repudiandae explicabo no", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 2, title: "Deleted Article 1 Version 1", body: "Quaerat praesentium sint. Repudiandae explicabo no", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">]
 ```
 
 - By addng a call to [map](https://ruby-doc.org/core-2.7.1/Array.html#method-i-map), we can return an array of `Article` instances, and not `PaperTrail::Version` instances.
@@ -654,8 +708,8 @@ Open up the rails console and by running `rails c -s`
 
 ```bash
 > PaperTrail::Version.where(item_type: "Article", event: "destroy").order(created_at: :desc).filter { |v| v.reify.versions.last.event == "destroy" }.map(&:reify).uniq(&:id)
-...
- => [#<Article id: 3, title: "Deleted Article 2 Version 2", body: "Est aut ex. Ea sit ipsam. Tempora dolorem fuga.", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 2, title: "Deleted Article 1 Version 2", body: "Quaerat praesentium sint. Repudiandae explicabo no...", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">]
+>
+> => [#<Article id: 3, title: "Deleted Article 2 Version 2", body: "Est aut ex. Ea sit ipsam. Tempora dolorem fuga.", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">, #<Article id: 2, title: "Deleted Article 1 Version 2", body: "Quaerat praesentium sint. Repudiandae explicabo no", created_at: "2020-04-20 14:34:39", updated_at: "2020-04-20 14:34:39">]
 ```
 
 - Finally, we can add a call to [uniq](https://ruby-doc.org/core-2.7.1/Array.html#method-i-uniq) to eliminate duplicates from the array of `Article` instances based on the `id` column.
@@ -673,12 +727,14 @@ Now that the heavy lifting is done, we can easily restore a deleted **Article**.
 
 Open up `app/controllers/articles_controller.rb` and add the following:
 
-```ruby{4-14}
+```ruby
 # app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
-  ...
   def restore
+    # ℹ️ Get the last version of the article
     @latest_version = Article.new(id: params[:id]).versions.last
+    # ℹ️ Restore the last version if it was destroyed
     if @latest_version.event == "destroy"
       @article = @latest_version.reify
       if @article.save
@@ -688,9 +744,8 @@ class ArticlesController < ApplicationController
       end
     end
   end
-  ...
+
   private
-  ...
 end
 ```
 
@@ -700,8 +755,9 @@ end
 
 Next, we need to add a corresponding route for our `restore` action. Open up `config/routes.rb` and add the following:
 
-```ruby{9}
+```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
   root to: "articles#index"
   resources :articles do
@@ -709,11 +765,10 @@ Rails.application.routes.draw do
       get "versions", to: "articles#versions"
       get "version/:version_id", to: "articles#version", as: "version"
       post "revert/:version_id", to: "articles#revert", as: "revert"
+      # ℹ️ Add a route to the restore action
       post "restore", to: "articles#restore", as: "restore"
     end
-    collection do
-      get "deleted", to: "articles#deleted"
-    end
+    collection { get "deleted", to: "articles#deleted" }
   end
 end
 ```
@@ -724,9 +779,11 @@ end
 
 Now that we have an action and corresponding route, we need the ability to restore via a link. Open up `app/views/articles/version.html.erb` and add the following:
 
-```erb{15-17}
+```erb
 <!-- app/views/articles/_article.html.erb -->
+
 <% unless article.try(:event) && article.event == "create" %>
+
   <tr>
     <td><%= article.try(:reify) ? article.reify.title : article.title %></td>
     <td><%= article.try(:reify)  ? article.reify.body : article.body %></td>
@@ -739,6 +796,7 @@ Now that we have an action and corresponding route, we need the ability to resto
     <% if params[:action] == "versions" %>
         <td><%= link_to 'Preview This Version', version_article_path(@article, article) %></td>
     <% end %>
+    <%# ℹ️ Load a link to restore the article if viewed from the deleted index %>
     <% if params[:action] == "deleted" %>
         <td><%= link_to 'Restore This Article', restore_article_path(article), method: :post %></td>
     <% end %>

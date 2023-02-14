@@ -1,24 +1,25 @@
 ---
 title: Create a Lead Generation Form on Netlify
 categories: ["Netlify"]
-resources: [
+resources:
+  [
     {
-        title: "Repo",
-        url: "https://github.com/stevepolitodesign/client-side-authorization"
+      title: "Repo",
+      url: "https://github.com/stevepolitodesign/client-side-authorization",
     },
     {
-        title: "Demo Site",
-        url: "https://client-side-authorization.netlify.com/"
+      title: "Demo Site",
+      url: "https://client-side-authorization.netlify.com/",
     },
     {
-        title: "Netlify Form API",
-        url: "https://www.netlify.com/docs/form-handling/"
+      title: "Netlify Form API",
+      url: "https://www.netlify.com/docs/form-handling/",
     },
     {
-        title: "Netlify AJAX Form Submissions",
-        url: "https://www.netlify.com/docs/form-handling/#ajax-form-submissions"
-    }
-]
+      title: "Netlify AJAX Form Submissions",
+      url: "https://www.netlify.com/docs/form-handling/#ajax-form-submissions",
+    },
+  ]
 date: 2019-04-08
 ---
 
@@ -60,44 +61,47 @@ The code below does the following when a user submits the form:
 
 ```js
 class formRedirect {
-    constructor(form){
-        this.form = document.querySelector(form);
-        this.url = this.form.action;
-        this.handleSubmit();
+  constructor(form) {
+    this.form = document.querySelector(form);
+    this.url = this.form.action;
+    this.handleSubmit();
+  }
+
+  handleSubmit() {
+    if (!this.url || !this.form) {
+      return;
     }
 
-    handleSubmit() {
-        if (!this.url || !this.form) { return }
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.whiteListURL(this.url);
 
-        this.form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.whiteListURL(this.url);
-            
-            // https://www.netlify.com/docs/form-handling/#ajax-form-submissions
-            var $form = $(this.form);
-            $.post($form.attr("action"), $form.serialize()).then(function() {
-                window.location = this.url;
-            });
+      // https://www.netlify.com/docs/form-handling/#ajax-form-submissions
+      var $form = $(this.form);
+      $.post($form.attr("action"), $form.serialize()).then(function () {
+        window.location = this.url;
+      });
+    });
+  }
 
-        });
+  whiteListURL(url) {
+    if (!url) {
+      return;
     }
 
-    whiteListURL(url) {
-        if(!url) { return; }
+    let urls = this.getWhiteListURLs();
 
-        let urls = this.getWhiteListURLs();
-
-        if ( urls.indexOf(url) === -1 ) {
-            urls.push(url);
-            localStorage.setItem('whiteListedUrls', JSON.stringify(urls));
-        }
-        
+    if (urls.indexOf(url) === -1) {
+      urls.push(url);
+      localStorage.setItem("whiteListedUrls", JSON.stringify(urls));
     }
+  }
 
-    getWhiteListURLs() {
-        return localStorage.getItem('whiteListedUrls') ? JSON.parse(localStorage.getItem('whiteListedUrls')) : [];
-    }
-
+  getWhiteListURLs() {
+    return localStorage.getItem("whiteListedUrls")
+      ? JSON.parse(localStorage.getItem("whiteListedUrls"))
+      : [];
+  }
 }
 ```
 
@@ -107,23 +111,28 @@ The code below ensures a user can't access the private page if they happen to kn
 
 ```js
 class privatePage {
-    constructor(redirectUrl = '/', message = 'You are not authorized to view this page') {
-        this.redirectUrl = redirectUrl;
-        this.message = message;
-        this.url = window.location.href;
-        this.handlePageLoad();
-    }
+  constructor(
+    redirectUrl = "/",
+    message = "You are not authorized to view this page"
+  ) {
+    this.redirectUrl = redirectUrl;
+    this.message = message;
+    this.url = window.location.href;
+    this.handlePageLoad();
+  }
 
-    handlePageLoad() {
-        let urls = this.getWhiteListURLs();
-        if ( urls.indexOf(this.url) === -1 ) {
-            alert(this.message);
-            window.location =  this.redirectUrl;
-        }
+  handlePageLoad() {
+    let urls = this.getWhiteListURLs();
+    if (urls.indexOf(this.url) === -1) {
+      alert(this.message);
+      window.location = this.redirectUrl;
     }
+  }
 
-    getWhiteListURLs() {
-        return localStorage.getItem('whiteListedUrls') ? JSON.parse(localStorage.getItem('whiteListedUrls')) : [];
-    }
+  getWhiteListURLs() {
+    return localStorage.getItem("whiteListedUrls")
+      ? JSON.parse(localStorage.getItem("whiteListedUrls"))
+      : [];
+  }
 }
 ```

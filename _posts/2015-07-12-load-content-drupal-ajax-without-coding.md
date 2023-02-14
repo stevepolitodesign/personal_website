@@ -2,11 +2,17 @@
 title: Load Content In Drupal Via AJAX (Without Coding)
 tags: ["Tutorial", "AJAX"]
 categories: ["Drupal 7"]
-resources: [{title: "jQuery AJAX Load", url: "http://www.drupal.org/project/jquery_ajax_load"}]
+resources:
+  [
+    {
+      title: "jQuery AJAX Load",
+      url: "http://www.drupal.org/project/jquery_ajax_load",
+    },
+  ]
 date: 2015-07-12
 node: 142
 ---
- 
+
 Loading content via Ajax can create a great user experience. Instead of loading a totally new page, the desired content is loaded on the existing page in a designated location.
 
 In this tutorial I am going to show you how to load node content using the [jQuery AJAX Load Module](https://www.drupal.org/project/jquery_ajax_load). This means we do not need to write any code or custom modules unlike other Drupal AJAX methods.
@@ -21,7 +27,7 @@ First you will need to download and enable the [jQuery AJAX Load module](https:/
 
 ![](/assets/images/posts/load-content-drupal-ajax-without-coding/Screen-Shot-2015-07-11-at-10.51.05-AM.png)
 
-Then, navigate to the jQuery AJAX Load configuration page **(admin/config/development/jquery\_ajax\_load)**.
+Then, navigate to the jQuery AJAX Load configuration page **(admin/config/development/jquery_ajax_load)**.
 
 ![](/assets/images/posts/load-content-drupal-ajax-without-coding/Screen-Shot-2015-07-11-at-10.54.48-AM.png)
 
@@ -49,7 +55,7 @@ To do this you need to add at least two fields. I added the video field, and exc
 
 ![](/assets/images/posts/load-content-drupal-ajax-without-coding/Screen-Shot-2015-07-11-at-10.53.27-AM.png)
 
-```
+```text
 <a href="[path]" class="jquery_ajax_load">[field_video]</a>
 ```
 

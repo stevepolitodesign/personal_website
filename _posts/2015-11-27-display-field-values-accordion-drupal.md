@@ -37,21 +37,21 @@ Navigate to an existing content type and add a new field using the **Field colle
 
 1. Add a new field called **Accordion** and set the field type to **Field collection**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-10.57.13-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-10.57.13-AM.png)
 
 2. Under Field Settings select **Hide blank items** and set **Number of Values** to **Unlimited**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-10.59.09-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-10.59.09-AM.png)
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-10.59.52-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-10.59.52-AM.png)
 
 3. Under the **Manage Display Tab**, located at **admin/structure/types/manage/your-content-type/display** configure the following:
 
-   1. Set the **Label** to **\<Hidden\>**
+   1. Set the **Label** to **<Hidden\>**
    2. Set the **Format** to **Field only**
    3. Set the **View mode:** to **Full content**
 
-   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.03.40-AM.png)
+      ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.03.40-AM.png)
 
 4. Save
 
@@ -59,35 +59,35 @@ Navigate to an existing content type and add a new field using the **Field colle
 
 1. Navigate to the field collection configuration page at **admin/structure/field-collections** and select **manage fields** for the field collection we just created
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.05.47-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.05.47-AM.png)
 
 2. Add a **Text** field with the following configuration:
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.06.38-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.06.38-AM.png)
 
 3. Enable **Required field**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.08.01-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.08.01-AM.png)
 
 4. Set **Number of values** to 1
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.08.07-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.08.07-AM.png)
 
 5. Add a **Long text** field with the following configuration:
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.09.42-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-27-at-11.09.42-AM.png)
 
 6. Set **Text processing** to **Filtered text**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.31.37-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.31.37-AM.png)
 
 7. Enable **Required field**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.32.05-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.32.05-AM.png)
 
 8. Set **Number of values** to 1
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.32.26-AM.png)
+   ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.32.26-AM.png)
 
 9. Navigate to the **Mange Display** tab for the field collection at **admin/structure/field-collections/field-accordion/display**
 10. Add a new **field group** with the following configuration
@@ -95,14 +95,14 @@ Navigate to an existing content type and add a new field using the **Field colle
 12. Group Name: **group_accordion_wrapper**
 13. Format: **Accordion Group**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.34.39-AM.png)
+    ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.34.39-AM.png)
 
 14. Save
 15. Nest the **Accordion Title** and **Accordion Body** fields under the **Accordion Wrapper** group you just created.
 16. Use the default settings for **Accordion Wrapper**
-17. Set the labels for **Accordion Title** and **Accordion Body** to **\<Hidden\>**
+17. Set the labels for **Accordion Title** and **Accordion Body** to **<Hidden\>**
 
-![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.36.34-AM.png)
+    ![](/assets/images/posts/display-field-values-accordion-drupal/Screen-Shot-2015-11-28-at-9.36.34-AM.png)
 
 18. Save
 

@@ -1,24 +1,19 @@
 ---
 title: Seven Easy Wins Before Launching Any Website
 categories: ["Web Development"]
-resources: [
+resources:
+  [
+    { title: "axe", url: "https://www.deque.com/axe/" },
     {
-        title: "axe", 
-        url: "https://www.deque.com/axe/"
+      title: "Lighthouse",
+      url: "https://developers.google.com/web/tools/lighthouse/",
     },
     {
-        title: "Lighthouse",
-        url: "https://developers.google.com/web/tools/lighthouse/"
+      title: "Integrity",
+      url: "https://peacockmedia.software/mac/integrity/free.html",
     },
-    {
-        title: "Integrity",
-        url: "https://peacockmedia.software/mac/integrity/free.html"
-    },
-    {
-        title: "Simple Site Status",
-        url: "https://www.simplesitestatus.com/"
-    }
-]
+    { title: "Simple Site Status", url: "https://www.simplesitestatus.com/" },
+  ]
 date: 2019-05-19
 ---
 
@@ -110,7 +105,7 @@ In order to keep the parent child relationship between pages, while allowing lin
 The following was added in order to allow a user to search for listings based on town.
 
 - Added `wp-content/mu-plugins/custom-query-vars.php` to allow the `location_town_id` parameter to parsed from the URL.
-    - EX. http://localhost:3000/listing-category/historical-sites/?location_town_id=206
+  - EX. http://localhost:3000/listing-category/historical-sites/?location_town_id=206
 - Added `wp-content/mu-plugins/custom-queries.php` to override any default queries, and to use `location_town_id` in the custom queries.
 
 ### Listing Archive
@@ -122,7 +117,7 @@ The **listing** post type has `'has_archive'` set to `false`. In order to displa
 In order to fetch weather data, I needed to do the following. [More info can be found at the rep](https://github.com/BrookeDot/SimplerWeather#proxy-example)
 
 - Create a proxy to fetch the data. This is stored at `wp-content/themes/example/proxy.php`
-    - I then created a page with the url `/proxy/` that loads this template.
+  - I then created a page with the url `/proxy/` that loads this template.
 
 ### Event Archive Interior Images
 
@@ -138,12 +133,12 @@ In order to allow a user to have control over the interior banner on events arch
 All shortcodes are located in `wp-content/mu-plugins/custom-shortcodes.php`
 
 - `[menu_ad text="ad text" image-id="185"]`
-    - This is used to display an ad in the main menu
-        - This only works becuase of the [shortcode-in-menus plugin](https://wordpress.org/plugins/shortcode-in-menus/)
-        - User needs to add `menu-ad__link` class to link
-    - The `text` attribute is used to display the the ad text
-    - The `image-id` attribute is used to fetch media from the library and display in the ad
-        - You will need to upload the media to the library first. This is needed to get the ID
+  - This is used to display an ad in the main menu
+    - This only works becuase of the [shortcode-in-menus plugin](https://wordpress.org/plugins/shortcode-in-menus/)
+    - User needs to add `menu-ad__link` class to link
+  - The `text` attribute is used to display the the ad text
+  - The `image-id` attribute is used to fetch media from the library and display in the ad
+    - You will need to upload the media to the library first. This is needed to get the ID
 
 ### Layout
 
