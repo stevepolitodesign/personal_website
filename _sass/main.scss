@@ -1,6 +1,7 @@
 @import "mixins";
 @import "custom";
 @import "prism";
+@import "syntax_highlight";
 
 @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/mixins";
@@ -37,4 +38,13 @@ blockquote {
   border-left-width: 5px;
   border-left-color: $blue-500;
   border-left-style: solid;
+}
+
+.highlighter-rouge pre {
+  @extend .p-3;
+}
+
+.highlighter-rouge code {
+  word-break: keep-all;
+  word-wrap: normal;
 }
