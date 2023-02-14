@@ -41,9 +41,9 @@ Then, run the following command.
 
 You will need to replace the following with your own credentials​
 
-`[db\_user]` is the database username. In my case it's **root**.
-`[db\_pass]` is the database password. In my case it's **root**.  
-`[db\_name]` is the database name. This will be created through the command. In my example it's **drush-example**.
+`[db_user]` is the database username. In my case it's **root**.
+`[db_pass]` is the database password. In my case it's **root**.  
+`[db_name]` is the database name. This will be created through the command. In my example it's **drush-example**.
 
 ![](/assets/images/posts/install-drupal-drush/spd-drush-si.gif)
 

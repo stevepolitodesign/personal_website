@@ -28,7 +28,7 @@ To be clear, let me outline the specific criteria a project needs to meet in ord
 
 I'm sure at this point some of you are thinking that [Netlify CMS](https://www.netlifycms.org/), or other headless CMS solutions like [Sanity](https://www.sanity.io/) and [Contentful](https://www.contentful.com/) address these issues. I don't disagree that these solutions are appropriate for handling some of the criteria above, but in my opinion they cannot handle **ALL** the criteria above.
 
-To alleviate some bias, it's also important to note [that this very site](https://stevepolito.design/) is built in [Gatsby](https://www.gatsbyjs.org/) and hosted on [Netlify](https://www.netlify.com/). I've also linked to [Bulls\*\*t Reasons Not to Use a Static Generator](https://www.netlify.com/blog/2016/05/24/5-bullst-reasons-not-to-use-a-static-generator/) and [CSS-Tricks is a Poster Child WordPress Site](https://mediatemple.net/blog/news/css-tricks-is-a-poster-child-wordpress-site/) for additional perspective on each side of the argument.
+To alleviate some bias, it's also important to note [that this very site](https://stevepolito.design/) is built in [Gatsby](https://www.gatsbyjs.org/) and hosted on [Netlify](https://www.netlify.com/). I've also linked to [Bullst Reasons Not to Use a Static Generator](https://www.netlify.com/blog/2016/05/24/5-bullst-reasons-not-to-use-a-static-generator/) and [CSS-Tricks is a Poster Child WordPress Site](https://mediatemple.net/blog/news/css-tricks-is-a-poster-child-wordpress-site/) for additional perspective on each side of the argument.
 
 ## Reasons Why Choosing the JAMSTACK is Not the Best Option
 

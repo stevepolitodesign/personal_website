@@ -1,12 +1,13 @@
 ---
 title: Easily find elements with XPath in Capybara by using Chrome's Dev Tools
 categories: ["Ruby on Rails"]
-resources: [
-  {
-    title: "Capybara Documentation",
-    url: "https://github.com/teamcapybara/capybara#xpath-css-and-selectors"
-  },
-]
+resources:
+  [
+    {
+      title: "Capybara Documentation",
+      url: "https://github.com/teamcapybara/capybara#xpath-css-and-selectors",
+    },
+  ]
 date: 2020-07-31
 ---
 
@@ -14,7 +15,7 @@ Imagine you have multiple identical elements on a page and that you need to sele
 
 ![identical elements](/assets/images/posts/easily-find-elements-with-xpath-in-capybara-by-using-chromes-dev-tools/1.0.png)
 
-If your test were written like this, it would fail with a `Capybara::Ambiguous: Ambiguous match` error. 
+If your test were written like this, it would fail with a `Capybara::Ambiguous: Ambiguous match` error.
 
 ```ruby
 test "opening modal" do
@@ -46,4 +47,3 @@ end
 ```
 
 ![selenium browser](/assets/images/posts/easily-find-elements-with-xpath-in-capybara-by-using-chromes-dev-tools/2.0.png)
-

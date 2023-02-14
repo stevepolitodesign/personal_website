@@ -2,12 +2,12 @@
 title: "Use a Custom Column Name With a belongs_to Association in Rails"
 categories: ["Ruby on Rails"]
 resources:
-    [
-        {
-            title: "Options for belongs_to",
-            url: "https://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-foreign-key"
-        }
-    ]
+  [
+    {
+      title: "Options for belongs_to",
+      url: "https://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-foreign-key",
+    },
+  ]
 date: 2019-08-12
 ---
 
@@ -27,15 +27,15 @@ In order to achieve this, you'll want to use the `class_name` and `foreign_key` 
 
 ```ruby
 class User < ApplicationRecord
-    has_many :jobs_project_managers, dependent: :destroy
-    has_many :jobs, through: :jobs_project_managers
+  has_many :jobs_project_managers, dependent: :destroy
+  has_many :jobs, through: :jobs_project_managers
 end
 ```
 
 ```ruby
 class Job < ApplicationRecord
-    has_many :jobs_project_managers, dependent: :destroy
-    has_many :users, through: :jobs_project_managers
+  has_many :jobs_project_managers, dependent: :destroy
+  has_many :users, through: :jobs_project_managers
 end
 ```
 
@@ -57,35 +57,34 @@ FactoryBot.define do
 end
 ```
 
-
 ## After
 
 ### Models
 
-``` ruby
+```ruby
 class User < ApplicationRecord
-    has_many :jobs_project_managers, dependent: :destroy
-    has_many :jobs, through: :jobs_project_managers
+  has_many :jobs_project_managers, dependent: :destroy
+  has_many :jobs, through: :jobs_project_managers
 end
 ```
 
-``` ruby{3}
+```ruby
 class Job < ApplicationRecord
-    has_many :jobs_project_managers, dependent: :destroy
-    has_many :project_managers, through: :jobs_project_managers
+  has_many :jobs_project_managers, dependent: :destroy
+  has_many :project_managers, through: :jobs_project_managers
 end
 ```
 
-```ruby{2}
+```ruby
 class JobsProjectManager < ApplicationRecord
-  belongs_to :project_manager, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :project_manager, class_name: "User", foreign_key: "user_id"
   belongs_to :job
 end
 ```
 
 ### Factories
 
-```ruby{3}
+```ruby
 FactoryBot.define do
   factory :jobs_project_manager do
     association :project_manager, factory: :user

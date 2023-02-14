@@ -1,16 +1,17 @@
 ---
 title: "Forestry CMS Snippets Demo"
 categories: ["Web Development", "JAMstack"]
-resources: [
+resources:
+  [
     {
-        title: "Source Code",
-        url: "https://github.com/stevepolitodesign/forestry-cms-snippets-example"
+      title: "Source Code",
+      url: "https://github.com/stevepolitodesign/forestry-cms-snippets-example",
     },
     {
-        title: "Forestry CMS Snippets Documentation",
-        url: "https://forestry.io/docs/settings/snippets/"
-    }
-]
+      title: "Forestry CMS Snippets Documentation",
+      url: "https://forestry.io/docs/settings/snippets/",
+    },
+  ]
 date: 2019-11-25
 ---
 
@@ -28,7 +29,7 @@ This tutorial assumes you have a site up and running on Forestry. I will be usin
 
 1. Create a `.forestry/snippets` directory.
 2. Create a file ending in `.snippet` in the `.forestry/snippets` directory.
-    1. In this case, I created a file called `iframe.snippet`
+   1. In this case, I created a file called `iframe.snippet`
 
 ```html
 <!-- iframe.snippet -->

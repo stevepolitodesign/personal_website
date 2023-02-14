@@ -1,15 +1,16 @@
 ---
 title: Working with Radio Buttons in Netlify and Gatsby
-resources: [
-  {
-	  title: "Example Code",
-    url: "https://github.com/stevepolitodesign/netlify-gatsby-radio-buttons-example"
-  },
-  {
-	  title: "Netlify Form Handling Documentation",
-	  url: "https://community.netlify.com/t/checkboxes-and-radio-buttons-in-forms/1486/2"
-  },
-]
+resources:
+  [
+    {
+      title: "Example Code",
+      url: "https://github.com/stevepolitodesign/netlify-gatsby-radio-buttons-example",
+    },
+    {
+      title: "Netlify Form Handling Documentation",
+      url: "https://community.netlify.com/t/checkboxes-and-radio-buttons-in-forms/1486/2",
+    },
+  ]
 categories: ["Netlify", "Gatsby"]
 date: 2019-06-23
 ---
@@ -33,9 +34,8 @@ Wrap the `input` in a `label` to ensure the name of the `input` is used in the r
 
 ```html
 <label>
-    <input type="radio" name="size" id="small" value="small" required /> Small
+  <input type="radio" name="size" id="small" value="small" required /> Small
 </label>
 ```
 
 ![Netlfiy form results that are correctly saved](/assets/images/posts/working-with-radio-buttons-in-netlify-and-gatsby/correct.png)
-

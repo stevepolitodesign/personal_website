@@ -1,25 +1,26 @@
 ---
 title: "Why I'm Using Bootstrap In 2020"
-categories: ['Web Development']
-tags: ['Bootstrap']
-resources: [
+categories: ["Web Development"]
+tags: ["Bootstrap"]
+resources:
+  [
     {
-        title: "Utilities",
-        url: "https://getbootstrap.com/docs/4.4/extend/approach/#utilities"
+      title: "Utilities",
+      url: "https://getbootstrap.com/docs/4.4/extend/approach/#utilities",
     },
     {
-        title: "Variable Overrides",
-        url: "https://getbootstrap.com/docs/4.4/getting-started/theming/#variable-defaults"
+      title: "Variable Overrides",
+      url: "https://getbootstrap.com/docs/4.4/getting-started/theming/#variable-defaults",
     },
     {
-        title: "Typography",
-        url: "https://getbootstrap.com/docs/4.4/content/typography/"
+      title: "Typography",
+      url: "https://getbootstrap.com/docs/4.4/content/typography/",
     },
     {
-        title: "Accessibility",
-        url: "https://getbootstrap.com/docs/4.4/getting-started/accessibility/"
-    }
-]
+      title: "Accessibility",
+      url: "https://getbootstrap.com/docs/4.4/getting-started/accessibility/",
+    },
+  ]
 date: 2020-01-02
 ---
 
@@ -40,10 +41,10 @@ Below is all the custom css I needed to write, in addition to the variable overr
 ### My Custom CSS
 
 ```scss
-.carousel__container .carousel {
+.carousel**container .carousel {
   max-width: 788px;
 }
-.carousel__container {
+.carousel**container {
   background: rgba($secondary, 0.25);
 }
 .grid img {
@@ -101,7 +102,7 @@ main {
   &:active,
   &:focus {
     text-decoration: none;
-    .reveal-item__title-wrapper {
+    .reveal-item**title-wrapper {
       @extend .bg-info;
       @include media-breakpoint-up(md) {
         transform: translateY(0);
@@ -109,7 +110,7 @@ main {
       }
     }
   }
-  .reveal-item__image {
+  .reveal-item**image {
     @include media-breakpoint-up(md) {
       position: absolute;
       top: 0;
@@ -155,12 +156,12 @@ main img {
     text-decoration: none;
 
     &:after {
-      content: '';
+      content: "";
       display: block;
       height: 25px;
       width: 50px;
       position: absolute;
-      background: url('/assets/img/shared/gear-half-green.svg') top center
+      background: url("/assets/img/shared/gear-half-green.svg") top center
         no-repeat;
       left: 50%;
       margin-left: -25px;
@@ -168,28 +169,28 @@ main img {
     }
   }
 }
-.testimonials__carousel {
+.testimonials**carousel {
   min-height: 480px;
 }
-.testimonials__gear {
+.testimonials**gear {
   opacity: 0.05;
 }
-.testimonials__gear-1,
-.testimonials__gear-3 {
-  animation: spin__clockwise 8s linear infinite;
+.testimonials**gear-1,
+.testimonials**gear-3 {
+  animation: spin * * clockwise 8s linear infinite;
   bottom: -25%;
 }
-.testimonials__gear-2 {
-  animation: spin__counter-clockwise 8s linear infinite;
+.testimonials**gear-2 {
+  animation: spin__counter-clockwise8slinearinfinite;
   top: -25%;
 }
 
-@keyframes spin__clockwise {
+@keyframes spin**clockwise {
   100% {
     transform: rotate(360deg);
   }
 }
-@keyframes spin__counter-clockwise {
+@keyframes spin**counter-clockwise {
   100% {
     transform: rotate(-360deg);
   }
@@ -221,10 +222,10 @@ $breadcrumb-active-color: $gray-900;
 // Options
 $enable-responsive-font-sizes: true;
 $enable-rounded: false;
-$breadcrumb-divider: quote('»');
+$breadcrumb-divider: quote("»");
 
 // Typography
-$headings-font-family: 'Anton', sans-serif;
+$headings-font-family: "Anton", sans-serif;
 ```
 
 In my opinion, I was able to develop a very unique design that does not resemble the stereotypical cookie cutter Bootstrap look and feel. By simply changing the color and font variables and leveraging utility classes, I was able to design the majority of the site. If I needed even greater flexibility, I just added my own styles, which only amounted to an extra ~155 lines of `.scss`.

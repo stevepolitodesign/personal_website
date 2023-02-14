@@ -65,30 +65,31 @@ In this tutorial we are going to go an extra step and have our images appear in 
 4. Add the followings fields
    ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-3-1.png)
 
-| **LABEL**     | **MACHINE NAME**    | **FIELD TYPE** | **WIDGET**                |
-| ------------- | ------------------- | -------------- | ------------------------- |
-| Gallery Image | field_gallery_image | Image          | Image                     |
-| Photo Credit  | field_photo_credit  | Text           | Text field                |
-| Caption       | field_caption       | Long text      | Text area (multiple rows) |
+   | **LABEL**     | **MACHINE NAME**    | **FIELD TYPE** | **WIDGET**                |
+   | ------------- | ------------------- | -------------- | ------------------------- |
+   | Gallery Image | field_gallery_image | Image          | Image                     |
+   | Photo Credit  | field_photo_credit  | Text           | Text field                |
+   | Caption       | field_caption       | Long text      | Text area (multiple rows) |
 
 5. Format their display like this:
    ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-4-0.png)
 
-| **FIELD**     | **LABEL**  | **FORMAT** |
-| ------------- | ---------- | ---------- |
-| Gallery Image | \<Hidden\> | Colorbox   |
-| Photo Credit  | Above      | \<Hidden\> |
-| Caption       | Above      | \<Hidden\> |
+   | **FIELD**     | **LABEL**  | **FORMAT** |
+   | ------------- | ---------- | ---------- |
+   | Gallery Image | \<Hidden\> | Colorbox   |
+   | Photo Credit  | Above      | \<Hidden\> |
+   | Caption       | Above      | \<Hidden\> |
 
 6. Format the **Gallery Image** field Colorbox display like this:
+
    1. **Content image style** = Medium (220x20)
    1. **Content image style for first image** = No special style.
    1. **Colorbox image style** = None (original image)
    1. **Gallery (image grouping)** = Per page gallery
    1. **Caption** = Custom (with tokens)
-   1. **​Custom caption** = `[field\_collection\_item:field-caption] | Photo By [field\_collection\_item:field\_photo\_credit]`
+   1. **Custom caption** = `[field_collection_item:field-caption] | Photo By [field_collection_item:field_photo_credit]`
 
-![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-5-0.png)
+   ![](/assets/images/posts/batch-upload-field-collection-items-create-image-gallery/1-5-0.png)
 
 ## Apply Necessary Patches To Fix Bugs
 
@@ -100,51 +101,67 @@ At the time of this writing, I am using **7.x-1.0-alpha1** of the [Field Collect
 
 The solution to this problem can be found [here](https://www.drupal.org/node/1892668#comment-9887597). Basically, the Field Collection Bulkupload depends upon the [FileField Sources](https://www.drupal.org/project/filefield_sources) module. Apply [this patch ](https://www.drupal.org/files/issues/undefined_function-1892668-4.patch)to add it as a dependency. Once applied, don't forget to enable the FileField Sources module.
 
-    cd sites/all/modules/field_collection_bulkupload
-    ​wget https://www.drupal.org/files/issues/undefined_function-1892668-4.patch
-    patch -p1 < undefined_function-1892668-4.patch
+```bash
+cd sites/all/modules/field_collection_bulkupload
+wget https://www.drupal.org/files/issues/undefined_function-1892668-4.patch
+patch -p1 < undefined_function-1892668-4.patch
+```
 
 I got an error when trying to apply the patch.
 
-    missing header for context diff at line 3 of patch
-    can't find file to patch at input line 3
-    Perhaps you used the wrong -p or --strip option?
-    The text leading up to this was:
-    --------------------------
-    |*** field_collection_bulkupload.info.old 2015-05-03 23:40:36.281057385 +0200
-    |--- field_collection_bulkupload.info 2015-05-03 23:34:39.902669313 +0200
+```text
+missing header for context diff at line 3 of patch
+can't find file to patch at input line 3
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|*** field_collection_bulkupload.info.old 2015-05-03 23:40:36.281057385 +0200
+|--- field_collection_bulkupload.info 2015-05-03 23:34:39.902669313 +0200
+```
 
 To fix this, i just selected **field_collection_bulkupload.info**
 
-    File to patch: field_collection_bulkupload.info
+```bash
+File to patch: field_collection_bulkupload.info
+```
 
 Once applied, remove the patch.
 
-    rm undefined_function-1892668-4.patch
+```bash
+rm undefined_function-1892668-4.patch
+```
 
 ### If validation fails, files are lost
 
 If you were to batch upload your files before filling out any required fields on that particular form, the files would immediately be removed. Apply [this patch](https://www.drupal.org/files/issues/field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch) from [this issue](https://www.drupal.org/node/1797886#comment-8577413) to solve the problem.
 
-    cd sites/all/modules/field_collection_bulkupload
-    ​wget https://www.drupal.org/files/issues/field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch
-    patch -p1 < field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch
+```bash
+cd sites/all/modules/field_collection_bulkupload
+wget https://www.drupal.org/files/issues/field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch
+patch -p1 < field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch
+```
 
 Once applied, remove the patch.
 
-    rm field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch
+```bash
+rm field_collection_bulkupload-fix-files-lost-when-validation-fails-1797886-4.patch
+```
 
 ### Last existing field collection item disappears
 
 If you were to upload additional items after the initial upload, the last item would be replaced. Apply [this patch](https://www.drupal.org/files/issues/field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch) from [this issue](https://www.drupal.org/node/2098649#comment-8569763) to solve the problem
 
-    cd sites/all/modules/field_collection_bulkupload
-    wget https://www.drupal.org/files/issues/field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch
-    patch -p1 < field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch
+```bash
+cd sites/all/modules/field_collection_bulkupload
+wget https://www.drupal.org/files/issues/field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch
+patch -p1 < field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch
+```
 
 Once applied, remove the patch.
 
-    rm field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch
+```bash
+rm field_collection_bulkupload-fix_last_item_disappearing-2098649-6.patch
+```
 
 ## Conclusion and Next Steps
 

@@ -1,12 +1,13 @@
 ---
 title: "Rails Remote Elements Tutorial"
 categories: ["Ruby on Rails"]
-resources: [
-  {
-    title: "Source Code",
-    url: "https://github.com/stevepolitodesign/rails-remote-elements-tutorial/"
-  },
-]
+resources:
+  [
+    {
+      title: "Source Code",
+      url: "https://github.com/stevepolitodesign/rails-remote-elements-tutorial/",
+    },
+  ]
 date: 2021-11-09
 og_image: "https://mugshotbot.com/m/s6WZrmo1"
 ---
@@ -14,6 +15,7 @@ og_image: "https://mugshotbot.com/m/s6WZrmo1"
 Do you need to create real-time features in your Rails app, but either can't use Turbo or don't want to use a front end framework like React? Fortunately older versions of Rails actually provide this functionality of the box. In this tutorial I'll show you how to create a single page app in Rails from scratch using remote elements and Stimulus.
 
 ![Demo](/assets/images/posts/rails-remote-elements-tutorial/demo.gif)
+
 ## Formula
 
 ### Stimulus Controller
@@ -103,19 +105,19 @@ export default class extends Controller {
 ```
 
 > **What's Going On Here?**
-> 
+>
 > - Rails-ujs dispatches [custom events](https://guides.rubyonrails.org/working_with_javascript_in_rails.html#rails-ujs-event-handlers) on the element creating the request. In our case we specifically listen for `ajax:error` and `ajax:success`. Those responses are returned via `event.detail[2]`.
 > - If the request was successful we simply update the DOM with the response according to the value of `this.actionValue`. We limit what actions can be used with `this.actionIsPermitted()`. These values are inspired by [Turbo's seven actions](https://turbo.hotwired.dev/reference/streams#the-seven-actions) and are handled via `this.updateTarget()`.
-> - Since a request can come from a button, link, or form we need to conditionally handle rendering errors and clearing form data via `this.clearErrors()` and `this.clearForm()`. 
+> - Since a request can come from a button, link, or form we need to conditionally handle rendering errors and clearing form data via `this.clearErrors()` and `this.clearForm()`.
 
 ### Remote Element Markup
 
 #### Forms
 
-```html
+```erb
 <%= form_with(
   local: false,
-  data: { 
+  data: {
     controller: "request",
     request_target: "form",
     request_target_value: "#some_dom_id",
@@ -132,20 +134,19 @@ export default class extends Controller {
 > - The `request_target: "form"` data attribute ensures the form will be cleared via `this.clearForm()`.
 > - The `request_target_value` data attribute references an element on the page that will be updated when the response from the server is successful.
 > - The `request_action_value` data attribute determines how the `request_target_value` element will be updated when the response from the server is successful.
-> - We add `<div data-request-target="error"></div>` so we can render any errors in the form if the object is not valid. 
-
+> - We add `<div data-request-target="error"></div>` so we can render any errors in the form if the object is not valid.
 
 #### Buttons
 
-```html
+```erb
 <%= button_to(
   remote: true,
-  form: { 
-    data: { 
+  form: {
+    data: {
       controller: "request",
       request_target_value: "#some_dom_id",
       request_action_value: "afterbegin | afterend | beforebegin | beforeend | remove | replace | update"
-    } 
+    }
   }
 ) do %>
   ...
@@ -160,12 +161,12 @@ export default class extends Controller {
 
 #### Links
 
-```html
+```erb
 <%= link_to(
   task.title,
   task_path(task),
   remote: true,
-  data: { 
+  data: {
     controller: "request",
     request_target_value: "#some_dom_id",
     request_action_value: "afterbegin | afterend | beforebegin | beforeend | remove | replace | update"
@@ -220,14 +221,15 @@ Below is a real world example of how you can use remote elements to create a sin
 
 **Notes**
 
-- Since it's a single page app, all requests are coming from the root path (`tasks#index`). 
+- Since it's a single page app, all requests are coming from the root path (`tasks#index`).
 - The back button won't work as expected. For example, if you click on a task and then click the back button, you won't be brought back to the `tasks#index` since you're technically already there. Instead you'll be brought back to whatever page you were on last. This is why there are client side routing libraries such as [React Router](https://reactrouter.com/).
-- In order to DRY up our code, we set the data attributes for some of the form partials in our controllers since we sometimes respond with a form partial. A good example of this is `tasks#edit` and `app/views/tasks/_form.html.erb`. 
+- In order to DRY up our code, we set the data attributes for some of the form partials in our controllers since we sometimes respond with a form partial. A good example of this is `tasks#edit` and `app/views/tasks/_form.html.erb`.
 
 ### Routes
 
 ```ruby
 # config/routes.rb
+
 Rails.application.routes.draw do
   root to: "tasks#index"
   resources :tasks, except: [:new] do
@@ -243,7 +245,7 @@ end
 
 ### Layout
 
-```html
+```erb
 <!-- app/views/layouts/application.html.erb -->
 <!DOCTYPE html>
 <html>
@@ -268,10 +270,9 @@ end
     </main>
   </body>
 </html>
-
 ```
 
-```html
+```erb
 <!--  app/views/layouts/_form_errors.html.erb -->
 <div class="alert alert-danger" role="alert">
   <ul class="mb-0">
@@ -367,7 +368,7 @@ class TasksController < ApplicationController
 end
 ```
 
-```html
+```erb
 <!-- app/views/tasks/_form.html.erb -->
 <%= form_with model: @task, local: false, data: data_attributes, class: "row align-items-center" do |form| %>
   <div data-request-target="error">
@@ -384,16 +385,25 @@ end
 
 ```html
 <!-- app/views/tasks/_task.html.erb -->
-<li class="list-group-item list-group-item d-flex justify-content-between align-items-center" id="<%= dom_id(task) %>">
-  <%= link_to task.title, task_path(task), class: "fs-5 link-dark", remote: true, data: { controller: "request", request_target_value: "#content", request_action_value: "update" } %>
+<li
+  class="list-group-item list-group-item d-flex justify-content-between align-items-center"
+  id="<%= dom_id(task) %>"
+>
+  <%= link_to task.title, task_path(task), class: "fs-5 link-dark", remote:
+  true, data: { controller: "request", request_target_value: "#content",
+  request_action_value: "update" } %>
   <div>
-    <%= link_to "Edit", edit_task_path(task), class: "link-secondary", remote: true, data: { controller: "request", request_target_value: "##{dom_id(task)}", request_action_value: "update" } %>
-    <%= link_to "Delete", task_path(task), class: "link-secondary", method: :delete, remote: true, data: { controller: "request", request_target_value: "##{dom_id(task)}", request_action_value: "remove" } %>  
+    <%= link_to "Edit", edit_task_path(task), class: "link-secondary", remote:
+    true, data: { controller: "request", request_target_value:
+    "##{dom_id(task)}", request_action_value: "update" } %> <%= link_to
+    "Delete", task_path(task), class: "link-secondary", method: :delete, remote:
+    true, data: { controller: "request", request_target_value:
+    "##{dom_id(task)}", request_action_value: "remove" } %>
   </div>
 </li>
 ```
 
-```html
+```erb
 <!-- app/views/tasks/index.html.erb -->
 <%= render partial: "form", locals: { data_attributes: @new_task_data_attributes } %>
 <ul id="tasks" class="mt-4 list-group list-group-flush">
@@ -401,7 +411,7 @@ end
 </ul>
 ```
 
-```html
+```erb
 <!-- app/views/tasks/show.html.erb -->
 <%= link_to "Back to Tasks", tasks_path, remote: true, data: { controller: "request", request_target_value: "#content", request_action_value: "update" } %>
 <h1><%= @task.title %></h1>
@@ -488,7 +498,7 @@ class ItemsController < ApplicationController
 end
 ```
 
-```html
+```erb
 <!-- app/views/items/_form.html.erb -->
 <%= form_with model: object, local: false, data: data_attributes, class: "row align-items-center" do |form| %>
   <div data-request-target="error">
@@ -503,7 +513,7 @@ end
 <% end %>
 ```
 
-```html
+```erb
 <!--  app/views/items/_item.html.erb -->
 <% unless item.new_record? %>
   <li class="list-group-item list-group-item d-flex justify-content-between align-items-center" id="<%= dom_id(item) %>">
@@ -514,14 +524,14 @@ end
       <% end %>
     </div>
     <div>
-      <%= link_to "Edit", edit_task_item_path(item.task, item), class: "link-secondary", remote: true, data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "update" } %> 
-      <%= link_to "Delete", task_item_path(item.task, item), class: "link-secondary", method: :delete, remote: true, data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "remove" } %>  
+      <%= link_to "Edit", edit_task_item_path(item.task, item), class: "link-secondary", remote: true, data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "update" } %>
+      <%= link_to "Delete", task_item_path(item.task, item), class: "link-secondary", method: :delete, remote: true, data: { controller: "request", request_target_value: "##{dom_id(item)}", request_action_value: "remove" } %>
     </div>
   </li>
 <% end %>
 ```
 
-```html
+```erb
 <!-- app/views/items/_items.html.erb -->
 <ul id="items" class="mt-4 list-group list-group-flush">
   <%= render @items %>

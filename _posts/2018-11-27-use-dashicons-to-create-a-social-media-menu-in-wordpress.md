@@ -29,22 +29,29 @@ For this tutorial, I created a child theme of **twentyseventeen** and named the 
 
 1. Add `wp_enqueue_style( 'dashicons' );` to your theme's `functions.php` file.
 
-```php{12-13}
-add_action( 'wp_enqueue_scripts', 'twentyseventeen_parent_theme_enqueue_styles' );
-
-/**
- * Enqueue scripts and styles.
- */
-function twentyseventeen_parent_theme_enqueue_styles() {
-	wp_enqueue_style( 'twentyseventeen-style', get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'example-theme-style',
-		get_stylesheet_directory_uri() . '/style.css',
-		array( 'twentyseventeen-style' )
-	);
-	// load dashicons to the front end
-	wp_enqueue_style( 'dashicons' );
-}
-```
+<pre data-line="18-19">
+  <code class="language-php">
+    add_action("wp_enqueue_scripts", "twentyseventeen_parent_theme_enqueue_styles");
+    
+    /**
+      * Enqueue scripts and styles.
+      */
+    function twentyseventeen_parent_theme_enqueue_styles()
+    {
+      wp_enqueue_style(
+        "twentyseventeen-style",
+        get_template_directory_uri() . "/style.css"
+      );
+      wp_enqueue_style(
+        "example-theme-style",
+        get_stylesheet_directory_uri() . "/style.css",
+        ["twentyseventeen-style"]
+      );
+      // load dashicons to the front end
+      wp_enqueue_style("dashicons");
+    }
+  </code>
+</pre>
 
 ## 2. Add a New Social Media Menu to Your Theme
 
@@ -52,10 +59,11 @@ function twentyseventeen_parent_theme_enqueue_styles() {
 
 ```php
 // create a social media menu
-add_action( 'after_setup_theme', 'register_social_media_menu' );
+add_action("after_setup_theme", "register_social_media_menu");
 
-function register_social_media_menu() {
-    register_nav_menu( 'social_media', __( 'Socia Media Menu', 'example-theme' ) );
+function register_social_media_menu()
+{
+  register_nav_menu("social_media", __("Socia Media Menu", "example-theme"));
 }
 ```
 
@@ -64,21 +72,22 @@ function register_social_media_menu() {
 1. Login to WordPress and add a new menu by navigating to **/wp-admin/nav-menus.php?action=edit&menu=0**
 2. Name the menu anything you'd like. In my case, I named the menu **Social Media Menu**
 
-![add social media menu to wordpress](/assets/images/posts/use-dashicons-to-create-a-social-media-menu-in-wordpress/add-social-media-menu-to-wordpress.png)
+   ![add social media menu to wordpress](/assets/images/posts/use-dashicons-to-create-a-social-media-menu-in-wordpress/add-social-media-menu-to-wordpress.png)
 
 ## 4. Use Dashicon Markup in the Newly Created Menu
 
 1. Navigate to the WordPress [Dashicons page](https://developer.wordpress.org/resource/dashicons) and search for the desired icon. In this example, I will use [Facebook](https://developer.wordpress.org/resource/dashicons/#facebook).
 2. Click **Copy HTML** to generate the correct HTML. In my case I get `<span class="dashicons dashicons-facebook"></span>`
 
-![generate dashicon markup](/assets/images/posts/use-dashicons-to-create-a-social-media-menu-in-wordpress/generate-dashicon-markup.png)
+   ![generate dashicon markup](/assets/images/posts/use-dashicons-to-create-a-social-media-menu-in-wordpress/generate-dashicon-markup.png)
 
 3. Navigate back to the menu you create in step **3.1**
 4. Add a **Custom Link** to the menu, ensuring you use `<span class="dashicons dashicons-facebook"></span>` as the **Link Text**
-    - To be accessible, add `<span class="screen-reader-text">Facebook</span>`. It should now render `<span class="dashicons dashicons-facebook"><span class="screen-reader-text">Facebook</span></span>`. 
-        - Make sure your theme has a `screen-reader-text` class as outlined in [The CSS class screen-reader-text](https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/)
 
-![add dashicon markup to custom menu link.png](/assets/images/posts/use-dashicons-to-create-a-social-media-menu-in-wordpress/add-dashicon-markup-to-custom-menu-link.png)
+   - To be accessible, add `<span class="screen-reader-text">Facebook</span>`. It should now render `<span class="dashicons dashicons-facebook"><span class="screen-reader-text">Facebook</span></span>`.
+     - Make sure your theme has a `screen-reader-text` class as outlined in [The CSS class screen-reader-text](https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/)
+
+   ![add dashicon markup to custom menu link.png](/assets/images/posts/use-dashicons-to-create-a-social-media-menu-in-wordpress/add-dashicon-markup-to-custom-menu-link.png)
 
 5. Click **Save Menu**
 

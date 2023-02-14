@@ -1,24 +1,25 @@
 ---
 title: Add a Featured Image to the Events Calendar Month, List and Day Views in WordPress
 categories: ["WordPress"]
-resources: [
+resources:
+  [
     {
-        title: "ACF Options Page",
-        url: "https://www.advancedcustomfields.com/resources/options-page/#basic-usage"
+      title: "ACF Options Page",
+      url: "https://www.advancedcustomfields.com/resources/options-page/#basic-usage",
     },
     {
-        title: "ACF Options Page: Template Usage",
-        url: "https://www.advancedcustomfields.com/resources/options-page/#template-usage"
+      title: "ACF Options Page: Template Usage",
+      url: "https://www.advancedcustomfields.com/resources/options-page/#template-usage",
     },
     {
-        title: "The Events Calendar Conditional Wrappers",
-        url: "https://gist.github.com/jo-snips/2415009"
+      title: "The Events Calendar Conditional Wrappers",
+      url: "https://gist.github.com/jo-snips/2415009",
     },
     {
       title: "The Events Calendar Developer Documentation",
-      url: "https://docs.theeventscalendar.com/"  
-    }
-]
+      url: "https://docs.theeventscalendar.com/",
+    },
+  ]
 date: 2019-10-28
 ---
 
@@ -34,10 +35,8 @@ Add a [basic option page](https://www.advancedcustomfields.com/resources/options
 
 ```php
 // functions.php
-if( function_exists('acf_add_options_page') ) {
-
-	acf_add_options_page();
-
+if (function_exists("acf_add_options_page")) {
+  acf_add_options_page();
 }
 ```
 
@@ -52,10 +51,15 @@ Create a new field group, and assign it to the newly created options page.
 Using [events calendar conditional wrappers](https://gist.github.com/jo-snips/2415009) in combination with the [ACF options page template usage](https://www.advancedcustomfields.com/resources/options-page/#template-usage), we can display the image on the events month, list and day views.
 
 ```php
-<?php if( tribe_is_month() || tribe_is_past() || tribe_is_upcoming() || tribe_is_day() ) { ?>
-  <?php
-    $image = get_field('event_banner_image', 'option');
-  ?>
-  <img src="<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+<?php if (
+  tribe_is_month() ||
+  tribe_is_past() ||
+  tribe_is_upcoming() ||
+  tribe_is_day()
+) { ?>
+  <?php $image = get_field("event_banner_image", "option"); ?>
+  <img src="<?php echo esc_url(
+    $image["sizes"]["large"]
+  ); ?>" alt="<?php echo esc_attr($image["alt"]); ?>">
 <?php } ?>
 ```
