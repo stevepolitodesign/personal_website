@@ -1,5 +1,12 @@
 ---
 title: Dynamically Control FlexSlider Caption Position and Color in Drupal
+excerpt:
+  Drupal’s Flex Slider module allows site builders to add rotating slides with
+  captions. Using custom CSS, site themers can adjust the caption’s position and
+  color. This is useful when the caption color might be hard to read against the
+  slide, or is positioned awkwardly. However, wouldn’t it be nice to have complete
+  control over the caption’s color, position and background color right within the
+  CMS?
 tags: ["Tutorial", "FlexSlider"]
 categories: ["Drupal 7"]
 resources:

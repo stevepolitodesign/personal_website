@@ -1,5 +1,11 @@
 ---
 title: Configure Drupal's Search API to Search Field Collections and Paragraphs
+excerpt:
+  This tutorial will assume that you are somewhat familiar with the Search API
+  module. It also assumes you are using the Search API with the Search API
+  Database Search and Search API Pages modules. The goal here is to ensure
+  paragraph and field collection fields are being indexed by Search API and
+  associated with their host node.
 tags: ["Search", "Search API", "Tutorial"]
 categories: ["Drupal 7"]
 resources:

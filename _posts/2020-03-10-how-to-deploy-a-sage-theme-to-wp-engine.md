@@ -1,5 +1,14 @@
 ---
 title: "How to Deploy a Sage Theme to WP Engine"
+excerpt:
+  Sage is WordPress starter theme with a modern development workflow. However,
+  deploying a Sage theme can be difficult because of its dependencies, most
+  notably Composer and Yarn. In order to deploy a Sage theme, you need to be able
+  to run both Composer and Yarn on your server. Furthermore, Sage doesn’t
+  officially support hosting at WP Engine. You could deploy Sage via FTP, but this
+  approach is error prone and inefficient. Fortunately, there are services such as
+  DeployBot and DeployHQ that can run these builds, and them push the distributed
+  files to the server. For this tutorial, I am going to be using DeployHQ.
 categories: ["WordPress"]
 resources:
   [

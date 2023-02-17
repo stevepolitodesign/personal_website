@@ -1,5 +1,9 @@
 ---
 title: "Pro Tip: Use the esc_attr Function to Format alt Tags When Using ACF"
+excerpt:
+  If you’re rendering images with ACF, make sure you run the alt text against
+  the esc_attr function. Why? Because there’s a chance that the alt text could
+  contain quotation marks "".
 categories: ["WordPress"]
 tags: ["ACF"]
 resources:

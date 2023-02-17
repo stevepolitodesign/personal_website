@@ -1,5 +1,15 @@
 ---
 title: "Ruby on Rails with React Tutorial"
+excerpt:
+  Many Rails+React tutorials demonstrate how to create an API only application
+  using Rails, and then create a separate front-end application to digest the API
+  with React. Other React tutorials have you work with something like Firebase to
+  handle the back-end of the application.
+
+  Although both of these approaches are common and acceptable, I wanted to create
+  an application that has all the benefits of a non API only Rails application,
+  without the limitations and vendor lock-in of a third party service like
+  Firebase.
 categories: ["Ruby on Rails", "Web Development"]
 resources:
   [
@@ -213,7 +223,7 @@ Now we need to generate a `User` model. This model will eventually be associated
 
    ```ruby
    # db/seeds.rb
-   
+
    2.times do |i|
      User.create(
        email: "user-#{i + 1}@example.com",
@@ -479,10 +489,10 @@ Now that we have a `TodoItem` model, we should write some validations to ensure 
 
    ```ruby
    # app/models/todo_item.rb
-   
+
    class TodoItem < ApplicationRecord
      belongs_to :user
-   
+
      validates :title, presence: true
    end
    ```
@@ -515,7 +525,7 @@ Next we need to create an association between the `User` and the `TodoItem`. Thi
 
    ```ruby
    # app/models/user.rb
-   
+
    class User < ApplicationRecord
      has_many :todo_items, dependent: :destroy
    end
@@ -582,27 +592,27 @@ First we need to create an action for each endpoint in our API.
 
    ```ruby
    # app/controllers/api/v1/todo_items_controller.rb
-   
+
    class Api::V1::TodoItemsController < ApplicationController
      before_action :set_todo_item, only: %i[show edit update destroy]
-   
+
      def index
      end
-   
+
      def show
      end
-   
+
      def create
      end
-   
+
      def update
      end
-   
+
      def destroy
      end
-   
+
      private
-   
+
      def set_todo_item
        @todo_item = TodoItem.find(params[:id])
      end
@@ -657,7 +667,7 @@ Normally in Rails there is a corresponding `.erb` view file for each controller 
 
    ```ruby
    # app/views/api/v1/todo_items/_todo_item.json.jbuilder
-   
+
    json.extract! todo_item,
                  :id,
                  :title,
@@ -673,7 +683,7 @@ Normally in Rails there is a corresponding `.erb` view file for each controller 
 
    ```ruby
    # app/views/api/v1/todo_items/show.json.jbuilder
-   
+
    json.partial! "api/v1/todo_items/todo_item", todo_item: @todo_item
    ```
 
@@ -683,7 +693,7 @@ Normally in Rails there is a corresponding `.erb` view file for each controller 
 
    ```ruby
    # app/views/api/v1/todo_items/index.json.jbuilder
-   
+
    json.array! @todo_items, partial: "api/v1/todo_items/todo_item", as: :todo_item
    ```
 
@@ -697,7 +707,7 @@ Now we need to update our controller actions so that we can pass data into our n
 
    ```ruby
    # app/controllers/api/v1/todo_items_controller.rb
-   
+
    class Api::V1::TodoItemsController < ApplicationController
      def index
        @todo_items = TodoItem.all
@@ -730,7 +740,7 @@ First we need to lock down our controller by authenticating all requests. Luckil
 
    ```ruby
    # app/controllers/api/v1/todo_items_controller.rb
-   
+
    class Api::V1::TodoItemsController < ApplicationController
      before_action :authenticate_user!
      before_action :set_todo_item, only: %i[show edit update destroy]
@@ -877,11 +887,11 @@ Now we need a way to create `TodoItems` with our API.
 
    ```ruby
    # app/controllers/api/v1/todo_items_controller.rb
-   
+
    class Api::V1::TodoItemsController < ApplicationController
      def create
        @todo_item = current_user.todo_items.build(todo_item_params)
-   
+
        if authorized?
          respond_to do |format|
            if @todo_item.save
@@ -900,9 +910,9 @@ Now we need a way to create `TodoItems` with our API.
          handle_unauthorized
        end
      end
-   
+
      private
-   
+
      def todo_item_params
        params.require(:todo_item).permit(:title, :complete)
      end
@@ -1003,7 +1013,7 @@ Building our `update` action will be similar to the steps to updating our `creat
 
    ```ruby
    # app/controllers/api/v1/todo_items_controller.rb
-   
+
    class Api::V1::TodoItemsController < ApplicationController
      def update
        if authorized?
@@ -1111,7 +1121,7 @@ Now all we need to do is update our `destroy` action.
 
    ```ruby
    # app/controllers/api/v1/todo_items_controller.rb
-   
+
    class Api::V1::TodoItemsController < ApplicationController
      def destroy
        if authorized?

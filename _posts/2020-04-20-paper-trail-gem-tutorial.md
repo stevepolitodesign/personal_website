@@ -1,5 +1,8 @@
 ---
 title: "PaperTrail Gem Tutorial"
+excerpt:
+  In this tutorial I am going to show you how to revert and restore records using
+  the PaperTrail Gem.
 categories: ["Ruby on Rails"]
 resources:
   [

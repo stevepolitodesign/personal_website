@@ -6,6 +6,11 @@ resources:
     { title: "Browse Happy", url: "https://browsehappy.com/" },
   ]
 categories: ["Web Development"]
+excerpt: A lot of people are familiar with conditional classes, which is a great
+  alternative to conditional stylesheets or css hacks. However, these only target
+  IE. Even though most of us have become dependent on modern browsers like Chrome
+  or Firefox, we still forget that they are not immune to problems. And let’s not
+  forget mobile browsers like Opera Mini or Android Browser.
 date: 2015-04-03
 ---
 

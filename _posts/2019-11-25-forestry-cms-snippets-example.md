@@ -1,5 +1,9 @@
 ---
 title: "Forestry CMS Snippets Demo"
+excerpt:
+  Snippets in Forestry are pre-defined chunks of text that can be inserted into
+  your content. Think of them like WordPress Shortcodes. In this tutorial I will
+  show you how to create a reusable snippet to embed responsive iframes.
 categories: ["Web Development", "JAMstack"]
 resources:
   [

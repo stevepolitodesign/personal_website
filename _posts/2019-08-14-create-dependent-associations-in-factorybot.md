@@ -1,5 +1,13 @@
 ---
 title: "Create Dependent Associations in FactoryBot"
+excerpt: "
+  Imagine the following set of models and relationships:
+  A user can add a time_entry to a job. The time_entry has a task, and that task
+  has a rate which depends upon the job. So I need to validate that the associated
+  time_entry on a job is associated with a rate that is also associated with that
+  job. Basically, I want to make sure the correct rate is being applied to the
+  job.
+  "
 categories: ["Ruby on Rails"]
 resources:
   [

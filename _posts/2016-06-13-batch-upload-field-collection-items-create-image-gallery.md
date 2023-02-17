@@ -1,5 +1,13 @@
 ---
 title: Batch Upload Field Collection Items to Create an Image Gallery
+excerpt:
+  Let’s say you want to create an image gallery on your site. Let’s say that each
+  image also needs a caption and a photo credit field. One solution would be to
+  create a field collection of and image, text and long text field. However, the
+  most image galleries contain many images. It would be very time consuming to
+  have to upload each image individually. Enter Field Collection Bulkupload. With
+  Field Collection Bulkupload you can drag and drop multiple images onto the page
+  and have them automatically uploaded.
 tags: ["Tutorial", "Media Management"]
 categories: ["Drupal 7"]
 resources:

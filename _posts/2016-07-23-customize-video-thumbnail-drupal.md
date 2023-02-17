@@ -1,5 +1,13 @@
 ---
 title: Customize a Video Thumbnail in Drupal
+excerpt:
+  When you upload a video to Drupal from YouTube or Vimeo, an automatically
+  generated thumbnail will be created. This is normally not a big deal, but
+  wouldn’t it be nice if you could have complete control over the thumbnail that
+  is associated with the video? Thankfully, with Drupal’s File Entity module, you
+  can. In this tutorial, we will add the ability to add a custom video thumbnail
+  to a video in Drupal. As an added bonus, we will use the ImageCache Actions
+  module to automatically add a play button to each video thumbnail.
 tags: ["Media", "Tutorial", "Video"]
 categories: ["Drupal 7"]
 resources:
