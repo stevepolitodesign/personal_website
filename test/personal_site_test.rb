@@ -16,6 +16,11 @@ class BuildTest < IntegrationTestCase
     assert_exist("_redirects")
     assert_exist("404.html")
     assert_exist("sitemap.xml")
+    assert_exist("apple-touch-icon.png")
+    assert_exist("favicon-32x32.png")
+    assert_exist("favicon-16x16.png")
+    assert_exist("site.webmanifest")
+    assert_exist("safari-pinned-tab.svg")
   end
 
   def test_redirects
@@ -42,6 +47,18 @@ class SystemTest < SystemTestCase
   end
 
   class MetaDataTest < SystemTest
+    def test_all_pages_have_favicon
+      visit_all_paths do |path|
+        page.find("link[rel='apple-touch-icon'][sizes='180x180'][href='/apple-touch-icon.png']", visible: false)
+        page.find("link[rel='icon'][sizes='32x32'][type='image/png'][href='/favicon-32x32.png']", visible: false)
+        page.find("link[rel='icon'][sizes='16x16'][type='image/png'][href='/favicon-16x16.png']", visible: false)
+        page.find("link[rel='manifest'][href='/site.webmanifest']", visible: false)
+        page.find("link[rel='mask-icon'][href='/safari-pinned-tab.svg'][color='#dc3545']", visible: false)
+        page.find("meta[name='msapplication-TileColor'][content='#da532c']", visible: false)
+        page.find("meta[name='theme-color'][content='#ffffff']", visible: false)
+      end
+    end
+
     def test_all_pages_have_meta_data
       visit_all_paths do |path|
         description = page.find("meta[name='description']", visible: false)[:content]
