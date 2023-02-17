@@ -50,3 +50,11 @@ blockquote {
   word-break: keep-all;
   word-wrap: normal;
 }
+
+code {
+  padding: $kbd-padding-y $kbd-padding-x;
+  @include font-size($kbd-font-size);
+  color: $kbd-color;
+  background-color: $kbd-bg;
+  @include border-radius($border-radius-sm);
+}
