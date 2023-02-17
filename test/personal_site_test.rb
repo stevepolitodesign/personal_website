@@ -67,6 +67,7 @@ class SystemTest < SystemTestCase
         og_image = page.find("meta[property='og:image']", visible: false)[:content]
         twitter_card = page.find("meta[property='twitter:card']", visible: false)[:content]
         twitter_title = page.find("meta[property='twitter:title']", visible: false)[:content]
+        canonical_url = page.find("link[rel='canonical']", visible: false)[:content]
 
         refute_empty description
         refute_empty title
@@ -74,6 +75,7 @@ class SystemTest < SystemTestCase
         refute_empty og_image
         refute_empty twitter_card
         refute_empty twitter_title
+        refute_empty canonical_url
       end
     end
 
@@ -112,9 +114,11 @@ class SystemTest < SystemTestCase
       visit_post "post_with_meta_data"
       description = page.find("meta[name='description']", visible: false)[:content]
       og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      canonical_url = page.find("link[rel='canonical']", visible: false)[:content]
 
       assert_match "Custom excerpt", description
       assert_match "https://stevepolito.design/assets/images/posts/post-with-meta-data/custom_og_image.jpg", og_image
+      assert_match "https://stevepolito.design/fixtures/post_with_meta_data", canonical_url
     end
 
     def test_page_titles
