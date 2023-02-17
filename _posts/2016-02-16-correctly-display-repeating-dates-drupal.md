@@ -1,5 +1,8 @@
 ---
 title: Correctly Display Repeating Dates In Drupal
+excerpt:
+  Learn how to correctly display repeating dates in Drupal using the Date Repeat
+  API
 tags: ["Tutorial", "Date"]
 categories: ["Drupal 7"]
 resources:

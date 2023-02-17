@@ -1,5 +1,8 @@
 ---
 title: "Use a Custom Column Name With a belongs_to Association in Rails"
+excerpt:
+  There may be times when you want to customize the column name to be more
+  expressive.
 categories: ["Ruby on Rails"]
 resources:
   [

@@ -1,5 +1,13 @@
 ---
 title: Dynamically Link to Each Month In Drupal's Calendar
+excerpt:
+  Drupal’s Calendar module allows you to page between months. However, it can be
+  frustrating for a user to have to page several months in either direction if
+  they know what month they want to view. For example, if the current month is
+  June but a user wants to see upcoming events in December, they would need to
+  click through 5 times. In this tutorial, we are going to solve this problem by
+  creating a menu where each menu item will link to each month. As an added bonus,
+  we will make sure that the menu updates annually by using Menu Tokens.
 tags: ["Tutorial", "Calendar", "Menus"]
 categories: ["Drupal 7"]
 resources:

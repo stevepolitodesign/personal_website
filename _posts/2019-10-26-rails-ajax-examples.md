@@ -1,5 +1,8 @@
 ---
 title: Rails Ajax Examples (Without jQuery)
+excerpt:
+  Rails ships with turbolinks which creates a reactive, fast application. However, there are times when
+  turbolinks is not enough, and you’ll want to roll your own AJAX solutions.
 categories: ["Ruby on Rails"]
 tags: ["AJAX"]
 resources:

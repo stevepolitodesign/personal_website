@@ -1,5 +1,12 @@
 ---
 title: Display a Calendar On Taxonomy Pages In Drupal
+excerpt:
+  Let’s say you have a content type with a date field and term reference field.
+  This content type could be specifically for events. Because of this, you most
+  likely would like to display this content type in a calendar format. Luckily,
+  Drupal’s Calendar module does just that. However, if a user were to visit any of
+  the term pages associated with that content type, they would simply get a list
+  of content by default.
 tags: ["Calendar", "Date", "Taxonomy"]
 categories: ["Drupal 7"]
 resources:

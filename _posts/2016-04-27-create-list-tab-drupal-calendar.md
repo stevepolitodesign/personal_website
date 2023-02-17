@@ -1,5 +1,10 @@
 ---
 title: Create a List Tab For Drupal Calendar
+excerpt:
+  Drupal’s Calendar module allows an easy way for site builders to display events
+  in a month, week day and year format right out of the box. However, I recently
+  needed to add an additional tab to the view display to list all upcoming
+  events.
 tags: ["Calendar", "Date", "Tutorial"]
 categories: ["Drupal 7"]
 resources:
