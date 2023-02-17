@@ -33,10 +33,12 @@ table {
 
 blockquote {
   @extend .blockquote;
-  @extend .bg-blue-200;
   @extend .p-2;
+  @extend .bg-blue-100;
+  @extend .text-blue-800;
+  @extend .fs-6;
   border-left-width: 5px;
-  border-left-color: $blue-500;
+  border-left-color: $blue-800;
   border-left-style: solid;
 }
 
