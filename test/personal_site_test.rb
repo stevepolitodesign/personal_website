@@ -37,6 +37,13 @@ class BuildTest < IntegrationTestCase
 
     assert_equal expected, actual
   end
+
+  def test_config
+    config = YAML.load(File.read("_config.yml"))
+
+    assert_equal "/", config["baseurl"]
+    assert_equal "Steve Polito Design", config["title"]
+  end
 end
 
 class SystemTest < SystemTestCase
