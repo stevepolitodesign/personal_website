@@ -260,6 +260,12 @@ class SystemTest < SystemTestCase
         assert_link "Tutorial", href: "/tags/tutorial"
       end
     end
+
+    def test_post_navigation
+      visit_post "post_with_no_meta_data"
+
+      assert_selector "nav[aria-label='Post navigation']"
+    end
   end
 
   class ArchiveTest < SystemTest
