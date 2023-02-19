@@ -103,7 +103,7 @@ class SystemTest < SystemTestCase
       twitter_title = page.find("meta[property='twitter:title']", visible: false)[:content]
 
       assert_match "Post with no meta data", description
-      assert_match "Post with no meta data", title
+      assert_equal "Post with no meta data", title
       assert_match "Post with no meta data", og_title
       assert_match "/assets/images/og_image.jpg", og_image
       assert_match "summary_large_image", twitter_card
@@ -115,10 +115,12 @@ class SystemTest < SystemTestCase
       description = page.find("meta[name='description']", visible: false)[:content]
       og_image = page.find("meta[property='og:image']", visible: false)[:content]
       canonical_url = page.find("link[rel='canonical']", visible: false)[:content]
+      title = page.find("title", visible: false).native.text
 
       assert_match "Custom excerpt", description
       assert_match "https://stevepolito.design/assets/images/posts/post-with-meta-data/custom_og_image.jpg", og_image
       assert_match "https://stevepolito.design/fixtures/post_with_meta_data", canonical_url
+      assert_equal "Post with meta data", title
     end
 
     def test_page_titles
@@ -135,6 +137,7 @@ class SystemTest < SystemTestCase
       visit "/"
 
       assert_accessible page
+      assert_equal "Steve Polito is a full stack web developer in the Boston Area", page.title
       within "main" do
         page.assert_selector "h1", text: "Steve Polito is a full stack web developer in the Boston Area"
       end
@@ -185,6 +188,7 @@ class SystemTest < SystemTestCase
       visit "blog.html"
 
       assert_accessible page
+      assert_equal "Latest posts from Steve Polito", page.title
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
 
@@ -256,6 +260,7 @@ class SystemTest < SystemTestCase
       visit "categories/ruby-on-rails"
 
       assert_accessible page
+      assert_equal "Latest Ruby on Rails posts from Steve Polito", page.title
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
 
@@ -271,6 +276,7 @@ class SystemTest < SystemTestCase
       visit "tags/opinion"
 
       assert_accessible page
+      assert_equal "Latest Opinion posts from Steve Polito", page.title
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
 
