@@ -1,8 +1,7 @@
 ---
 layout: default
 title: "Contact Steve Polito"
-meta:
-  - content: "Email me at stevepolito@hey.com"
+excerpt: "Email me at stevepolito@hey.com"
 ---
 
 Want to get in touch? Email me at stevepolito@hey.com or fill out the form

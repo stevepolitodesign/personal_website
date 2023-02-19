@@ -1,8 +1,7 @@
 ---
 layout: default
 title: "Worcester Turtle Boy T-Shirt"
-meta:
-  - content: "The Official Worcester Turtle Boy T-Shirt"
+excerpt: "The Official Worcester Turtle Boy T-Shirt"
 ---
 
 Rome has Colosseum. Egypt has the Pyramids. Worcester has the [Turtle Boy][]. I made
