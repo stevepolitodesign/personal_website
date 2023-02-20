@@ -1,0 +1,23 @@
+<h2 class="border-bottom border-gray-100">Archives</h2>
+<div class="card bg-white">
+  <div class="card-body">
+    <p class="card-title h4">Categories</p>
+    <ul class="list-unstyled card-text">
+      {% assign categories = site.categories | sort %}
+      {% for category in categories %}
+        <li>
+          <a href="{{ 'categories' | relative_url }}/{{ category[0] | slugify }}">{{ category[0] }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="card-title h4">Tags</p>
+    <ul class="list-unstyled card-text">
+      {% assign tags = site.tags | sort %}
+      {% for tag in tags %}
+        <li>
+          <a href="{{ 'tags' | relative_url }}/{{ tag[0] | slugify }}">{{ tag[0] }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
