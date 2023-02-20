@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+  {% include head.liquid %}
+  <body>
+    {% include header.liquid %}
+    <main>
+      {% include page_title.liquid %}
+      <div class="container">
+        <div class="row">
+          <section
+            role="region"
+            aria-labelledby="latest-posts"
+            class="vstack gap-4 col col-sm-8"
+          >
+            <h2 id="latest-posts" class="border-bottom border-gray-100">Latest Posts</h2>
+            {% for post in page.posts %}
+              {% capture title %} {{ post.title }} {% endcapture %}
+              {% capture excerpt %} {{ post.excerpt }} {% endcapture %}
+              {% capture url %} {{ post.url }} {% endcapture %}
+              {% include article.liquid title=title excerpt=excerpt url=url %}
+            {% endfor %}
+          </section>
+          <aside class="col col-sm-4 vstack gap-4">
+            {% include archives.liquid %}
+          </aside>
+        </div>
+      </div>
+    </main>
+    {% include footer.liquid %}
+  </body>
+</html>

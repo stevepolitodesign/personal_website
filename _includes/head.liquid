@@ -1,0 +1,57 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  {% if page.type == 'category' or page.type == 'tag' %}
+    <title>
+      Latest
+      {{ page.title }}
+      posts from Steve Polito
+    </title>
+  {% else %}
+    <title>{{ page.title }}</title>
+  {% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#dc3545">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" content="{{ page.url | absolute_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  {% if page.type == 'category' %}
+    <meta
+      name="description"
+      content="Latest blog posts categorized in {{ page.title }}"
+    >
+  {% elsif page.type == 'tag' %}
+    <meta
+      name="description"
+      content="Latest blog posts tagged as {{ page.title }}"
+    >
+  {% elsif page.excerpt == null or page.exerpt == '' %}
+    <meta name="description" content="{{ site.meta.description }}">
+  {% else %}
+    <meta name="description" content="{{ page.excerpt | strip_html }}">
+  {% endif %}
+  {% if page.og_image == null or page.og_image == '' %}
+    <meta
+      property="og:image"
+      content="
+        {{ "/assets/images/og_image.jpg" | relative_url
+        }}
+      "
+    >
+  {% else %}
+    <meta property="og:image" content="{{ page.og_image | absolute_url }}">
+  {% endif %}
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="{{ page.title }}">
+</head>
