@@ -17,6 +17,9 @@ $link-color: $blue-700;
 
 $btn-border-radius: 0;
 
+$input-border-radius: 0px;
+$input-bg: #ffffff;
+
 $theme-colors: map-merge($theme-colors, $reds);
 $theme-colors: map-merge($theme-colors, $blues);
 $theme-colors: map-merge($theme-colors, $grays);
