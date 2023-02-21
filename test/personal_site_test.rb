@@ -250,6 +250,15 @@ class SystemTest < SystemTestCase
     end
 
     def test_tags_and_categories
+      visit_post "post_with_tags"
+
+      within "main aside" do
+        assert_link "Ruby on Rails", href: "/categories/ruby-on-rails"
+        assert_link "Tutorial", href: "/tags/tutorial"
+      end
+    end
+
+    def test_tags_and_categories_on_post
       visit "blog.html"
 
       within "main aside" do

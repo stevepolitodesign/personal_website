@@ -46,9 +46,12 @@
               {% endif %}
             </div>
           </section>
-          <aside class="col col-sm-4">
+          <aside class="vstack gap-4 col col-sm-4">
             {% if page.resources != null %}
               {% include resources.liquid %}
+            {% endif %}
+            {% if page.tags.size > 0 or page.categories.size > 0 %}
+              {% include tags_and_categories.liquid %}
             {% endif %}
           </aside>
         </div>
