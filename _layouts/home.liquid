@@ -18,6 +18,10 @@
           {% capture url %} {{ post.url }} {% endcapture %}
           {% include article.liquid title=title excerpt=excerpt url=url %}
         {% endfor %}
+        <a href="/blog" class="text-center"
+          >View All Posts
+          <span aria-hidden="true">&raquo;</span>
+        </a>
       </section>
     </main>
     {% include footer.liquid %}
