@@ -53,6 +53,16 @@ class SystemTest < SystemTestCase
     end
   end
 
+  def test_contact_form
+    visit "/contact.html"
+
+    within "form[name='contact'][data-netlify='true'][method='POST'][action='/thanks/']" do
+      assert_field "name"
+      assert_field "email"
+      assert_field "message"
+    end
+  end
+
   class MetaDataTest < SystemTest
     def test_all_pages_have_favicon
       visit_all_paths do |path|
