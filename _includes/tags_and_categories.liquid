@@ -1,0 +1,26 @@
+<div class="card bg-white">
+  <div class="card-body">
+    {% if page.categories.size > 0 %}
+      <p class="card-title h4">Categories</p>
+      <ul class="list-unstyled card-text">
+        {% assign categories = page.categories | sort %}
+        {% for category in categories %}
+          <li>
+            <a href="{{ 'categories' | relative_url }}/{{ category | slugify }}">{{ category] }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if page.tags.size > 0 %}
+      <p class="card-title h4">Tags</p>
+      <ul class="list-unstyled card-text">
+        {% assign tags = page.tags | sort %}
+        {% for tag in tags %}
+          <li>
+            <a href="{{ 'tags' | relative_url }}/{{ tag | slugify }}">{{ tag }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
