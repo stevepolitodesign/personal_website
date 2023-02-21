@@ -156,6 +156,7 @@ class SystemTest < SystemTestCase
       within "main section[role='region'][aria-labelledby='latest-posts']" do
         page.assert_selector "h2", text: "Latest Posts", id: "latest-posts"
         page.assert_selector "article", count: 3
+        assert_link "View All Posts", href: "/blog"
 
         within "article:first-of-type" do
           page.assert_selector "header h2"
