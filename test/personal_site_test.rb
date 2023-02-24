@@ -286,6 +286,20 @@ class SystemTest < SystemTestCase
 
       assert_selector "nav[aria-label='Post navigation']"
     end
+
+    def test_image_links
+      visit_post "post_with_image"
+
+      within "a[href='./assets/some/image.png']" do
+        assert_selector "img[src='./assets/some/image.png']"
+        assert_selector "span", text: "Click to expand"
+      end
+      within "a[href='./assets/another/image.png']" do
+        assert_selector "img[src='./assets/another/image.png']"
+        assert_selector "span", text: "Click to expand"
+      end
+      assert_no_selector "a[href='./assets/existing/link/image.png']"
+    end
   end
 
   class ArchiveTest < SystemTest
