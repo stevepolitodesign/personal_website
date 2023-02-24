@@ -7,7 +7,7 @@ require "axe/matchers/be_axe_clean"
 
 ENV["JEKYLL_ENV"] ||= "test"
 
-system("bundle exec jekyll build")
+system("bundle exec jekyll build", out: File::NULL)
 Capybara.app = Rack::Jekyll.new
 Capybara.default_driver = :selenium_chrome_headless
 Capybara.server = :webrick
@@ -34,7 +34,7 @@ module TestServer
   end
 
   def start_jekyll_test_server
-    system("bundle exec jekyll serve --detach --port=1234")
+    system("bundle exec jekyll serve --detach --port=1234", out: File::NULL)
   end
 end
 
