@@ -300,6 +300,17 @@ class SystemTest < SystemTestCase
       end
       assert_no_selector "a[href='./assets/existing/link/image.png']"
     end
+
+    def test_headlines
+      visit_post "post_with_headlines"
+
+      within "h1#headline-1" do
+        assert_selector "a[href='#headline-1'][aria-label='Headline 1']"
+      end
+      within "h2#headline-2" do
+        assert_selector "a[href='#headline-2'][aria-label='Headline 2']"
+      end
+    end
   end
 
   class ArchiveTest < SystemTest
