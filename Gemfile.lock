@@ -61,6 +61,8 @@ GEM
       webrick (~> 1.7)
     jekyll-archives (2.2.1)
       jekyll (>= 3.6, < 5.0)
+    jekyll-feed (0.17.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-sass-converter (2.2.0)
       sassc (> 2.0.1, < 3.0)
     jekyll-sitemap (1.4.0)
@@ -191,6 +193,7 @@ DEPENDENCIES
   capybara (~> 3.38)
   jekyll
   jekyll-archives (~> 2.2)
+  jekyll-feed (~> 0.17.0)
   jekyll-sitemap (~> 1.4)
   jekyll-youtube (~> 1.0)
   mdl (~> 0.12.0)

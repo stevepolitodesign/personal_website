@@ -9,6 +9,7 @@ permalink: "/blog/:title"
 highlighter: none
 plugins:
   - jekyll-archives
+  - jekyll-feed
   - jekyll-sitemap
   - jekyll-youtube
 jekyll-archives:

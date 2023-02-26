@@ -21,6 +21,7 @@ class BuildTest < IntegrationTestCase
     assert_exist("favicon-16x16.png")
     assert_exist("site.webmanifest")
     assert_exist("safari-pinned-tab.svg")
+    assert_exist("feed.xml")
   end
 
   def test_redirects
@@ -188,6 +189,7 @@ class SystemTest < SystemTestCase
           assert_link "Contact", href: "/contact"
           assert_selector "a[aria-label='Twitter'][href='https://twitter.com/stevepolitodsgn']"
           assert_selector "a[aria-label='GitHub'][href='https://github.com/stevepolitodesign']"
+          assert_selector "a[aria-label='RSS'][href*='feed.xml']"
         end
       end
     end
