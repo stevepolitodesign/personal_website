@@ -9,7 +9,17 @@
         <div class="row mb-4">
           <section class="vstack gap-4 col col-sm-8">
             <div class="card bg-white">
-              <div class="card-body">{{ content }}</div>
+              <div class="card-body">
+                {% if page.canonical_url %}
+                  <p>
+                    You are being redirected to
+                    <a href="{{ page.canonical_url }}">
+                      {{ page.canonical_url }}
+                    </a>
+                  </p>
+                {% endif %}
+                {{ content }}
+              </div>
               {% if page.previous.url or page.next.url %}
                 <div class="card-footer">
                   <nav aria-label="Post navigation">

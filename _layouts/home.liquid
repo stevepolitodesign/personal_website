@@ -12,11 +12,11 @@
       >
         <h2 id="latest-posts" class="border-bottom border-gray-100">Latest Posts</h2>
         {% for post in site.posts limit: 3 %}
-          {% capture title %} {{ post.title
-        }} {% endcapture %}
+          {% capture title %} {{ post.title }} {% endcapture %}
           {% capture excerpt %} {{ post.excerpt }} {% endcapture %}
           {% capture url %} {{ post.url }} {% endcapture %}
-          {% include article.liquid title=title excerpt=excerpt url=url %}
+          {% capture canonical_url %} {{ post.canonical_url }} {% endcapture %}
+          {% include article.liquid title=title excerpt=excerpt url=url canonical_url=canonical_url %}
         {% endfor %}
         <a href="/blog" class="text-center"
           >View All Posts
