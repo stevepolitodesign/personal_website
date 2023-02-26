@@ -313,6 +313,18 @@ class SystemTest < SystemTestCase
         assert_selector "a[href='#headline-2'][aria-label='Headline 2']"
       end
     end
+
+    def test_post_redirect
+      visit_post "post_with_redirect"
+      canonical_url = page.find("link[rel='canonical']", visible: false)[:content]
+
+      assert_selector "meta[http-equiv='refresh'][content='0;url=http://external.com']", visible: false
+      assert_equal "http://external.com", canonical_url
+      within("main") do
+        assert_text "You are being redirected"
+        assert_selector "a[href='http://external.com']"
+      end
+    end
   end
 
   class ArchiveTest < SystemTest

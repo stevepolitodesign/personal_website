@@ -23,7 +23,15 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#dc3545">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
-  <link rel="canonical" content="{{ page.url | absolute_url }}">
+  {% if page.canonical_url %}
+    <meta http-equiv="refresh" content="0;url={{ page.canonical_url }}">
+    <link
+      rel="canonical"
+      content="{{ page.canonical_url }}"
+    >
+  {% else %}
+    <link rel="canonical" content="{{ page.url | absolute_url }}">
+  {% endif %}
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   {% if page.type == 'category' %}
     <meta

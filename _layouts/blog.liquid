@@ -17,7 +17,8 @@
               {% capture title %} {{ post.title }} {% endcapture %}
               {% capture excerpt %} {{ post.excerpt }} {% endcapture %}
               {% capture url %} {{ post.url }} {% endcapture %}
-              {% include article.liquid title=title excerpt=excerpt url=url %}
+              {% capture canonical_url %} {{ post.canonical_url }} {% endcapture %}
+              {% include article.liquid title=title excerpt=excerpt url=url canonical_url=canonical_url %}
             {% endfor %}
           </section>
           <aside class="col col-sm-4 vstack gap-4">
