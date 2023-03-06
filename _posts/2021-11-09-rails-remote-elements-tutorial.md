@@ -9,7 +9,6 @@ resources:
     },
   ]
 date: 2021-11-09
-og_image: "https://mugshotbot.com/m/s6WZrmo1"
 ---
 
 Do you need to create real-time features in your Rails app, but either can't use Turbo or don't want to use a front end framework like React? Fortunately older versions of Rails actually provide this functionality of the box. In this tutorial I'll show you how to create a single page app in Rails from scratch using remote elements and Stimulus.

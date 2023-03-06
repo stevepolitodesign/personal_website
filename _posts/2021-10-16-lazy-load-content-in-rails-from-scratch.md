@@ -1,6 +1,5 @@
 ---
 title: "Lazy Load Content in Rails from Scratch"
-og_image: https://mugshotbot.com/m/KLdPfuCm
 date: "2021-10-16"
 categories: ["Ruby on Rails"]
 resources:

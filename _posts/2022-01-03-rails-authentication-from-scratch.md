@@ -9,7 +9,6 @@ resources:
     },
   ]
 date: 2022-01-03
-og_image: https://mugshotbot.com/m/YAzCh7hh
 ---
 
 If you're like me then you probably take Devise for granted because you're too intimidated to roll your own authentication system. As powerful as Devise is, it's not perfect. There are plenty of cases where I've reached for it only to end up constrained by its features and design, and wished I could customize it exactly to my liking.
