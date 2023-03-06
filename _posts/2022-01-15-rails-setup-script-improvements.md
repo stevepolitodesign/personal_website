@@ -9,7 +9,6 @@ resources:
     },
   ]
 date: 2022-01-15
-og_image: "https://mugshotbot.com/m/wGyEu7oj"
 ---
 
 Rails ships with a [setup script][] that automates bootstrapping a new application, but did you know that you're free to edit this script? In this quick tutorial, I'll show you how you can improve the default Rails setup script to create a more consistent and helpful onboarding experience for folks on your team.

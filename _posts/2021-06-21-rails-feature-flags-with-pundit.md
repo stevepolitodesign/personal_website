@@ -9,7 +9,6 @@ resources:
       url: "https://github.com/stevepolitodesign/pundit-feature-flags",
     },
   ]
-og_image: https://mugshotbot.com/m/rrwkolZP
 ---
 
 In this tutorial, I'll show you how to create a feature flag system in Rails using [pundit](https://github.com/varvet/pundit) and a `features` column on the `users` table.

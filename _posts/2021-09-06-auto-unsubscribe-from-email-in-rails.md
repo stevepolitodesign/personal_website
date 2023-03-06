@@ -12,7 +12,6 @@ resources:
       url: "https://gorails.com/episodes/rails-email-unsubscribe-links",
     },
   ]
-og_image: https://mugshotbot.com/m/QJNW9YzY
 date: 2021-09-06
 ---
 
