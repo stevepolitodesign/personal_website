@@ -32,3 +32,4 @@ defaults:
       type: "fixtures"
     values:
       layout: "default"
+      sitemap: false
