@@ -45,6 +45,12 @@ class BuildTest < IntegrationTestCase
     assert_equal "/", config["baseurl"]
     assert_equal "Steve Polito Design", config["title"]
   end
+
+  def test_sitemap
+    sitemap = read_file("sitemap.xml")
+
+    refute sitemap.include?("stevepolito.design/open-graph/")
+  end
 end
 
 class SystemTest < SystemTestCase
@@ -61,6 +67,110 @@ class SystemTest < SystemTestCase
       assert_field "name"
       assert_field "email"
       assert_field "message"
+    end
+  end
+
+  class OpenGraphTest < SystemTest
+    def test_homepage
+      visit "/"
+
+      og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      assert_equal "https://stevepolito.design/assets/images/open-graph/index.png", og_image
+
+      visit "/open-graph/index.html"
+
+      assert_selector "style", visible: false
+      within "#open-graph" do
+        assert_text "Steve Polito is a full stack web developer in the Boston Area"
+        assert_text "stevepolito.design"
+      end
+
+      visit "/assets/images/open-graph/index.png"
+      assert_selector "img[src*='/assets/images/open-graph/index.png']"
+    end
+
+    def test_blog
+      visit "/blog.html"
+
+      og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      assert_equal "https://stevepolito.design/assets/images/open-graph/blog.png", og_image
+
+      visit "/open-graph/blog.html"
+
+      assert_selector "style", visible: false
+      within "#open-graph" do
+        assert_text "Latest posts from Steve Polito"
+        assert_text "stevepolito.design"
+      end
+
+      visit "/assets/images/open-graph/blog.png"
+      assert_selector "img[src*='/assets/images/open-graph/blog.png']"
+    end
+
+    def test_tag_archive
+      visit "/tags/opinion/index.html"
+
+      og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      assert_equal "https://stevepolito.design/assets/images/open-graph/tag/opinion.png", og_image
+
+      visit "/open-graph/tag/opinion.html"
+
+      assert_selector "style", visible: false
+      within "#open-graph" do
+        assert_text "Latest Opinion posts from Steve Polito"
+        assert_text "stevepolito.design"
+      end
+
+      visit "/assets/images/open-graph/tag/opinion.png"
+      assert_selector "img[src*='/assets/images/open-graph/tag/opinion.png']"
+    end
+
+    def test_category_archive
+      visit "/categories/ruby-on-rails/index.html"
+
+      og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      assert_equal "https://stevepolito.design/assets/images/open-graph/category/ruby-on-rails.png", og_image
+
+      visit "/open-graph/category/ruby-on-rails.html"
+
+      assert_selector "style", visible: false
+      within "#open-graph" do
+        assert_text "Latest Ruby on Rails posts from Steve Polito"
+        assert_text "stevepolito.design"
+      end
+
+      visit "/assets/images/open-graph/category/ruby-on-rails.png"
+      assert_selector "img[src*='/assets/images/open-graph/category/ruby-on-rails.png']"
+    end
+
+    def test_post
+      visit "/blog/rails-setup-script-improvements.html"
+
+      og_image = page.find("meta[property='og:image']", visible: false)[:content]
+      assert_equal "https://stevepolito.design/assets/images/open-graph/blog/rails-setup-script-improvements.png", og_image
+
+      visit "/open-graph/blog/rails-setup-script-improvements.html"
+
+      assert_selector "style", visible: false
+      within "#open-graph" do
+        assert_text "Rails Setup Script Improvements"
+        assert_text "stevepolito.design"
+      end
+
+      visit "/assets/images/open-graph/blog/rails-setup-script-improvements.png"
+      assert_selector "img[src*='/assets/images/open-graph/blog/rails-setup-script-improvements.png']"
+    end
+
+    def test_all_pages_have_open_graph_image
+      visit_all_paths do |path|
+        og_image_contents = page.find("meta[property='og:image']", visible: false)[:content]
+        assert_match "https://stevepolito.design/", og_image_contents
+
+        og_image = og_image_contents.split("https://stevepolito.design").last
+        visit og_image
+
+        assert_equal 200, page.status_code
+      end
     end
   end
 
