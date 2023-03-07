@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    {{ page.styles }}
+  </style>
+  <body>
+    <div
+      id="open-graph"
+      style="width:800px;height:400px;"
+      class="
+        bg-red-500
+        overflow-hidden d-flex p-3 align-items-center justify-content-center
+        position-relative
+      "
+    >
+      <h1 class="m-0 long-shadow text-white">{{ page.title }}</h1>
+      <div class="position-absolute bottom-0 start-0 p-3">
+        <span class="text-white long-shadow">stevepolito.design</span>
+      </div>
+    </div>
+  </body>
+</html>
