@@ -16,7 +16,7 @@ module Jekyll
           img.wrap("<a href='#{src}'></a>")
           img.parent.add_class("border d-block text-center")
           img.add_next_sibling("<span>Click to expand</span>")
-          img.next_sibling.add_class("d-inline-block py-3")
+          img.next_sibling.add_class("d-block py-3")
         end
       end
 
