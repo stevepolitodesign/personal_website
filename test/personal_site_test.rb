@@ -10,6 +10,7 @@ class BuildTest < IntegrationTestCase
     refute_exist("package.json")
     refute_exist("yarn.lock")
     refute_exist(".husky")
+    refute_exist("lib")
   end
 
   def test_included_files
