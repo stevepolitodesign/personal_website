@@ -1,5 +1,5 @@
-require "./lib/jekyll-image-link"
-require "./lib/jekyll-anchor-link"
+require "./lib/jekyll_image_link"
+require "./lib/jekyll_anchor_link"
 
 Jekyll::Hooks.register [:documents], :post_render do |doc|
   Jekyll::ImageLink.new(doc).link_images
