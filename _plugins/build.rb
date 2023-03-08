@@ -1,6 +1,6 @@
 require "fileutils"
 require "selenium-webdriver"
-require "./lib/jekyll-screenshot"
+require "./lib/jekyll_screenshot"
 
 Jekyll::Hooks.register :site, :after_init do |site|
   unless File.exist?(site.collections_path + "/node_modules")
