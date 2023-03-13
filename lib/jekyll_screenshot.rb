@@ -9,6 +9,7 @@ module Jekyll
 
     def generate_screenshot_from_file
       driver.get(path)
+      allow_google_fonts_to_load
       element = driver.find_element(:css, selector)
       screenshot = element.screenshot_as(:png)
       File.binwrite(destination, screenshot)
@@ -17,5 +18,9 @@ module Jekyll
     private
 
     attr_reader :driver, :path, :selector, :destination
+
+    def allow_google_fonts_to_load
+      sleep 1
+    end
   end
 end
