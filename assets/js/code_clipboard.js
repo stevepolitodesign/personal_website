@@ -2,7 +2,6 @@ const codeBlocks = document.querySelectorAll("pre");
 
 codeBlocks.forEach(function (codeBlock) {
   const Button = document.createElement("button");
-  Button.className = " ";
   Button.type = "button";
   Button.ariaLabel = "Copy code to clipboard";
   Button.innerText = "Copy";
@@ -18,14 +17,15 @@ codeBlocks.forEach(function (codeBlock) {
   codeBlock.append(Button);
 
   Button.addEventListener("click", () => {
+    const twoSeconds = 2000;
     const code = codeBlock.querySelector("code").innerText.trim();
+
     window.navigator.clipboard.writeText(code);
 
     Button.innerText = "Copied!";
-    const fourSeconds = 1500;
 
     setTimeout(() => {
       Button.innerText = "Copy";
-    }, fourSeconds);
+    }, twoSeconds);
   });
 });
