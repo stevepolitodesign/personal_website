@@ -71,6 +71,20 @@ Next, we have two helper methods: `handle_missing_key` and
 `handle_missing_file_argument`. These methods print error messages and exit the
 script if a key or a file is missing, respectively.
 
+```ruby
+def handle_missing_key(error)
+  puts "ERROR: #{error}"
+  puts ""
+  puts "Did you run 'setup'?"
+  exit 1
+end
+
+def handle_missing_file_argument
+  puts "Please pass a file"
+  exit 1
+end
+```
+
 ## Executing the Commands
 
 The `case` statement is the main part of the script, handling the three possible
@@ -225,9 +239,9 @@ when "write"
   end
 when "read"
   begin
-  # ℹ️ Set the file from the second argument
+    # ℹ️ Set the file from the second argument
     file = ARGV.shift
-  # ℹ️ Ensure the file was passed as an argument
+    # ℹ️ Ensure the file was passed as an argument
     handle_missing_file_argument if file.nil?
     encrypted_file = build_encrypted_file(file)
     # ℹ️ Print decrypted file contents to $STDOUT
