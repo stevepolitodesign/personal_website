@@ -21,7 +21,7 @@ pre[class*="language-"] {
   hyphens: none;
 }
 pre[class*="language-"] {
-  padding: 1em;
+  padding: 1em 1em 1em 1em;
   margin: 0.5em 0;
   overflow: auto;
 }
@@ -190,4 +190,30 @@ pre[class*="language-"].line-numbers > code {
   display: block;
   padding-right: 0.8em;
   text-align: right;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  color: white;
+  font-size: 0.8em;
+  padding: 0.25em 0.5em;
+  background: #f5f2f0;
+  background: black;
+  border-radius: 0.5em;
+  border: 1px solid #535353;
+}
+div.code-toolbar {
+  position: relative;
+}
+div.code-toolbar > .toolbar {
+  position: absolute;
+  z-index: 10;
+  top: 0.3em;
+  right: 0.2em;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
 }
