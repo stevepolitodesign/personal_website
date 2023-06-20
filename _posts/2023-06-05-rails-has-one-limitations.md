@@ -1,6 +1,6 @@
 ---
 title: "Are you absolutely sure your `has_one` association really has one association?"
-exceprt: "Learn about an unexpected limitation with this API and how to combat it universally."
+excerpt: "Learn about an unexpected limitation with this API and how to combat it universally."
 categories: ["Ruby on Rails"]
 canonical_url: https://thoughtbot.com/blog/rails-has-one-limitations
 ---
