@@ -79,6 +79,19 @@ glob pattern matching. Since the existing posts were migrating from a previous
 Gatsby build, there are a lot of violations. This is better suited for new
 posts, and as such, is not part of CI.
 
+## Issues
+
+### ChromeDriver
+
+The following error can be resolved by running `brew upgrade chromedriver`
+
+```
+4248000: session not created: This version of ChromeDriver only supports Chrome
+version 110 (Selenium::WebDriver::Error::SessionNotCreatedError)
+Current browser version is 115.0.5790.102 with binary path /Applications/Google
+Chrome.app/Contents/MacOS/Google Chrome
+```
+
 [1]: https://github.com/stevepolitodesign/personal_website/commit/9d07b67204edbade29e6107da865905e6a504a13
 [2]: https://github.com/stevepolitodesign/personal_website/commit/4f8fa9cac62ae8c374d92cdbf21805eeef4da6d9
 [3]: https://github.com/stevepolitodesign/personal_website/commit/c7d43db794c9ef95e9c69a7127df438d296d3c8f
