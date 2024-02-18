@@ -1,6 +1,6 @@
 ---
 title: Are you absolutely sure you know how to use the button element?
-excerpts: Read this the next time you need to build a complicated form.
+excerpt: Read this the next time you need to build a complicated form.
 categories: ["Ruby on Rails"]
 canonical_url: https://thoughtbot.com/blog/button-element-tutorial
 ---
