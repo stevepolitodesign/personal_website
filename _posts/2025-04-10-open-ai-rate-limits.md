@@ -20,12 +20,16 @@ other APIs.
 
 In our case, we were hitting our **TPM** (tokens per minute) rate limit.
 
-When a rate limit is exceeded, OpenAI will return the relevant [headers][headers].
+Regardless of whether a rate limit is exceeded, OpenAI will return the following
+[headers][headers].
 
 ```
 x-ratelimit-reset-requests: 1s
 x-ratelimit-reset-tokens: 6m0s
 ```
+
+It should be noted that these headers represent the amount of time that needs to
+pass before the rate limit returns to its initial state.
 
 At the time of this writing, OpenAI does not have a first-party Ruby library,
 but the community has gravitated towards [ruby-openai][], which is what our
@@ -33,7 +37,7 @@ project is using. When a rate limit is hit, it raises
 `Faraday::TooManyRequestsError`, which gives us access to those headers via
 [`#response_headers`][].
 
-Because OpenAI could return two headers (one for requests per minute and one for
+Because OpenAI will return two headers (one for requests per minute and one for
 tokens per minute), we play it safe and wait based on the greater of the two
 values.
 
@@ -52,7 +56,7 @@ Below is a distilled example.
 # app/jobs/send_prompt_job.rb
 class SendPromptJob < ApplicationJob
   queue_as :default
-  
+
   MAX_ATTEMPTS = 2
 
   rescue_from OpenAI::RateLimitError do |error|
@@ -115,7 +119,7 @@ Since we can't leverage `retry_on`, we need to ensure we eventually stop
 retrying the job if it continues to fail.
 
 ```ruby
-executions <= MAX_ATTEMPTS
+executions < MAX_ATTEMPTS
 ```
 
 Additionally, you'll also note that we add a "backoff" mechanism per OpenAI's
@@ -155,14 +159,22 @@ end
 client = OpenAI::Client.new do |faraday|
   faraday.use ExtractRateLimitHeaders
 end
-
-client.chat(...)
 ```
 
 You could then use this information to reduce the number of tokens you plan on
 sending to OpenAI by comparing its size with `remaining_tokens`. Or, if you're
 keeping track of how many requests you're making, you could compare that value
-with `remaining_tokens`.
+with `remaining_requests`.
+
+```ruby
+# Ensure you're within the request and/or token limit before making a request
+if (current_requests < remaining_requests && current_tokens < remaining_tokens)
+  client.chat(...)
+end
+```
+
+Alternatively, you could temporarily switch to a model with higher token and
+request limits, or temporarily reduce the amount of tokens sent in the request.
 
 [rate limits]: https://platform.openai.com/docs/guides/rate-limits?context=tier-free#rate-limits-in-headers
 [headers]: https://platform.openai.com/docs/guides/rate-limits#rate-limits-in-headers
