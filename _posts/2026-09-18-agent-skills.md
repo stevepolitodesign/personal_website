@@ -7,8 +7,7 @@ tags: ["Artificial Intelligence", "Tutorial"]
 
 I am staffed on a project where I have no familiarity with the tech stack or
 language. It's .NET and C#, but my background is Rails. It's also a regulated
-industry, so there's no appetite for risk. None of this is one-shot
-prompting.
+industry, so there's no room for risk. None of this is one-shot prompting.
 
 I haven't opened an IDE in months. I run a dynamic workflow which can take
 anywhere from 30-60 minutes. During that time, I just work on something in
